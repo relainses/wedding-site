@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Свадьба Яны и Дмитрия</title>
+<title>Свадьба Дмитрий и Яны</title>
 <meta name="robots" content="noindex" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,7 +39,7 @@ body{
 .music-wrap{
   position:fixed;
   right:10px;
-  bottom:40px;
+  bottom:34px;
   display:flex;
   justify-content:flex-end;
   z-index:20;
@@ -156,15 +156,17 @@ body{
   width:100%;
   aspect-ratio:4/5;
   object-fit:cover;
+  border-radius:2px;
 }
 
 .photo-name{
   text-align:center;
   font-family:'Bad Script',cursive;
-  font-size:30px;
-  margin-top:8px;
+  font-size:31px;
+  margin-top:10px;
   position:relative;
   z-index:3;
+  color:#8d4560;
 }
 
 .date-top{text-align:center;color:var(--muted)}
@@ -174,7 +176,8 @@ body{
   justify-content:center;
   gap:14px;
   font-size:22px;
-  margin-top:10px;
+  margin-top:12px;
+  align-items:center;
 }
 
 .date-main{
@@ -199,21 +202,24 @@ body{
 
 .countdown{
   text-align:center;
-  margin-top:16px;
+  margin-top:18px;
   background:var(--paper2);
-  padding:12px;
+  padding:13px 14px;
   border-radius:18px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.45);
 }
 
-.place{text-align:center;position:relative;padding-bottom:22px}
+.place{text-align:center;position:relative;padding-right:86px;padding-bottom:18px;min-height:84px}
 
 .cloud-btn{
   display:inline-flex;
+  flex-direction:column;
   align-items:center;
   justify-content:center;
-  width:84px;
-  height:58px;
-  padding:0 10px;
+  gap:1px;
+  width:92px;
+  height:64px;
+  padding:4px 10px;
   margin-top:0;
   text-decoration:none;
   color:var(--brown);
@@ -222,11 +228,17 @@ body{
   box-shadow:none;
   font-weight:500;
   font-size:10px;
-  line-height:1.05;
+  line-height:1.02;
   text-align:center;
   position:absolute;
-  right:-10px;
+  right:-14px;
+  bottom:0;
   clip-path:path('M 14 27 C 14 17, 22 11, 31 12 C 34 6, 42 4, 49 8 C 56 3, 68 5, 72 13 C 81 11, 90 17, 91 26 C 99 28, 104 35, 102 43 C 100 50, 93 55, 84 55 C 79 61, 69 63, 61 59 C 53 64, 40 64, 33 59 C 23 62, 14 58, 11 50 C 4 47, 1 38, 5 31 C 6 28, 9 26, 14 27 Z');
+}
+
+.cloud-btn span{
+  display:block;
+  white-space:nowrap;
 }
 
 .cloud-btn:hover{
@@ -234,10 +246,11 @@ body{
 }
 
 .cloud-btn.small{
-  width:82px;
-  height:56px;
+  width:88px;
+  height:60px;
   font-size:9.5px;
-  right:-12px;
+  right:-16px;
+  bottom:-2px;
 }
 
 .timeline{
@@ -276,7 +289,7 @@ body{
   margin-top:10px;
 }
 
-.organizer{text-align:center;margin-top:20px;position:relative;padding-right:72px;min-height:62px}
+.organizer{text-align:center;margin-top:20px;position:relative;padding-right:86px;min-height:76px}
 
 form{display:flex;flex-direction:column;gap:14px;margin-top:16px}
 
@@ -304,7 +317,10 @@ textarea{
 
 .footer-note{
   text-align:center;
-  margin-top:20px;
+  margin-top:22px;
+  color:#7a6559;
+  font-size:14px;
+  letter-spacing:.02em;
 }
 .decor-heart,
 .decor-bow{
