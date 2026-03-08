@@ -56,24 +56,42 @@ body{
 }
 
 .sheet{
-  background:var(--paper);
-  padding:32px 20px;
-  box-shadow:var(--shadow);
+  background:
+    linear-gradient(rgba(255,255,255,.12), rgba(255,255,255,.06)),
+    repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px),
+    var(--paper);
+  padding:34px 22px 38px;
+  box-shadow:0 20px 50px rgba(63,42,31,.10), inset 0 1px 0 rgba(255,255,255,.45);
+  border:1px solid rgba(141,116,97,.08);
+  position:relative;
 }
 
 .section{
-  padding:24px 0;
+  padding:28px 0;
+  position:relative;
+}
+
+.section::after{
+  content:'';
+  display:block;
+  width:54px;
+  height:1px;
+  background:linear-gradient(90deg, transparent, rgba(157,66,85,.22), transparent);
+  margin:22px auto 0;
 }
 
 .section + .section{
-  border-top:1px solid rgba(0,0,0,.05);
+  border-top:1px solid rgba(0,0,0,.04);
 }
 
 .section-title{
   font-family:'Bad Script',cursive;
-  font-size:48px;
+  font-size:50px;
   text-align:center;
-  margin-bottom:16px;
+  margin:0 0 18px;
+  letter-spacing:.01em;
+  line-height:1.08;
+  text-shadow:0 1px 0 rgba(255,255,255,.35);
 }
 
 .hero-line{
@@ -93,7 +111,9 @@ body{
   text-align:center;
   max-width:340px;
   margin:auto;
-  line-height:1.6;
+  line-height:1.72;
+  font-size:17px;
+  letter-spacing:.005em;
 }
 
 .child-grid{
@@ -185,15 +205,15 @@ body{
   border-radius:18px;
 }
 
-.place{text-align:center;position:relative;padding-bottom:8px}
+.place{text-align:center;position:relative;padding-bottom:22px}
 
 .cloud-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  width:74px;
-  height:54px;
-  padding:0 8px;
+  width:84px;
+  height:58px;
+  padding:0 10px;
   margin-top:0;
   text-decoration:none;
   color:var(--brown);
@@ -201,11 +221,11 @@ body{
   border:2px solid #d8b8c2;
   box-shadow:none;
   font-weight:500;
-  font-size:11px;
+  font-size:10px;
   line-height:1.05;
   text-align:center;
   position:absolute;
-  right:-6px;
+  right:-10px;
   clip-path:path('M 14 27 C 14 17, 22 11, 31 12 C 34 6, 42 4, 49 8 C 56 3, 68 5, 72 13 C 81 11, 90 17, 91 26 C 99 28, 104 35, 102 43 C 100 50, 93 55, 84 55 C 79 61, 69 63, 61 59 C 53 64, 40 64, 33 59 C 23 62, 14 58, 11 50 C 4 47, 1 38, 5 31 C 6 28, 9 26, 14 27 Z');
 }
 
@@ -214,10 +234,10 @@ body{
 }
 
 .cloud-btn.small{
-  width:70px;
-  height:50px;
-  font-size:10.5px;
-  right:-8px;
+  width:82px;
+  height:56px;
+  font-size:9.5px;
+  right:-12px;
 }
 
 .timeline{
@@ -256,7 +276,7 @@ body{
   margin-top:10px;
 }
 
-.organizer{text-align:center;margin-top:20px;position:relative;padding-right:64px;min-height:56px}
+.organizer{text-align:center;margin-top:20px;position:relative;padding-right:72px;min-height:62px}
 
 form{display:flex;flex-direction:column;gap:14px;margin-top:16px}
 
@@ -304,27 +324,7 @@ textarea{
   color:#b78a9a;
 }
 
-.petals{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  overflow:hidden;
-  z-index:1;
-}
 
-.petal{
-  position:absolute;
-  top:-10%;
-  width:14px;
-  height:10px;
-  background:rgba(210,146,170,.55);
-  border-radius:14px 0 14px 0;
-  animation:fall linear infinite;
-  filter:blur(.2px);
-}
-
-@keyframes fall{
-  0%{transform:translateY(-10vh) translateX(0) rotate(0deg);opacity:0}
   10%{opacity:.9}
   100%{transform:translateY(110vh) translateX(40px) rotate(260deg);opacity:0}
 }
@@ -347,7 +347,6 @@ html{
 </head>
 
 <body>
-<div class="petals" id="petals"></div>
 
 <div class="page">
 
@@ -396,7 +395,7 @@ html{
 <div class="place">
 <strong>TENET HOTEL</strong>
 <p class="text">г. Екатеринбург, ул. Хохрякова, 1А</p>
-<a class="cloud-btn" target="_blank" href="https://yandex.ru/maps/?text=Екатеринбург%20Хохрякова%201А">открыть<br>карты</a>
+<a class="cloud-btn" target="_blank" href="https://yandex.ru/maps/?text=Екатеринбург%20Хохрякова%201А"><span>открыть</span><span>карты</span></a>
 </div>
 </section>
 
@@ -450,7 +449,7 @@ html{
 
 <div class="organizer">
 <p>По вопросам можно связаться с организатором</p>
-<a class="cloud-btn small" href="tel:+79126988268">связаться</a>
+<a class="cloud-btn small" href="tel:+79126988268"><span>связаться</span></a>
 </div>
 
 </section>
@@ -543,17 +542,7 @@ const observer = new IntersectionObserver((entries)=>{
 document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
 
 /* падающие лепестки */
-const petalsWrap = document.getElementById('petals');
-for(let i=0;i<18;i++){
-  const p=document.createElement('span');
-  p.className='petal';
-  p.style.left=Math.random()*100+'vw';
-  p.style.animationDuration=(8+Math.random()*8)+'s';
-  p.style.animationDelay=(Math.random()*8)+'s';
-  p.style.opacity=(0.35+Math.random()*0.45).toFixed(2);
-  p.style.transform=`scale(${0.8+Math.random()*0.8})`;
-  petalsWrap.appendChild(p);
-}
+
 </script>
 
 </body>
