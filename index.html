@@ -2,60 +2,211 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Наша свадьба</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Свадьба Яны и Дмитрия</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat&display=swap" rel="stylesheet">
 
 <style>
 
 body{
-font-family: Arial;
-text-align:center;
-background:#fff0f5;
 margin:0;
+font-family:Montserrat;
+background:#faf7f4;
+color:#333;
+text-align:center;
 }
 
-.header{
-padding:100px 20px;
+h1,h2{
+font-family:Playfair Display;
 }
 
-h1{
+.section{
+padding:80px 20px;
+max-width:900px;
+margin:auto;
+}
+
+.hero{
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+background:url("https://images.unsplash.com/photo-1519741497674-611481863552") center/cover;
+color:white;
+}
+
+.hero h1{
 font-size:60px;
-margin-bottom:10px;
+margin:0;
 }
 
 .date{
 font-size:24px;
+margin-top:10px;
 }
 
-.section{
-padding:60px 20px;
+#countdown{
+font-size:28px;
+margin-top:20px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+}
+
+.gallery img{
+width:100%;
+border-radius:10px;
+transition:0.4s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+iframe{
+width:100%;
+height:400px;
+border:0;
+border-radius:10px;
+}
+
+form{
+display:flex;
+flex-direction:column;
+gap:10px;
+max-width:400px;
+margin:auto;
+}
+
+input,select,button{
+padding:12px;
+font-size:16px;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+button{
+background:#c8a97e;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+button:hover{
+background:#b8966b;
+}
+
+.fade{
+opacity:0;
+transform:translateY(30px);
+transition:1s;
+}
+
+.fade.show{
+opacity:1;
+transform:translateY(0);
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="header">
+<div class="hero">
 <h1>Яна & Дмитрий</h1>
 <p class="date">30 июля 2026</p>
-<p>Мы будем рады разделить этот день с вами 💍</p>
+<p>Мы будем счастливы разделить этот день с вами 💍</p>
+<div id="countdown"></div>
 </div>
 
-<div class="section">
+<div class="section fade">
 <h2>Наша история</h2>
-<p>Всё началось летом 2022-го.Дима только-только вернулся с армии.Август еще пах пылью полигонов,а в голове - гул "Уралов" и команда "Подъём".Он приехал в родной город уставший,но какой-то обновленный.Илья-друг Димы позвал его к бабушке,и после этого все началось....</p>
+<p>Каждая история любви уникальна. Наша началась несколько лет назад, и с тех пор мы идём по жизни вместе. Мы будем очень рады, если вы разделите с нами самый важный день нашей жизни.</p>
 </div>
 
-<div class="section">
+<div class="section fade">
+<h2>Галерея</h2>
+
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf">
+<img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486">
+<img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc">
+</div>
+
+</div>
+
+<div class="section fade">
 <h2>Место свадьбы</h2>
-<p>г.Екатеринбург</p>
+
+<iframe
+src="https://maps.google.com/maps?q=Yekaterinburg&t=&z=13&ie=UTF8&iwloc=&output=embed">
+</iframe>
+
+<p>Екатеринбург</p>
+
 </div>
 
-<div class="section">
+<div class="section fade">
 <h2>Подтвердите присутствие</h2>
-<p>Скоро здесь будет форма RSVP</p>
+
+<form action="https://formspree.io/f/yourcode" method="POST">
+
+<input type="text" name="name" placeholder="Ваше имя" required>
+
+<select name="attendance">
+<option>Буду присутствовать</option>
+<option>К сожалению не смогу</option>
+</select>
+
+<input type="number" name="guests" placeholder="Количество гостей">
+
+<button type="submit">Отправить</button>
+
+</form>
+
 </div>
+
+<script>
+
+const weddingDate = new Date("July 30, 2026 15:00:00").getTime();
+
+const countdown = setInterval(function(){
+
+const now = new Date().getTime();
+const distance = weddingDate - now;
+
+const days = Math.floor(distance/(1000*60*60*24));
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+
+document.getElementById("countdown").innerHTML =
+days + " дней " + hours + " часов " + minutes + " минут";
+
+},1000);
+
+
+const faders = document.querySelectorAll(".fade");
+
+const appear = new IntersectionObserver(function(entries){
+
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+
+});
+
+faders.forEach(el=>{
+appear.observe(el);
+});
+
+</script>
 
 </body>
 </html>
