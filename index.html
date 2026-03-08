@@ -185,25 +185,28 @@ body{
   border-radius:18px;
 }
 
-.place{text-align:center}
+.place{text-align:center;position:relative;padding-bottom:8px}
 
 .cloud-btn{
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  min-width:110px;
-  min-height:44px;
-  padding:8px 14px;
-  margin-top:10px;
+  width:74px;
+  height:54px;
+  padding:0 8px;
+  margin-top:0;
   text-decoration:none;
   color:var(--brown);
-  background:#fffdfb;
-  border:2px solid rgba(76,53,41,.08);
-  box-shadow:0 6px 12px rgba(0,0,0,.10);
+  background:#fffaf8;
+  border:2px solid #d8b8c2;
+  box-shadow:none;
   font-weight:500;
-  font-size:13px;
-  position:relative;
-  clip-path:path('M 16 31 C 16 18, 28 10, 42 12 C 47 4, 58 2, 68 8 C 78 0, 95 3, 100 14 C 114 10, 128 16, 130 29 C 143 31, 151 40, 148 51 C 146 61, 136 67, 124 66 C 117 74, 102 77, 90 71 C 80 79, 60 80, 49 71 C 34 75, 19 69, 15 57 C 4 52, 1 40, 6 31 C 8 27, 11 25, 16 31 Z');
+  font-size:11px;
+  line-height:1.05;
+  text-align:center;
+  position:absolute;
+  right:-6px;
+  clip-path:path('M 14 27 C 14 17, 22 11, 31 12 C 34 6, 42 4, 49 8 C 56 3, 68 5, 72 13 C 81 11, 90 17, 91 26 C 99 28, 104 35, 102 43 C 100 50, 93 55, 84 55 C 79 61, 69 63, 61 59 C 53 64, 40 64, 33 59 C 23 62, 14 58, 11 50 C 4 47, 1 38, 5 31 C 6 28, 9 26, 14 27 Z');
 }
 
 .cloud-btn:hover{
@@ -211,9 +214,10 @@ body{
 }
 
 .cloud-btn.small{
-  min-width:96px;
-  min-height:40px;
-  font-size:12px;
+  width:70px;
+  height:50px;
+  font-size:10.5px;
+  right:-8px;
 }
 
 .timeline{
@@ -252,7 +256,7 @@ body{
   margin-top:10px;
 }
 
-.organizer{text-align:center;margin-top:20px}
+.organizer{text-align:center;margin-top:20px;position:relative;padding-right:64px;min-height:56px}
 
 form{display:flex;flex-direction:column;gap:14px;margin-top:16px}
 
@@ -282,10 +286,68 @@ textarea{
   text-align:center;
   margin-top:20px;
 }
+.decor-heart,
+.decor-bow{
+  position:absolute;
+  z-index:1;
+  pointer-events:none;
+  opacity:.9;
+}
+
+.decor-heart{
+  font-size:20px;
+  color:#c27b8e;
+}
+
+.decor-bow{
+  font-size:22px;
+  color:#b78a9a;
+}
+
+.petals{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:1;
+}
+
+.petal{
+  position:absolute;
+  top:-10%;
+  width:14px;
+  height:10px;
+  background:rgba(210,146,170,.55);
+  border-radius:14px 0 14px 0;
+  animation:fall linear infinite;
+  filter:blur(.2px);
+}
+
+@keyframes fall{
+  0%{transform:translateY(-10vh) translateX(0) rotate(0deg);opacity:0}
+  10%{opacity:.9}
+  100%{transform:translateY(110vh) translateX(40px) rotate(260deg);opacity:0}
+}
+
+.fade-up{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .8s ease, transform .8s ease;
+}
+
+.fade-up.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+html{
+  scroll-behavior:smooth;
+}
 </style>
 </head>
 
 <body>
+<div class="petals" id="petals"></div>
 
 <div class="page">
 
@@ -293,9 +355,15 @@ textarea{
 <button class="music-btn" id="musicBtn">♫ Музыка</button>
 </div>
 
-<main class="sheet">
+<main class="sheet fade-up">
+<div class="decor-heart" style="top:26px;left:18px;">♥</div>
+<div class="decor-bow" style="top:34px;right:22px;">🎀</div>
+<div class="decor-heart" style="top:420px;right:26px;">♥</div>
+<div class="decor-bow" style="top:760px;left:16px;">🎀</div>
+<div class="decor-heart" style="top:1160px;left:28px;">♥</div>
+<div class="decor-bow" style="top:1480px;right:20px;">🎀</div>
 
-<section class="section">
+<section class="section fade-up">
 <p class="hero-line">Вы дождались...</p>
 <h1 class="main-call">Мы женимся!</h1>
 
@@ -312,7 +380,7 @@ textarea{
 </div>
 </section>
 
-<section class="section">
+<section class="section fade-up">
 <h2 class="section-title">Дорогие наши гости</h2>
 <p class="text">Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу</p>
 
@@ -323,16 +391,16 @@ textarea{
 <div class="countdown" id="countdown">До встречи осталось...</div>
 </section>
 
-<section class="section">
+<section class="section fade-up">
 <h2 class="section-title">Локация</h2>
 <div class="place">
 <strong>TENET HOTEL</strong>
 <p class="text">г. Екатеринбург, ул. Хохрякова, 1А</p>
-<a class="cloud-btn" target="_blank" href="https://yandex.ru/maps/?text=Екатеринбург%20Хохрякова%201А">Открыть карту</a>
+<a class="cloud-btn" target="_blank" href="https://yandex.ru/maps/?text=Екатеринбург%20Хохрякова%201А">открыть<br>карты</a>
 </div>
 </section>
 
-<section class="section">
+<section class="section fade-up">
 <h2 class="section-title">Программа дня</h2>
 
 <div class="timeline" style="position:relative;max-width:320px;height:330px;">
@@ -363,7 +431,7 @@ textarea{
 
 </section>
 
-<section class="section">
+<section class="section fade-up">
 <h2 class="section-title">Дресс-Код</h2>
 <p class="text">Поддержите нас красивыми нарядами</p>
 
@@ -373,7 +441,7 @@ textarea{
 
 </section>
 
-<section class="section">
+<section class="section fade-up">
 <h2 class="section-title">Детали</h2>
 
 <div class="details-box">
@@ -382,12 +450,12 @@ textarea{
 
 <div class="organizer">
 <p>По вопросам можно связаться с организатором</p>
-<a class="cloud-btn small" href="tel:+79126988268">Связаться</a>
+<a class="cloud-btn small" href="tel:+79126988268">связаться</a>
 </div>
 
 </section>
 
-<section class="section">
+<section class="section fade-up">
 <h2 class="section-title">Анкета</h2>
 <p class="text">Пожалуйста заполните форму</p>
 
@@ -454,15 +522,38 @@ const colors=["#b54b6a","#c07a59","#d3a55c","#7a9b6a","#9b6a7a","#8a5d4a","#c27b
 
 document.querySelectorAll('.section-title').forEach(el=>{
 const text=el.innerText;
-el.innerHTML="";
+el.innerHTML='';
 [...text].forEach((l,i)=>{
-const span=document.createElement("span");
+const span=document.createElement('span');
 span.style.color=colors[i%colors.length];
 span.innerText=l;
 el.appendChild(span);
 });
 });
 
+/* плавные появления блоков */
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('show');
+    }
+  });
+},{threshold:0.12});
+
+document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+/* падающие лепестки */
+const petalsWrap = document.getElementById('petals');
+for(let i=0;i<18;i++){
+  const p=document.createElement('span');
+  p.className='petal';
+  p.style.left=Math.random()*100+'vw';
+  p.style.animationDuration=(8+Math.random()*8)+'s';
+  p.style.animationDelay=(Math.random()*8)+'s';
+  p.style.opacity=(0.35+Math.random()*0.45).toFixed(2);
+  p.style.transform=`scale(${0.8+Math.random()*0.8})`;
+  petalsWrap.appendChild(p);
+}
 </script>
 
 </body>
