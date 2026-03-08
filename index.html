@@ -37,11 +37,12 @@ body{
 }
 
 .music-wrap{
-  position:sticky;
-  top:12px;
+  position:fixed;
+  right:14px;
+  bottom:90px;
   display:flex;
   justify-content:flex-end;
-  z-index:5;
+  z-index:20;
 }
 
 .music-btn{
@@ -141,7 +142,9 @@ body{
   text-align:center;
   font-family:'Bad Script',cursive;
   font-size:30px;
-  margin-top:-24px;
+  margin-top:8px;
+  position:relative;
+  z-index:3;
 }
 
 .date-top{text-align:center;color:var(--muted)}
@@ -391,6 +394,14 @@ textarea{
 <label>Подтвердите присутствие</label>
 <label><input type="radio" name="attendance" value="Да"> Смогу прийти</label>
 <label><input type="radio" name="attendance" value="Нет"> Не смогу прийти</label>
+<label><input type="radio" name="attendance" value="Позже"> Сообщу позже</label>
+
+<label>Предпочтения по напиткам</label>
+<label><input type="checkbox" name="drinks[]" value="Шампанское"> Шампанское</label>
+<label><input type="checkbox" name="drinks[]" value="Красное вино"> Красное вино</label>
+<label><input type="checkbox" name="drinks[]" value="Белое вино"> Белое вино</label>
+<label><input type="checkbox" name="drinks[]" value="Коньяк"> Коньяк</label>
+<label><input type="checkbox" name="drinks[]" value="Безалкогольные напитки"> Безалкогольные напитки</label>
 
 <textarea name="comment" placeholder="Комментарий"></textarea>
 
