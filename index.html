@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Свадьба Дмитрия и Яны</title>
+  <title>Свадьба Яны и Дмитрия</title>
+  <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23f3eee7"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="26" font-family="Georgia" fill="%239d4255">Я♥Д</text></svg>'>
   <meta name="robots" content="noindex" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -158,6 +159,38 @@
       border-radius:999px;
       cursor:pointer;
       font-size:14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .eq{
+      display:inline-flex;
+      align-items:flex-end;
+      gap:3px;
+      height:14px;
+    }
+
+    .eq span{
+      width:3px;
+      height:5px;
+      border-radius:3px;
+      background:#fff;
+      opacity:.45;
+      transform-origin:bottom;
+    }
+
+    .music-btn.playing .eq span{
+      opacity:1;
+      animation:eqBounce 1s infinite ease-in-out;
+    }
+
+    .music-btn.playing .eq span:nth-child(2){animation-delay:.15s}
+    .music-btn.playing .eq span:nth-child(3){animation-delay:.3s}
+
+    @keyframes eqBounce{
+      0%,100%{transform:scaleY(.5)}
+      50%{transform:scaleY(1.7)}
     }
 
     .sheet{
@@ -596,7 +629,7 @@
 
   <div class="page" id="pageRoot">
     <div class="music-wrap">
-      <button class="music-btn" id="musicBtn">♫ Музыка</button>
+      <button class="music-btn" id="musicBtn"><span>♫ Музыка</span><span class="eq" aria-hidden="true"><span></span><span></span><span></span></span></button>
     </div>
 
     <main class="sheet fade-up">
@@ -629,7 +662,7 @@
 
       <section class="section fade-up">
         <h2 class="section-title">Дорогие наши гости</h2>
-        <p class="text">Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу</p>
+        <p class="text" id="personalGuestText">Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу</p>
 
         <div class="date-reveal" id="dateReveal">
           <div class="date-top">наш день</div>
@@ -709,7 +742,7 @@
       <section class="section fade-up">
         <h2 class="section-title">Анкета</h2>
         <p class="text">Пожалуйста заполните форму</p>
-        <form action="https://formspree.io/f/yourcode" method="POST">
+        <form id="rsvpForm" action="https://formspree.io/f/yourcode" method="POST">
           <input type="text" name="name" placeholder="Имя и фамилия" required>
 
           <label><input type="radio" name="attendance" value="Да"> Смогу прийти</label>
@@ -726,6 +759,12 @@
           <textarea name="comment" placeholder="Комментарий"></textarea>
           <button class="submit" type="submit">Отправить</button>
         </form>
+
+        <div id="thankYouBox" style="display:none;margin-top:16px;background:rgba(255,255,255,.55);padding:18px 16px;border-radius:18px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.45);">
+          <div style="font-family:'Bad Script',cursive;font-size:34px;color:#9d4255;line-height:1.1;">Спасибо!</div>
+          <div style="margin-top:8px;line-height:1.6;">Мы получили ваш ответ и очень рады, что вы открыли наше приглашение.</div>
+          <div style="margin-top:8px;color:#7d6d64;">С любовью, Яна и Дмитрий</div>
+        </div>
       </section>
     </main>
 
@@ -757,7 +796,11 @@
     const guestName = document.getElementById('guestName');
     const params = new URLSearchParams(window.location.search);
     const guest = params.get('name');
-    if(guest && guest.trim()) guestName.textContent = guest;
+    if(guest && guest.trim()){
+      guestName.textContent = guest;
+      const guestTextTarget = document.getElementById('personalGuestText');
+      if(guestTextTarget) guestTextTarget.textContent = `${guest}, мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу`;
+    }
 
     openInviteBtn.onclick = () => {
       envelopeFlap.style.transform = 'rotateX(180deg)';
@@ -805,9 +848,43 @@
     const musicBtn = document.getElementById('musicBtn');
     let playing=false;
     musicBtn.onclick=()=>{
-      if(!playing){audio.play();musicBtn.innerText='♫ Стоп';playing=true}
-      else{audio.pause();musicBtn.innerText='♫ Музыка';playing=false}
+      const label = musicBtn.querySelector('span');
+      if(!playing){
+        audio.play();
+        if(label) label.textContent='♫ Стоп';
+        musicBtn.classList.add('playing');
+        playing=true;
+      } else {
+        audio.pause();
+        if(label) label.textContent='♫ Музыка';
+        musicBtn.classList.remove('playing');
+        playing=false;
+      }
     };
+
+    const rsvpForm = document.getElementById('rsvpForm');
+    const thankYouBox = document.getElementById('thankYouBox');
+    if(rsvpForm){
+      rsvpForm.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        const formData = new FormData(rsvpForm);
+        try{
+          const response = await fetch(rsvpForm.action, {
+            method:'POST',
+            body:formData,
+            headers:{'Accept':'application/json'}
+          });
+          if(response.ok){
+            rsvpForm.style.display='none';
+            thankYouBox.style.display='block';
+          } else {
+            alert('Не удалось отправить анкету. Попробуйте ещё раз.');
+          }
+        } catch(err){
+          alert('Не удалось отправить анкету. Проверьте интернет и попробуйте снова.');
+        }
+      });
+    }
   </script>
 </body>
 </html>
