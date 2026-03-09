@@ -603,25 +603,16 @@ html{
 <div id="inviteIntroFixed" style="position:fixed;inset:0;z-index:99999;background:linear-gradient(rgba(239,231,221,.94), rgba(239,231,221,.98));display:flex;align-items:center;justify-content:center;padding:20px;">
   <div style="position:relative;width:min(90vw,370px);height:250px;box-shadow:0 24px 60px rgba(63,42,31,.14);background:#f6efe6;border:1px solid rgba(141,116,97,.10);overflow:hidden;">
     <div style="position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.14), rgba(255,255,255,.06)),repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px),#f6efe6;"></div>
-    <div id="envelopeFlapFixed" style="position:absolute;top:0;left:0;right:0;height:110px;background:linear-gradient(#eadfd2,#e6dacd);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform 1.2s cubic-bezier(.22,.61,.36,1);z-index:3;"></div>
-    <div id="letterCardFixed" style="position:absolute;left:18px;right:18px;bottom:14px;background:#fffdfa;border:1px solid rgba(141,116,97,.08);box-shadow:0 10px 24px rgba(63,42,31,.10);padding:26px 18px 20px;text-align:center;transform:translateY(18px);transition:transform 1.2s cubic-bezier(.22,.61,.36,1);z-index:2;">
+    <div id="envelopeFlapFixed" style="position:absolute;top:0;left:0;right:0;height:110px;background:linear-gradient(#eadfd2,#e6dacd);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform 1.2s cubic-bezier(.22,.61,.36,1);z-index:2;pointer-events:none;"></div>
+    <div id="letterCardFixed" style="position:absolute;left:18px;right:18px;bottom:14px;background:#fffdfa;border:1px solid rgba(141,116,97,.08);box-shadow:0 10px 24px rgba(63,42,31,.10);padding:26px 18px 20px;text-align:center;transform:translateY(18px);transition:transform 1.2s cubic-bezier(.22,.61,.36,1);z-index:5;pointer-events:auto;">
       <div style="color:#7d6d64;font-size:15px;margin-bottom:8px;">Приглашение для</div>
       <div id="guestNameFixed" style="font-family:'Bad Script',cursive;font-size:38px;line-height:1.1;color:#9d4255;margin-bottom:18px;">дорогого гостя</div>
-      <button id="openInviteBtnFixed" style="border:none;background:#4c3529;color:#fff;padding:14px 18px;border-radius:999px;cursor:pointer;font-size:15px;box-shadow:0 8px 18px rgba(76,53,41,.18);">Открыть приглашение</button>
+      <button type="button" id="openInviteBtnFixed" style="position:relative;z-index:10;border:none;background:#4c3529;color:#fff;padding:14px 18px;border-radius:999px;cursor:pointer;font-size:15px;box-shadow:0 8px 18px rgba(76,53,41,.18);pointer-events:auto;">Открыть приглашение</button>
     </div>
   </div>
 </div>
 
-<div class="page" id="pageRoot" style="opacity:0;transform:scale(.985);transition:opacity .9s ease, transform .9s ease;">et:0;z-index:9999;background:linear-gradient(rgba(239,231,221,.94), rgba(239,231,221,.98));display:flex;align-items:center;justify-content:center;padding:20px;">
-  <div id="envelopeIntro" style="position:relative;width:min(90vw,370px);height:250px;box-shadow:0 24px 60px rgba(63,42,31,.14);background:#f6efe6;border:1px solid rgba(141,116,97,.10);overflow:hidden;">
-    <div style="position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.14), rgba(255,255,255,.06)),repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px),#f6efe6;"></div>
-    <div id="envelopeFlap" style="position:absolute;top:0;left:0;right:0;height:110px;background:linear-gradient(#eadfd2,#e6dacd);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform 1.2s cubic-bezier(.22,.61,.36,1);z-index:3;"></div>
-    <div id="letterCard" style="position:absolute;left:18px;right:18px;bottom:14px;background:#fffdfa;border:1px solid rgba(141,116,97,.08);box-shadow:0 10px 24px rgba(63,42,31,.10);padding:26px 18px 20px;text-align:center;transform:translateY(18px);transition:transform 1.2s cubic-bezier(.22,.61,.36,1);z-index:2;">
-      <div style="color:#7d6d64;font-size:15px;margin-bottom:8px;">Приглашение для</div>
-      <div id="guestName" style="font-family:'Bad Script',cursive;font-size:38px;line-height:1.1;color:#9d4255;margin-bottom:18px;">дорогого гостя</div>
-      <button id="openInviteBtn"
-
-<div class="page content-hidden" id="pageRoot">
+<div class="page" id="pageRoot" style="opacity:0;transform:scale(.985);transition:opacity .9s ease, transform .9s ease;">
 
 <div class="music-wrap">
 <button class="music-btn" id="musicBtn">♫ Музыка</button>
@@ -770,33 +761,20 @@ html{
 <input type="text" name="name" placeholder="Имя и фамилия" required>
 
 <label>Подтвердите присутствие</label>
-<label><input type="radio" name="attenconst pageRoot = document.getElementById('pageRoot');
-const inviteIntroFixed = document.getElementById('inviteIntroFixed');
-const openInviteBtnFixed = document.getElementById('openInviteBtnFixed');
-const guestNameFixed = document.getElementById('guestNameFixed');
-const envelopeFlapFixed = document.getElementById('envelopeFlapFixed');
-const letterCardFixed = document.getElementById('letterCardFixed');
+<label><input type="radio" name="attendance" value="Да"> Смогу прийти</label>
+<label><input type="radio" name="attendance" value="Нет"> Не смогу прийти</label>
+<label><input type="radio" name="attendance" value="Позже"> Сообщу позже</label>
 
-const params = new URLSearchParams(window.location.search);
-const guest = params.get('name');
-if (guest && guest.trim()) {
-  guestNameFixed.textContent = guest;
-}
+<label>Предпочтения по напиткам</label>
+<label><input type="checkbox" name="drinks[]" value="Шампанское"> Шампанское</label>
+<label><input type="checkbox" name="drinks[]" value="Красное вино"> Красное вино</label>
+<label><input type="checkbox" name="drinks[]" value="Белое вино"> Белое вино</label>
+<label><input type="checkbox" name="drinks[]" value="Коньяк"> Коньяк</label>
+<label><input type="checkbox" name="drinks[]" value="Безалкогольные напитки"> Безалкогольные напитки</label>
 
-if (openInviteBtnFixed) {
-  openInviteBtnFixed.addEventListener('click', () => {
-    envelopeFlapFixed.style.transform = 'rotateX(180deg)';
-    letterCardFixed.style.transform = 'translateY(-30px)';
-    setTimeout(() => {
-      inviteIntroFixed.style.opacity = '0';
-      inviteIntroFixed.style.visibility = 'hidden';
-      pageRoot.style.opacity = '1';
-      pageRoot.style.transform = 'scale(1)';
-    }, 950);
-  });
-}
+<textarea name="comment" placeholder="Комментарий"></textarea>
 
-const audio = document.getElementById('weddingAudio');="submit">Отправить</button>
+<button class="submit">Отправить</button>
 </form>
 </section>
 
@@ -829,25 +807,31 @@ countdownEl.innerHTML = `До встречи осталось: ${days} д. ${hou
 setInterval(updateCountdown,1000);
 
 const pageRoot = document.getElementById('pageRoot');
-const inviteIntro = document.getElementById('inviteIntro');
-const openInviteBtn = document.getElementById('openInviteBtn');
-const guestName = document.getElementById('guestName');
-const envelopeIntro = document.getElementById('envelopeIntro');
+const inviteIntroFixed = document.getElementById('inviteIntroFixed');
+const openInviteBtnFixed = document.getElementById('openInviteBtnFixed');
+const guestNameFixed = document.getElementById('guestNameFixed');
+const envelopeFlapFixed = document.getElementById('envelopeFlapFixed');
+const letterCardFixed = document.getElementById('letterCardFixed');
 
 const params = new URLSearchParams(window.location.search);
 const guest = params.get('name');
-if(guest && guest.trim()){
-  guestName.textContent = guest;
+if (guest && guest.trim()) {
+  guestNameFixed.textContent = guest;
 }
 
-openInviteBtn.addEventListener('click', ()=>{
-  envelopeIntro.classList.add('open');
-  setTimeout(()=>{
-    inviteIntro.classList.add('hidden');
-    pageRoot.classList.remove('content-hidden');
-    pageRoot.classList.add('content-visible');
-  }, 950);
-});
+if (openInviteBtnFixed) {
+  openInviteBtnFixed.onclick = () => {
+    envelopeFlapFixed.style.transform = 'rotateX(180deg)';
+    letterCardFixed.style.transform = 'translateY(-30px)';
+    setTimeout(() => {
+      inviteIntroFixed.style.opacity = '0';
+      inviteIntroFixed.style.visibility = 'hidden';
+      inviteIntroFixed.style.pointerEvents = 'none';
+      pageRoot.style.opacity = '1';
+      pageRoot.style.transform = 'scale(1)';
+    }, 950);
+  };
+}
 
 const audio = document.getElementById('weddingAudio');
 const musicBtn = document.getElementById('musicBtn');
