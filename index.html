@@ -600,7 +600,7 @@ html{
 
 <body>
 
-<div id="inviteIntroFixed" style="position:fixed;inset:0;z-index:99999;background:linear-gradient(rgba(239,231,221,.94), rgba(239,231,221,.98));display:flex;align-items:center;justify-content:center;padding:20px;">
+<div id="inviteIntroFixed" style="position:fixed;inset:0;z-index:99999;background:linear-gradient(rgba(239,231,221,.94), rgba(239,231,221,.98));display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden;">
   <div style="position:relative;width:min(90vw,370px);height:250px;box-shadow:0 24px 60px rgba(63,42,31,.14);background:#f6efe6;border:1px solid rgba(141,116,97,.10);overflow:hidden;">
     <div style="position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.14), rgba(255,255,255,.06)),repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px),#f6efe6;"></div>
     <div id="envelopeFlapFixed" style="position:absolute;top:0;left:0;right:0;height:110px;background:linear-gradient(#eadfd2,#e6dacd);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform 1.2s cubic-bezier(.22,.61,.36,1);z-index:2;pointer-events:none;"></div>
@@ -612,7 +612,7 @@ html{
   </div>
 </div>
 
-<div class="page" id="pageRoot" style="opacity:0;transform:scale(.985);transition:opacity .9s ease, transform .9s ease;">
+<div class="page" id="pageRoot" style="opacity:0;transform:scale(.985);transition:opacity .9s ease, transform .9s ease;visibility:hidden;">
 
 <div class="music-wrap">
 <button class="music-btn" id="musicBtn">♫ Музыка</button>
@@ -827,11 +827,16 @@ if (openInviteBtnFixed) {
       inviteIntroFixed.style.opacity = '0';
       inviteIntroFixed.style.visibility = 'hidden';
       inviteIntroFixed.style.pointerEvents = 'none';
+      inviteIntroFixed.style.display = 'none';
       pageRoot.style.opacity = '1';
       pageRoot.style.transform = 'scale(1)';
+      pageRoot.style.visibility = 'visible';
+      document.body.style.overflow = 'auto';
     }, 950);
   };
 }
+
+document.body.style.overflow = 'hidden';
 
 const audio = document.getElementById('weddingAudio');
 const musicBtn = document.getElementById('musicBtn');
