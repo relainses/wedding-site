@@ -437,22 +437,45 @@
     .date-row{
       display:flex;
       justify-content:center;
-      gap:14px;
-      font-size:22px;
+      gap:18px;
+      font-size:24px;
       margin-top:12px;
       align-items:center;
+      color:var(--muted);
     }
 
     .date-main{
-      width:68px;
-      height:68px;
-      border:2px solid var(--accent);
-      border-radius:50%;
+      width:72px;
+      height:72px;
       display:flex;
       align-items:center;
       justify-content:center;
       color:var(--accent);
-      font-size:32px;
+      font-size:31px;
+      font-weight:600;
+      background:transparent;
+      border:none;
+      position:relative;
+      line-height:1;
+    }
+
+    .date-main::before{
+      content:'♡';
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:66px;
+      color:var(--accent);
+      line-height:1;
+      pointer-events:none;
+    }
+
+    .date-main span{
+      position:relative;
+      z-index:1;
+      transform:translateY(-1px);
     }
 
     .month{
@@ -673,8 +696,8 @@
             <div class="tear-row">
               <div class="tear-side left"></div>
               <div class="date-center">
-                <div class="date-row"><span>29</span><div class="date-main">30</div><span>31</span></div>
-                <div class="month">июля</div>
+                <div class="date-row"><span>28</span><span>29</span><div class="date-main"><span>30</span></div><span>31</span><span>01</span></div>
+                <div class="month">июль</div>
                 <div class="year">2026</div>
               </div>
               <div class="tear-side right"></div>
@@ -742,7 +765,7 @@
       <section class="section fade-up">
         <h2 class="section-title">Анкета</h2>
         <p class="text">Пожалуйста заполните форму</p>
-        <form id="rsvpForm" action="https://formspree.io/f/xkoqglrp" method="POST">
+        <form id="rsvpForm" action="https://formspree.io/f/yourcode" method="POST">
           <input type="text" name="name" placeholder="Имя и фамилия" required>
 
           <label><input type="radio" name="attendance" value="Да"> Смогу прийти</label>
