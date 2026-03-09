@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Свадьба Дмитрий и Яны</title>
+<title>Свадьба Яны и Дмитрия</title>
 <meta name="robots" content="noindex" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -169,7 +169,51 @@ body{
   color:#8d4560;
 }
 
+.date-reveal{
+  margin:18px auto 0;
+  max-width:340px;
+}
+
 .date-top{text-align:center;color:var(--muted)}
+
+.tear-row{
+  display:grid;
+  grid-template-columns:60px 1fr 60px;
+  align-items:center;
+  gap:12px;
+  margin-top:10px;
+}
+
+.tear-side{
+  height:118px;
+  background:
+    radial-gradient(circle at 0 10px, transparent 10px, rgba(230,221,210,.95) 11px) left top/100% 24px repeat-y,
+    linear-gradient(rgba(230,221,210,.95), rgba(230,221,210,.95));
+  box-shadow:inset 0 0 0 1px rgba(133,102,83,.04);
+  opacity:.95;
+}
+
+.tear-side.left{
+  clip-path:polygon(0 0,100% 0,88% 10%,100% 20%,86% 32%,100% 42%,84% 54%,100% 66%,88% 78%,100% 88%,90% 100%,0 100%);
+}
+
+.tear-side.right{
+  clip-path:polygon(100% 0,0 0,12% 10%,0 20%,14% 32%,0 42%,16% 54%,0 66%,12% 78%,0 88%,10% 100%,100% 100%);
+}
+
+.date-center{
+  text-align:center;
+  background:rgba(255,255,255,.14);
+  padding:6px 0 2px;
+}
+
+.year{
+  margin-top:2px;
+  text-align:center;
+  color:var(--muted);
+  font-size:14px;
+  letter-spacing:.08em;
+}
 
 .date-row{
   display:flex;
@@ -399,9 +443,18 @@ html{
 <h2 class="section-title">Дорогие наши гости</h2>
 <p class="text">Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу</p>
 
+<div class="date-reveal">
 <div class="date-top">наш день</div>
+<div class="tear-row">
+<div class="tear-side left"></div>
+<div class="date-center">
 <div class="date-row"><span>29</span><div class="date-main">30</div><span>31</span></div>
-<div class="month">июля 2026</div>
+<div class="month">июля</div>
+<div class="year">2026</div>
+</div>
+<div class="tear-side right"></div>
+</div>
+</div>
 
 <div class="countdown" id="countdown">До встречи осталось...</div>
 </section>
@@ -464,7 +517,7 @@ html{
 </div>
 
 <div class="organizer">
-<p>В случае возникновения вопросов обращайтесь к нашему свадебному организатору Ольге</p>
+<p>По вопросам можно связаться с организатором</p>
 <a class="cloud-btn small" href="tel:+79126988268"><span>связаться</span></a>
 </div>
 
