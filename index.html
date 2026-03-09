@@ -381,14 +381,14 @@
     }
 
     .tear-row{
-      display:grid;
-      grid-template-columns:60px 1fr 60px;
-      align-items:center;
-      gap:12px;
-      opacity:0;
-      transform:translateY(16px) scale(.985);
-      position:relative;
-      z-index:1;
+  display:grid;
+  grid-template-columns:82px 1fr 82px;
+  align-items:center;
+  gap:8px;
+  opacity:0;
+  transform:translateY(16px) scale(.985);
+  position:relative;
+  z-index:1;
     }
 
     .date-reveal.open .paper-closed{
@@ -412,12 +412,13 @@
     }
 
     .tear-side{
-      height:118px;
-      background:
-        radial-gradient(circle at 0 10px, transparent 10px, rgba(230,221,210,.95) 11px) left top/100% 24px repeat-y,
-        linear-gradient(rgba(230,221,210,.95), rgba(230,221,210,.95));
-      box-shadow:inset 0 0 0 1px rgba(133,102,83,.04);
-      opacity:.95;
+  width:82px;
+  height:118px;
+  background:
+    radial-gradient(circle at 0 10px, transparent 10px, rgba(230,221,210,.95) 11px) left top/100% 24px repeat-y,
+    linear-gradient(rgba(230,221,210,.95), rgba(230,221,210,.95));
+  box-shadow:inset 0 0 0 1px rgba(133,102,83,.04);
+  opacity:.95;
     }
 
     .tear-side.left{
@@ -435,42 +436,50 @@
     }
 
     .date-row{
-      display:flex;
-      justify-content:center;
-      gap:18px;
-      font-size:24px;
-      margin-top:12px;
-      align-items:center;
-      color:var(--muted);
-    }
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  margin-top:12px;
+  color:var(--muted);
+  white-space:nowrap;
+   }
+
+.date-row > span{
+  min-width:28px;
+  text-align:center;
+  font-size:24px;
+  }
 
     .date-main{
-      width:72px;
-      height:72px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      color:var(--accent);
-      font-size:31px;
-      font-weight:600;
-      background:transparent;
-      border:none;
-      position:relative;
-      line-height:1;
-    }
+  width:78px;
+  height:78px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--accent);
+  font-size:30px;
+  font-weight:600;
+  background:transparent;
+  border:none;
+  position:relative;
+  line-height:1;
+  flex:0 0 78px;
+   }
 
     .date-main::before{
-      content:'♡';
-      position:absolute;
-      inset:0;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:66px;
-      color:var(--accent);
-      line-height:1;
-      pointer-events:none;
-    }
+  content:'♡';
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:74px;
+  color:var(--accent);
+  line-height:1;
+  pointer-events:none;
+  font-weight:400;
+   }
 
     .date-main span{
       position:relative;
@@ -683,30 +692,46 @@
         </div>
       </section>
 
-      <section class="section fade-up">
-        <h2 class="section-title">Дорогие наши гости</h2>
-        <p class="text" id="personalGuestText">Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу</p>
+     <section class="section fade-up">
+  <h2 class="section-title">Дорогие наши гости</h2>
 
-        <div class="date-reveal" id="dateReveal">
-          <div class="date-top">наш день</div>
-          <div class="reveal-shell">
-            <div class="paper-closed">июля 2026</div>
-            <div class="paper-left"></div>
-            <div class="paper-right"></div>
-            <div class="tear-row">
-              <div class="tear-side left"></div>
-              <div class="date-center">
-                <div class="date-row"><span>28</span><span>29</span><div class="date-main"><span>30</span></div><span>31</span><span>01</span></div>
-                <div class="month">июль</div>
-                <div class="year">2026</div>
-              </div>
-              <div class="tear-side right"></div>
-            </div>
+  <div id="personalGreeting" style="text-align:center; margin-bottom:10px; display:none;">
+    <div id="personalGuestName" style="font-family:'Bad Script',cursive; font-size:34px; color:#9d4255; line-height:1.1;">
+      Дорогой гость!
+    </div>
+  </div>
+
+  <p class="text" id="personalGuestText">
+    Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу
+  </p>
+
+  <div class="date-reveal" id="dateReveal">
+    <div class="date-top">наш день</div>
+    <div class="reveal-shell">
+      <div class="paper-closed">30 июля 2026</div>
+      <div class="paper-left"></div>
+      <div class="paper-right"></div>
+
+      <div class="tear-row">
+        <div class="tear-side left"></div>
+
+        <div class="date-center">
+          <div class="date-row">
+            <span>29</span>
+            <div class="date-main"><span>30</span></div>
+            <span>31</span>
           </div>
+          <div class="month">июль</div>
+          <div class="year">2026</div>
         </div>
 
-        <div class="countdown" id="countdown">До встречи осталось...</div>
-      </section>
+        <div class="tear-side right"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="countdown" id="countdown">До встречи осталось...</div>
+</section>
 
       <section class="section fade-up">
         <h2 class="section-title">Локация</h2>
@@ -819,11 +844,23 @@
     const guestName = document.getElementById('guestName');
     const params = new URLSearchParams(window.location.search);
     const guest = params.get('name');
-    if(guest && guest.trim()){
-      guestName.textContent = guest;
-      const guestTextTarget = document.getElementById('personalGuestText');
-      if(guestTextTarget) guestTextTarget.textContent = `${guest}, мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу`;
-    }
+
+    if (guest && guest.trim()) {
+    const cleanGuest = guest.trim();
+
+    guestName.textContent = cleanGuest;
+
+  const personalGreeting = document.getElementById('personalGreeting');
+  const personalGuestName = document.getElementById('personalGuestName');
+  const personalGuestText = document.getElementById('personalGuestText');
+
+  if (personalGreeting) personalGreeting.style.display = 'block';
+  if (personalGuestName) personalGuestName.textContent = `${cleanGuest}!`;
+  if (personalGuestText) {
+    personalGuestText.textContent =
+      'Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу';
+  }
+}
 
     openInviteBtn.onclick = () => {
       envelopeFlap.style.transform = 'rotateX(180deg)';
