@@ -1,892 +1,813 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Свадьба Яны и Дмитрия</title>
-<meta name="robots" content="noindex" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
-
-<style>
-:root{
-  --paper:#f3eee7;
-  --paper2:#efe6dc;
-  --text:#463a33;
-  --accent:#9d4255;
-  --brown:#4c3529;
-  --muted:#7d6d64;
-  --line:#cdbfb2;
-  --shadow:0 10px 30px rgba(0,0,0,.08);
-}
-
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  font-family:'Montserrat',sans-serif;
-  background:#efe7dd; /* однотонный фон */
-  color:var(--text);
-}
-
-.page{
-  width:min(100%,460px);
-  margin:auto;
-  padding:20px 14px 60px;
-}
-
-.music-wrap{
-  position:fixed;
-  right:10px;
-  bottom:34px;
-  display:flex;
-  justify-content:flex-end;
-  z-index:20;
-}
-
-.music-btn{
-  border:none;
-  background:#4c3529;
-  color:white;
-  padding:12px 16px;
-  border-radius:999px;
-  cursor:pointer;
-  font-size:14px;
-}
-
-.invite-intro{
-  position:fixed;
-  inset:0;
-  background:linear-gradient(rgba(239,231,221,.92), rgba(239,231,221,.96));
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:40;
-  transition:opacity .9s ease, visibility .9s ease;
-  padding:20px;
-}
-
-.invite-intro.hidden{
-  opacity:0;
-  visibility:hidden;
-}
-
-.invite-intro-card{
-  position:relative;
-  width:min(90vw,370px);
-  height:250px;
-  perspective:1200px;
-}
-
-.envelope{
-  position:absolute;
-  inset:0;
-  background:#f6efe6;
-  border:1px solid rgba(141,116,97,.10);
-  box-shadow:0 24px 60px rgba(63,42,31,.14);
-  overflow:hidden;
-}
-
-.envelope::before,
-.envelope::after{
-  content:'';
-  position:absolute;
-  left:0;
-  right:0;
-  margin:auto;
-}
-
-.envelope::before{
-  top:0;
-  width:100%;
-  height:110px;
-  background:linear-gradient(#eadfd2,#e6dacd);
-  clip-path:polygon(0 0,100% 0,50% 100%);
-  transform-origin:top;
-  transition:transform 1.2s cubic-bezier(.22,.61,.36,1);
-  z-index:3;
-}
-
-.envelope.open::before{
-  transform:rotateX(180deg);
-}
-
-.envelope-body{
-  position:absolute;
-  inset:0;
-  background:
-    linear-gradient(rgba(255,255,255,.14), rgba(255,255,255,.06)),
-    repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px),
-    #f6efe6;
-}
-
-.letter{
-  position:absolute;
-  left:18px;
-  right:18px;
-  bottom:14px;
-  background:#fffdfa;
-  border:1px solid rgba(141,116,97,.08);
-  box-shadow:0 10px 24px rgba(63,42,31,.10);
-  padding:26px 18px 20px;
-  text-align:center;
-  transform:translateY(18px);
-  transition:transform 1.2s cubic-bezier(.22,.61,.36,1);
-  z-index:2;
-}
-
-.envelope.open .letter{
-  transform:translateY(-30px);
-}
-
-.intro-small{
-  color:var(--muted);
-  font-size:15px;
-  margin-bottom:8px;
-}
-
-.intro-name{
-  font-family:'Bad Script',cursive;
-  font-size:38px;
-  line-height:1.1;
-  color:var(--accent);
-  margin-bottom:18px;
-}
-
-.intro-open{
-  border:none;
-  background:var(--brown);
-  color:#fff;
-  padding:14px 18px;
-  border-radius:999px;
-  cursor:pointer;
-  font-size:15px;
-  box-shadow:0 8px 18px rgba(76,53,41,.18);
-}
-
-.page.content-hidden{
-  opacity:0;
-  transform:scale(.985);
-  transition:opacity .9s ease, transform .9s ease;
-}
-
-.page.content-visible{
-  opacity:1;
-  transform:scale(1);
-  transition:opacity .9s ease, transform .9s ease;
-}
-
-.sheet{
-  background:
-    linear-gradient(rgba(255,255,255,.12), rgba(255,255,255,.06)),
-    repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px),
-    var(--paper);
-  padding:34px 22px 38px;
-  box-shadow:0 20px 50px rgba(63,42,31,.10), inset 0 1px 0 rgba(255,255,255,.45);
-  border:1px solid rgba(141,116,97,.08);
-  position:relative;
-}
-
-.section{
-  padding:28px 0;
-  position:relative;
-}
-
-.section::after{
-  content:'';
-  display:block;
-  width:54px;
-  height:1px;
-  background:linear-gradient(90deg, transparent, rgba(157,66,85,.22), transparent);
-  margin:22px auto 0;
-}
-
-.section + .section{
-  border-top:1px solid rgba(0,0,0,.04);
-}
-
-.section-title{
-  font-family:'Bad Script',cursive;
-  font-size:50px;
-  text-align:center;
-  margin:0 0 18px;
-  letter-spacing:.01em;
-  line-height:1.08;
-  text-shadow:0 1px 0 rgba(255,255,255,.35);
-}
-
-.hero-line{
-  text-align:center;
-  font-size:20px;
-}
-
-.main-call{
-  text-align:center;
-  font-family:'Bad Script',cursive;
-  font-size:56px;
-  color:var(--accent);
-  margin:4px 0 10px;
-}
-
-.text{
-  text-align:center;
-  max-width:340px;
-  margin:auto;
-  line-height:1.72;
-  font-size:17px;
-  letter-spacing:.005em;
-}
-
-.child-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-  margin-top:18px;
-}
-
-.photo-card{
-  position:relative;
-  transform:rotate(-3deg);
-}
-
-.photo-card:nth-child(2){
-  transform:rotate(3deg);
-}
-
-.photo-card::before{
-  content:'';
-  position:absolute;
-  width:64px;
-  height:18px;
-  background:rgba(234,223,210,.92);
-  top:-8px;
-  left:50%;
-  transform:translateX(-50%) rotate(-6deg);
-  box-shadow:0 2px 3px rgba(0,0,0,.06);
-  z-index:2;
-}
-
-.photo-frame{
-  background:white;
-  padding:10px 10px 30px;
-  box-shadow:0 10px 20px rgba(0,0,0,.1);
-  position:relative;
-}
-
-.photo-frame img{
-  width:100%;
-  aspect-ratio:4/5;
-  object-fit:cover;
-  border-radius:2px;
-}
-
-.photo-name{
-  text-align:center;
-  font-family:'Bad Script',cursive;
-  font-size:31px;
-  margin-top:10px;
-  position:relative;
-  z-index:3;
-  color:#8d4560;
-}
-
-.date-reveal{
-  margin:18px auto 0;
-  max-width:340px;
-}
-
-.reveal-shell{
-  position:relative;
-  margin-top:10px;
-  min-height:118px;
-}
-
-.paper-closed,
-.tear-row,
-.paper-left,
-.paper-right{
-  transition:opacity 1.8s ease, transform 1.8s cubic-bezier(.22,.61,.36,1);
-}
-
-.paper-closed{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(rgba(230,221,210,.98), rgba(230,221,210,.98));
-  box-shadow:inset 0 0 0 1px rgba(133,102,83,.05);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:var(--muted);
-  font-size:15px;
-  letter-spacing:.08em;
-  text-transform:lowercase;
-}
-
-.paper-left,
-.paper-right{
-  position:absolute;
-  top:0;
-  width:50%;
-  height:100%;
-  background:linear-gradient(rgba(230,221,210,.98), rgba(230,221,210,.98));
-  box-shadow:inset 0 0 0 1px rgba(133,102,83,.05);
-  opacity:0;
-}
-
-.paper-left{
-  left:0;
-  clip-path:polygon(0 0,100% 0,92% 10%,100% 20%,88% 33%,100% 45%,90% 58%,100% 70%,92% 83%,100% 100%,0 100%);
-}
-
-.paper-right{
-  right:0;
-  clip-path:polygon(0 0,100% 0,100% 100%,0 100%,8% 83%,0 70%,10% 58%,0 45%,12% 33%,0 20%,8% 10%);
-}
-
-.tear-row{
-  display:grid;
-  grid-template-columns:60px 1fr 60px;
-  align-items:center;
-  gap:12px;
-  opacity:0;
-  transform:translateY(16px) scale(.985);
-}
-
-.date-reveal.open .paper-closed{
-  opacity:0;
-  transform:scale(.96);
-}
-
-.date-reveal.open .paper-left{
-  opacity:1;
-  transform:translateX(-34px) rotate(-2deg);
-}
-
-.date-reveal.open .paper-right{
-  opacity:1;
-  transform:translateX(34px) rotate(2deg);
-}
-
-.date-reveal.open .tear-row{
-  opacity:1;
-  transform:translateY(0) scale(1);
-}
-
-.date-top{text-align:center;color:var(--muted)}
-
-.tear-row{
-  display:grid;
-  grid-template-columns:60px 1fr 60px;
-  align-items:center;
-  gap:12px;
-  margin-top:10px;
-}
-
-.tear-side{
-  height:118px;
-  background:
-    radial-gradient(circle at 0 10px, transparent 10px, rgba(230,221,210,.95) 11px) left top/100% 24px repeat-y,
-    linear-gradient(rgba(230,221,210,.95), rgba(230,221,210,.95));
-  box-shadow:inset 0 0 0 1px rgba(133,102,83,.04);
-  opacity:.95;
-}
-
-.tear-side.left{
-  clip-path:polygon(0 0,100% 0,88% 10%,100% 20%,86% 32%,100% 42%,84% 54%,100% 66%,88% 78%,100% 88%,90% 100%,0 100%);
-}
-
-.tear-side.right{
-  clip-path:polygon(100% 0,0 0,12% 10%,0 20%,14% 32%,0 42%,16% 54%,0 66%,12% 78%,0 88%,10% 100%,100% 100%);
-}
-
-.date-center{
-  text-align:center;
-  background:rgba(255,255,255,.14);
-  padding:6px 0 2px;
-}
-
-.year{
-  margin-top:2px;
-  text-align:center;
-  color:var(--muted);
-  font-size:14px;
-  letter-spacing:.08em;
-}
-
-.date-row{
-  display:flex;
-  justify-content:center;
-  gap:14px;
-  font-size:22px;
-  margin-top:12px;
-  align-items:center;
-}
-
-.date-main{
-  width:68px;
-  height:68px;
-  border:2px solid var(--accent);
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--accent);
-  font-size:32px;
-}
-
-.month{
-  text-align:center;
-  font-family:'Bad Script',cursive;
-  font-size:30px;
-  color:var(--accent);
-  margin-top:10px;
-}
-
-.countdown{
-  text-align:center;
-  margin-top:18px;
-  background:var(--paper2);
-  padding:13px 14px;
-  border-radius:18px;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.45);
-}
-
-.place{text-align:center;position:relative;padding-right:86px;padding-bottom:18px;min-height:84px}
-
-.cloud-btn{
-  display:inline-flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap:1px;
-  width:92px;
-  height:64px;
-  padding:4px 10px;
-  margin-top:0;
-  text-decoration:none;
-  color:var(--brown);
-  background:#fffaf8;
-  border:2px solid #d8b8c2;
-  box-shadow:none;
-  font-weight:500;
-  font-size:10px;
-  line-height:1.02;
-  text-align:center;
-  position:absolute;
-  right:-14px;
-  bottom:0;
-  clip-path:path('M 14 27 C 14 17, 22 11, 31 12 C 34 6, 42 4, 49 8 C 56 3, 68 5, 72 13 C 81 11, 90 17, 91 26 C 99 28, 104 35, 102 43 C 100 50, 93 55, 84 55 C 79 61, 69 63, 61 59 C 53 64, 40 64, 33 59 C 23 62, 14 58, 11 50 C 4 47, 1 38, 5 31 C 6 28, 9 26, 14 27 Z');
-}
-
-.cloud-btn span{
-  display:block;
-  white-space:nowrap;
-}
-
-.cloud-btn:hover{
-  transform:translateY(-1px);
-}
-
-.cloud-btn.small{
-  width:88px;
-  height:60px;
-  font-size:9.5px;
-  right:-16px;
-  bottom:-2px;
-}
-
-.timeline{
-  max-width:320px;
-  margin:20px auto;
-}
-
-.event{
-  margin-bottom:18px;
-}
-
-.event:nth-child(even){text-align:right}
-
-.event-time{
-  font-family:'Cormorant Garamond',serif;
-  font-size:30px;
-  color:var(--brown);
-}
-
-.event-text{
-  color:var(--muted);
-}
-
-.look-grid img{
-  width:100%;
-  max-width:340px;
-  display:block;
-  margin:auto;
-  box-shadow:0 10px 20px rgba(0,0,0,.1);
-}
-
-.details-box{
-  background:rgba(255,255,255,.4);
-  padding:16px;
-  border-radius:20px;
-  margin-top:10px;
-}
-
-.organizer{text-align:center;margin-top:20px;position:relative;padding-right:86px;min-height:76px}
-
-form{display:flex;flex-direction:column;gap:14px;margin-top:16px}
-
-input,textarea{
-  border:none;
-  border-bottom:1px solid var(--line);
-  padding:10px;
-  font:inherit;
-  background:transparent;
-}
-
-textarea{
-  border:1px solid var(--line);
-  border-radius:12px;
-}
-
-.submit{
-  border:none;
-  background:var(--brown);
-  color:white;
-  padding:14px;
-  border-radius:999px;
-  cursor:pointer;
-}
-
-.footer-note{
-  text-align:center;
-  margin-top:22px;
-  color:#7a6559;
-  font-size:14px;
-  letter-spacing:.02em;
-}
-.decor-heart{
-  position:absolute;
-  z-index:1;
-  pointer-events:none;
-  opacity:.82;
-  font-size:18px;
-  color:#c27b8e;
-  filter:drop-shadow(0 2px 3px rgba(0,0,0,.06));
-}
-
-
-  10%{opacity:.9}
-  100%{transform:translateY(110vh) translateX(40px) rotate(260deg);opacity:0}
-}
-
-.fade-up{
-  opacity:0;
-  transform:translateY(24px);
-  transition:opacity .8s ease, transform .8s ease;
-}
-
-.fade-up.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-html{
-  scroll-behavior:smooth;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Свадьба Дмитрия и Яны</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --paper:#f3eee7;
+      --paper2:#efe6dc;
+      --text:#463a33;
+      --accent:#9d4255;
+      --brown:#4c3529;
+      --muted:#7d6d64;
+      --line:#cdbfb2;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Montserrat',sans-serif;
+      background:#efe7dd;
+      color:var(--text);
+      overflow:hidden;
+    }
+
+    .intro-overlay{
+      position:fixed;
+      inset:0;
+      z-index:99999;
+      background:linear-gradient(rgba(239,231,221,.96), rgba(239,231,221,.99));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+
+    .intro-overlay.hidden{
+      display:none;
+    }
+
+    .envelope-wrap{
+      width:min(90vw,370px);
+      height:250px;
+      position:relative;
+    }
+
+    .envelope-base{
+      position:absolute;
+      inset:0;
+      background:#f6efe6;
+      border:1px solid rgba(141,116,97,.10);
+      box-shadow:0 24px 60px rgba(63,42,31,.14);
+      overflow:hidden;
+    }
+
+    .envelope-base::after{
+      content:'';
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(rgba(255,255,255,.14), rgba(255,255,255,.06)),
+        repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px),
+        #f6efe6;
+    }
+
+    .envelope-flap{
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:110px;
+      background:linear-gradient(#eadfd2,#e6dacd);
+      clip-path:polygon(0 0,100% 0,50% 100%);
+      transform-origin:top;
+      transition:transform 1.1s cubic-bezier(.22,.61,.36,1);
+      z-index:2;
+      pointer-events:none;
+    }
+
+    .letter{
+      position:absolute;
+      left:18px;
+      right:18px;
+      bottom:14px;
+      background:#fffdfa;
+      border:1px solid rgba(141,116,97,.08);
+      box-shadow:0 10px 24px rgba(63,42,31,.10);
+      padding:26px 18px 20px;
+      text-align:center;
+      transform:translateY(18px);
+      transition:transform 1.1s cubic-bezier(.22,.61,.36,1);
+      z-index:3;
+    }
+
+    .intro-small{
+      color:var(--muted);
+      font-size:15px;
+      margin-bottom:8px;
+    }
+
+    .intro-name{
+      font-family:'Bad Script',cursive;
+      font-size:38px;
+      line-height:1.1;
+      color:var(--accent);
+      margin-bottom:18px;
+    }
+
+    .intro-open{
+      border:none;
+      background:var(--brown);
+      color:#fff;
+      padding:14px 18px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:15px;
+      box-shadow:0 8px 18px rgba(76,53,41,.18);
+      position:relative;
+      z-index:5;
+    }
+
+    .page{
+      width:min(100%,460px);
+      margin:auto;
+      padding:20px 14px 60px;
+      opacity:0;
+      visibility:hidden;
+      transform:scale(.985);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+
+    .page.ready{
+      opacity:1;
+      visibility:visible;
+      transform:scale(1);
+    }
+
+    .music-wrap{
+      position:fixed;
+      right:10px;
+      bottom:34px;
+      display:flex;
+      justify-content:flex-end;
+      z-index:20;
+    }
+
+    .music-btn{
+      border:none;
+      background:#4c3529;
+      color:white;
+      padding:12px 16px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:14px;
+    }
+
+    .sheet{
+      background:
+        linear-gradient(rgba(255,255,255,.12), rgba(255,255,255,.06)),
+        repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px),
+        var(--paper);
+      padding:34px 22px 38px;
+      box-shadow:0 20px 50px rgba(63,42,31,.10), inset 0 1px 0 rgba(255,255,255,.45);
+      border:1px solid rgba(141,116,97,.08);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .section{
+      padding:28px 0;
+      position:relative;
+    }
+
+    .section::after{
+      content:'';
+      display:block;
+      width:54px;
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(157,66,85,.22), transparent);
+      margin:22px auto 0;
+    }
+
+    .section:last-child::after{display:none}
+
+    .section + .section{
+      border-top:1px solid rgba(0,0,0,.04);
+    }
+
+    .section-title{
+      font-family:'Bad Script',cursive;
+      font-size:50px;
+      text-align:center;
+      margin:0 0 18px;
+      letter-spacing:.01em;
+      line-height:1.08;
+      text-shadow:0 1px 0 rgba(255,255,255,.35);
+    }
+
+    .hero-line{
+      text-align:center;
+      font-size:20px;
+    }
+
+    .main-call{
+      text-align:center;
+      font-family:'Bad Script',cursive;
+      font-size:56px;
+      color:var(--accent);
+      margin:4px 0 10px;
+    }
+
+    .text{
+      text-align:center;
+      max-width:340px;
+      margin:auto;
+      line-height:1.72;
+      font-size:17px;
+      letter-spacing:.005em;
+    }
+
+    .decor-heart{
+      position:absolute;
+      z-index:1;
+      pointer-events:none;
+      opacity:.82;
+      font-size:18px;
+      color:#c27b8e;
+      filter:drop-shadow(0 2px 3px rgba(0,0,0,.06));
+    }
+
+    .child-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:14px;
+      margin-top:18px;
+    }
+
+    .photo-card{
+      position:relative;
+      transform:rotate(-3deg);
+    }
+
+    .photo-card:nth-child(2){
+      transform:rotate(3deg);
+    }
+
+    .photo-card::before{
+      content:'';
+      position:absolute;
+      width:64px;
+      height:18px;
+      background:rgba(234,223,210,.92);
+      top:-8px;
+      left:50%;
+      transform:translateX(-50%) rotate(-6deg);
+      box-shadow:0 2px 3px rgba(0,0,0,.06);
+      z-index:2;
+    }
+
+    .photo-frame{
+      background:white;
+      padding:10px 10px 30px;
+      box-shadow:0 10px 20px rgba(0,0,0,.1);
+      position:relative;
+    }
+
+    .photo-frame img{
+      width:100%;
+      aspect-ratio:4/5;
+      object-fit:cover;
+      border-radius:2px;
+      display:block;
+    }
+
+    .photo-name{
+      text-align:center;
+      font-family:'Bad Script',cursive;
+      font-size:31px;
+      margin-top:10px;
+      position:relative;
+      z-index:3;
+      color:#8d4560;
+    }
+
+    .date-reveal{
+      margin:18px auto 0;
+      max-width:340px;
+    }
+
+    .date-top{text-align:center;color:var(--muted)}
+
+    .reveal-shell{
+      position:relative;
+      margin-top:10px;
+      min-height:118px;
+      overflow:hidden;
+    }
+
+    .paper-closed,
+    .tear-row,
+    .paper-left,
+    .paper-right{
+      transition:opacity 1.8s ease, transform 1.8s cubic-bezier(.22,.61,.36,1);
+    }
+
+    .paper-closed{
+      position:absolute;
+      inset:0;
+      background:linear-gradient(rgba(230,221,210,.98), rgba(230,221,210,.98));
+      box-shadow:inset 0 0 0 1px rgba(133,102,83,.05);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      color:var(--muted);
+      font-size:15px;
+      letter-spacing:.08em;
+      text-transform:lowercase;
+      z-index:3;
+    }
+
+    .paper-left,
+    .paper-right{
+      position:absolute;
+      top:0;
+      width:50%;
+      height:100%;
+      background:linear-gradient(rgba(230,221,210,.98), rgba(230,221,210,.98));
+      box-shadow:inset 0 0 0 1px rgba(133,102,83,.05);
+      opacity:0;
+      z-index:2;
+    }
+
+    .paper-left{
+      left:0;
+      clip-path:polygon(0 0,100% 0,92% 10%,100% 20%,88% 33%,100% 45%,90% 58%,100% 70%,92% 83%,100% 100%,0 100%);
+    }
+
+    .paper-right{
+      right:0;
+      clip-path:polygon(0 0,100% 0,100% 100%,0 100%,8% 83%,0 70%,10% 58%,0 45%,12% 33%,0 20%,8% 10%);
+    }
+
+    .tear-row{
+      display:grid;
+      grid-template-columns:60px 1fr 60px;
+      align-items:center;
+      gap:12px;
+      opacity:0;
+      transform:translateY(16px) scale(.985);
+      position:relative;
+      z-index:1;
+    }
+
+    .date-reveal.open .paper-closed{
+      opacity:0;
+      transform:scale(.96);
+    }
+
+    .date-reveal.open .paper-left{
+      opacity:1;
+      transform:translateX(-34px) rotate(-2deg);
+    }
+
+    .date-reveal.open .paper-right{
+      opacity:1;
+      transform:translateX(34px) rotate(2deg);
+    }
+
+    .date-reveal.open .tear-row{
+      opacity:1;
+      transform:translateY(0) scale(1);
+    }
+
+    .tear-side{
+      height:118px;
+      background:
+        radial-gradient(circle at 0 10px, transparent 10px, rgba(230,221,210,.95) 11px) left top/100% 24px repeat-y,
+        linear-gradient(rgba(230,221,210,.95), rgba(230,221,210,.95));
+      box-shadow:inset 0 0 0 1px rgba(133,102,83,.04);
+      opacity:.95;
+    }
+
+    .tear-side.left{
+      clip-path:polygon(0 0,100% 0,88% 10%,100% 20%,86% 32%,100% 42%,84% 54%,100% 66%,88% 78%,100% 88%,90% 100%,0 100%);
+    }
+
+    .tear-side.right{
+      clip-path:polygon(100% 0,0 0,12% 10%,0 20%,14% 32%,0 42%,16% 54%,0 66%,12% 78%,0 88%,10% 100%,100% 100%);
+    }
+
+    .date-center{
+      text-align:center;
+      background:rgba(255,255,255,.14);
+      padding:6px 0 2px;
+    }
+
+    .date-row{
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      font-size:22px;
+      margin-top:12px;
+      align-items:center;
+    }
+
+    .date-main{
+      width:68px;
+      height:68px;
+      border:2px solid var(--accent);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--accent);
+      font-size:32px;
+    }
+
+    .month{
+      text-align:center;
+      font-family:'Bad Script',cursive;
+      font-size:30px;
+      color:var(--accent);
+      margin-top:10px;
+    }
+
+    .year{
+      margin-top:2px;
+      text-align:center;
+      color:var(--muted);
+      font-size:14px;
+      letter-spacing:.08em;
+    }
+
+    .countdown{
+      text-align:center;
+      margin-top:18px;
+      background:var(--paper2);
+      padding:13px 14px;
+      border-radius:18px;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.45);
+    }
+
+    .place{
+      text-align:center;
+      position:relative;
+      padding-right:86px;
+      padding-bottom:18px;
+      min-height:84px;
+    }
+
+    .place strong{
+      display:block;
+      font-size:30px;
+      color:var(--brown);
+      margin-bottom:6px;
+      font-family:'Cormorant Garamond',serif;
+      font-weight:600;
+    }
+
+    .cloud-btn{
+      display:inline-flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:1px;
+      width:92px;
+      height:64px;
+      padding:4px 10px;
+      text-decoration:none;
+      color:var(--brown);
+      background:#fffaf8;
+      border:2px solid #d8b8c2;
+      font-weight:500;
+      font-size:10px;
+      line-height:1.02;
+      text-align:center;
+      position:absolute;
+      right:-14px;
+      bottom:0;
+      clip-path:path('M 14 27 C 14 17, 22 11, 31 12 C 34 6, 42 4, 49 8 C 56 3, 68 5, 72 13 C 81 11, 90 17, 91 26 C 99 28, 104 35, 102 43 C 100 50, 93 55, 84 55 C 79 61, 69 63, 61 59 C 53 64, 40 64, 33 59 C 23 62, 14 58, 11 50 C 4 47, 1 38, 5 31 C 6 28, 9 26, 14 27 Z');
+    }
+
+    .cloud-btn span{
+      display:block;
+      white-space:nowrap;
+    }
+
+    .cloud-btn.small{
+      width:88px;
+      height:60px;
+      font-size:9.5px;
+      right:-16px;
+      bottom:-2px;
+    }
+
+    .timeline{
+      position:relative;
+      max-width:320px;
+      height:330px;
+      margin:20px auto 0;
+    }
+
+    .event-time{
+      font-family:'Cormorant Garamond',serif;
+      font-size:30px;
+      color:var(--brown);
+    }
+
+    .event-text{color:var(--muted)}
+
+    .look-grid img{
+      width:100%;
+      max-width:340px;
+      display:block;
+      margin:auto;
+      box-shadow:0 10px 20px rgba(0,0,0,.1);
+    }
+
+    .details-box{
+      background:rgba(255,255,255,.4);
+      padding:16px;
+      border-radius:20px;
+      margin-top:10px;
+    }
+
+    .organizer{
+      text-align:center;
+      margin-top:20px;
+      position:relative;
+      padding-right:86px;
+      min-height:76px;
+    }
+
+    form{display:flex;flex-direction:column;gap:14px;margin-top:16px}
+    input,textarea{
+      border:none;
+      border-bottom:1px solid var(--line);
+      padding:10px;
+      font:inherit;
+      background:transparent;
+    }
+    textarea{
+      border:1px solid var(--line);
+      border-radius:12px;
+      min-height:88px;
+      resize:vertical;
+    }
+    .submit{
+      border:none;
+      background:var(--brown);
+      color:white;
+      padding:14px;
+      border-radius:999px;
+      cursor:pointer;
+    }
+
+    .fade-up{
+      opacity:0;
+      transform:translateY(24px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+    .fade-up.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    .footer-note{
+      text-align:center;
+      margin-top:22px;
+      color:#7a6559;
+      font-size:14px;
+      letter-spacing:.02em;
+    }
+  </style>
 </head>
-
 <body>
 
-<div id="inviteIntroFixed" style="position:fixed;inset:0;z-index:99999;background:linear-gradient(rgba(239,231,221,.94), rgba(239,231,221,.98));display:flex;align-items:center;justify-content:center;padding:20px;overflow:hidden;">
-  <div style="position:relative;width:min(90vw,370px);height:250px;box-shadow:0 24px 60px rgba(63,42,31,.14);background:#f6efe6;border:1px solid rgba(141,116,97,.10);overflow:hidden;">
-    <div style="position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.14), rgba(255,255,255,.06)),repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px),#f6efe6;"></div>
-    <div id="envelopeFlapFixed" style="position:absolute;top:0;left:0;right:0;height:110px;background:linear-gradient(#eadfd2,#e6dacd);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform 1.2s cubic-bezier(.22,.61,.36,1);z-index:2;pointer-events:none;"></div>
-    <div id="letterCardFixed" style="position:absolute;left:18px;right:18px;bottom:14px;background:#fffdfa;border:1px solid rgba(141,116,97,.08);box-shadow:0 10px 24px rgba(63,42,31,.10);padding:26px 18px 20px;text-align:center;transform:translateY(18px);transition:transform 1.2s cubic-bezier(.22,.61,.36,1);z-index:5;pointer-events:auto;">
-      <div style="color:#7d6d64;font-size:15px;margin-bottom:8px;">Приглашение для</div>
-      <div id="guestNameFixed" style="font-family:'Bad Script',cursive;font-size:38px;line-height:1.1;color:#9d4255;margin-bottom:18px;">дорогого гостя</div>
-      <button type="button" id="openInviteBtnFixed" style="position:relative;z-index:10;border:none;background:#4c3529;color:#fff;padding:14px 18px;border-radius:999px;cursor:pointer;font-size:15px;box-shadow:0 8px 18px rgba(76,53,41,.18);pointer-events:auto;">Открыть приглашение</button>
-    </div>
-  </div>
-</div>
-
-<div class="page" id="pageRoot" style="opacity:0;transform:scale(.985);transition:opacity .9s ease, transform .9s ease;visibility:hidden;">
-
-<div class="music-wrap">
-<button class="music-btn" id="musicBtn">♫ Музыка</button>
-</div>
-
-<div class="invite-intro" id="inviteIntro">
-  <div class="invite-intro-card">
-    <div class="envelope" id="envelopeIntro">
-      <div class="envelope-body"></div>
-      <div class="letter">
+  <div class="intro-overlay" id="introOverlay">
+    <div class="envelope-wrap">
+      <div class="envelope-base"></div>
+      <div class="envelope-flap" id="envelopeFlap"></div>
+      <div class="letter" id="letterCard">
         <div class="intro-small">Приглашение для</div>
         <div class="intro-name" id="guestName">дорогого гостя</div>
-        <button class="intro-open" id="openInviteBtn">Открыть приглашение</button>
+        <button class="intro-open" id="openInviteBtn" type="button">Открыть приглашение</button>
       </div>
     </div>
   </div>
-</div>
-    <div class="intro-name" id="guestName">дорогого гостя</div>
-    <button class="intro-open" id="openInviteBtn">Открыть приглашение</button>
+
+  <div class="page" id="pageRoot">
+    <div class="music-wrap">
+      <button class="music-btn" id="musicBtn">♫ Музыка</button>
+    </div>
+
+    <main class="sheet fade-up">
+      <div class="decor-heart" style="top:26px;left:18px;">♥</div>
+      <div class="decor-heart" style="top:34px;right:22px;">♥</div>
+      <div class="decor-heart" style="top:180px;left:26px;">♥</div>
+      <div class="decor-heart" style="top:420px;right:26px;">♥</div>
+      <div class="decor-heart" style="top:620px;left:16px;">♥</div>
+      <div class="decor-heart" style="top:760px;right:20px;">♥</div>
+      <div class="decor-heart" style="top:980px;left:28px;">♥</div>
+      <div class="decor-heart" style="top:1160px;left:28px;">♥</div>
+      <div class="decor-heart" style="top:1480px;right:20px;">♥</div>
+      <div class="decor-heart" style="top:1740px;left:22px;">♥</div>
+
+      <section class="section fade-up">
+        <p class="hero-line">Вы дождались...</p>
+        <h1 class="main-call">Мы женимся!</h1>
+
+        <div class="child-grid">
+          <div class="photo-card">
+            <div class="photo-frame"><img src="yana-child.jpg" alt="Яна"></div>
+            <div class="photo-name">Яна</div>
+          </div>
+          <div class="photo-card">
+            <div class="photo-frame"><img src="dmitry-child.jpg" alt="Дмитрий"></div>
+            <div class="photo-name">Дмитрий</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section fade-up">
+        <h2 class="section-title">Дорогие наши гости</h2>
+        <p class="text">Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу</p>
+
+        <div class="date-reveal" id="dateReveal">
+          <div class="date-top">наш день</div>
+          <div class="reveal-shell">
+            <div class="paper-closed">июля 2026</div>
+            <div class="paper-left"></div>
+            <div class="paper-right"></div>
+            <div class="tear-row">
+              <div class="tear-side left"></div>
+              <div class="date-center">
+                <div class="date-row"><span>29</span><div class="date-main">30</div><span>31</span></div>
+                <div class="month">июля</div>
+                <div class="year">2026</div>
+              </div>
+              <div class="tear-side right"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="countdown" id="countdown">До встречи осталось...</div>
+      </section>
+
+      <section class="section fade-up">
+        <h2 class="section-title">Локация</h2>
+        <div class="place">
+          <strong>TENET HOTEL</strong>
+          <p class="text">г. Екатеринбург, ул. Хохрякова, 1А</p>
+          <a class="cloud-btn" target="_blank" href="https://yandex.ru/maps/?text=Екатеринбург%20Хохрякова%201А"><span>открыть</span><span>карты</span></a>
+        </div>
+      </section>
+
+      <section class="section fade-up">
+        <h2 class="section-title">Программа дня</h2>
+        <div class="timeline">
+          <svg viewBox="0 0 320 330" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+            <path d="M150 20 C240 35,240 78,175 98 C90 123,90 155,155 180 C236 205,238 242,172 266 C110 287,108 307,150 318" fill="none" stroke="#b6939d" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 10" />
+          </svg>
+
+          <div style="position:absolute;top:6px;left:12px;text-align:left;">
+            <div class="event-time">15:00</div>
+            <div class="event-text">Сбор гостей</div>
+          </div>
+          <div style="position:absolute;top:84px;right:10px;text-align:right;">
+            <div class="event-time">16:00</div>
+            <div class="event-text">Выездная регистрация</div>
+          </div>
+          <div style="position:absolute;top:168px;left:8px;text-align:left;">
+            <div class="event-time">17:00</div>
+            <div class="event-text">Начало банкета</div>
+          </div>
+          <div style="position:absolute;top:250px;right:6px;text-align:right;">
+            <div class="event-time">22:00</div>
+            <div class="event-text">Disko-Party</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section fade-up">
+        <h2 class="section-title">Дресс-Код</h2>
+        <p class="text">Поддержите нас красивыми нарядами</p>
+        <div class="look-grid">
+          <img src="dresscode.jpg" alt="Дресс-код">
+        </div>
+      </section>
+
+      <section class="section fade-up">
+        <h2 class="section-title">Детали</h2>
+        <div class="details-box">
+          <p class="text">Ваши улыбки и смех подарят нам незабываемое счастье в этот день, а пожелания в конвертах помогут осуществить наши мечты!</p>
+        </div>
+        <div class="organizer">
+          <p class="text">По вопросам можно связаться с организатором</p>
+          <a class="cloud-btn small" href="tel:+79126988268"><span>связаться</span></a>
+        </div>
+      </section>
+
+      <section class="section fade-up">
+        <h2 class="section-title">Анкета</h2>
+        <p class="text">Пожалуйста заполните форму</p>
+        <form action="https://formspree.io/f/yourcode" method="POST">
+          <input type="text" name="name" placeholder="Имя и фамилия" required>
+
+          <label><input type="radio" name="attendance" value="Да"> Смогу прийти</label>
+          <label><input type="radio" name="attendance" value="Нет"> Не смогу прийти</label>
+          <label><input type="radio" name="attendance" value="Позже"> Сообщу позже</label>
+
+          <label>Предпочтения по напиткам</label>
+          <label><input type="checkbox" name="drinks[]" value="Шампанское"> Шампанское</label>
+          <label><input type="checkbox" name="drinks[]" value="Красное вино"> Красное вино</label>
+          <label><input type="checkbox" name="drinks[]" value="Белое вино"> Белое вино</label>
+          <label><input type="checkbox" name="drinks[]" value="Коньяк"> Коньяк</label>
+          <label><input type="checkbox" name="drinks[]" value="Безалкогольные напитки"> Безалкогольные напитки</label>
+
+          <textarea name="comment" placeholder="Комментарий"></textarea>
+          <button class="submit" type="submit">Отправить</button>
+        </form>
+      </section>
+    </main>
+
+    <div class="footer-note">С любовью, Яна и Дмитрий</div>
   </div>
-</div>
 
-<main class="sheet fade-up">
-<div class="decor-heart" style="top:26px;left:18px;">♥</div>
-<div class="decor-heart" style="top:34px;right:22px;">♥</div>
-<div class="decor-heart" style="top:180px;left:26px;">♥</div>
-<div class="decor-heart" style="top:420px;right:26px;">♥</div>
-<div class="decor-heart" style="top:620px;left:16px;">♥</div>
-<div class="decor-heart" style="top:760px;right:20px;">♥</div>
-<div class="decor-heart" style="top:980px;left:28px;">♥</div>
-<div class="decor-heart" style="top:1160px;left:28px;">♥</div>
-<div class="decor-heart" style="top:1480px;right:20px;">♥</div>
-<div class="decor-heart" style="top:1740px;left:22px;">♥</div>
+  <audio id="weddingAudio" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
 
-<section class="section fade-up">
-<p class="hero-line">Вы дождались...</p>
-<h1 class="main-call">Мы женимся!</h1>
-
-<div class="child-grid">
-<div class="photo-card">
-<div class="photo-frame"><img src="yana-child.jpg"></div>
-<div class="photo-name">Яна</div>
-</div>
-
-<div class="photo-card">
-<div class="photo-frame"><img src="dmitry-child.jpg"></div>
-<div class="photo-name">Дмитрий</div>
-</div>
-</div>
-</section>
-
-<section class="section fade-up">
-<h2 class="section-title">Дорогие наши гости</h2>
-<p class="text">Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу</p>
-
-<div class="date-reveal" id="dateReveal">
-<div class="date-top">наш день</div>
-<div class="reveal-shell">
-<div class="paper-closed">июля 2026</div>
-<div class="paper-left"></div>
-<div class="paper-right"></div>
-<div class="tear-row">
-<div class="tear-side left"></div>
-<div class="date-center">
-<div class="date-row"><span>29</span><div class="date-main">30</div><span>31</span></div>
-<div class="month">июля</div>
-<div class="year">2026</div>
-</div>
-<div class="tear-side right"></div>
-</div>
-</div>
-</div>
-
-<div class="countdown" id="countdown">До встречи осталось...</div>
-</section>
-
-<section class="section fade-up">
-<h2 class="section-title">Локация</h2>
-<div class="place">
-<strong>TENET HOTEL</strong>
-<p class="text">г. Екатеринбург, ул. Хохрякова, 1А</p>
-<a class="cloud-btn" target="_blank" href="https://yandex.ru/maps/?text=Екатеринбург%20Хохрякова%201А"><span>открыть</span><span>карты</span></a>
-</div>
-</section>
-
-<section class="section fade-up">
-<h2 class="section-title">Программа дня</h2>
-
-<div class="timeline" style="position:relative;max-width:320px;height:330px;">
-<svg viewBox="0 0 320 330" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
-<path d="M150 20 C240 35,240 78,175 98 C90 123,90 155,155 180 C236 205,238 242,172 266 C110 287,108 307,150 318" fill="none" stroke="#b6939d" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 10" />
-</svg>
-
-<div class="event" style="position:absolute;top:6px;left:12px;text-align:left;">
-<div class="event-time">15:00</div>
-<div class="event-text">Сбор гостей</div>
-</div>
-
-<div class="event" style="position:absolute;top:84px;right:10px;text-align:right;">
-<div class="event-time">16:00</div>
-<div class="event-text">Выездная регистрация</div>
-</div>
-
-<div class="event" style="position:absolute;top:168px;left:8px;text-align:left;">
-<div class="event-time">17:00</div>
-<div class="event-text">Начало банкета</div>
-</div>
-
-<div class="event" style="position:absolute;top:250px;right:6px;text-align:right;">
-<div class="event-time">22:00</div>
-<div class="event-text">Disko-Party</div>
-</div>
-</div>
-
-</section>
-
-<section class="section fade-up">
-<h2 class="section-title">Дресс-Код</h2>
-<p class="text">Поддержите нас красивыми нарядами</p>
-
-<div class="look-grid">
-<img src="dresscode.jpg">
-</div>
-
-</section>
-
-<section class="section fade-up">
-<h2 class="section-title">Детали</h2>
-
-<div class="details-box">
-<p class="text">Ваши улыбки и смех подарят нам незабываемое счастье в этот день, а пожелания в конвертах помогут осуществить наши мечты!</p>
-</div>
-
-<div class="organizer">
-<p>По вопросам можно связаться с организатором</p>
-<a class="cloud-btn small" href="tel:+79126988268"><span>связаться</span></a>
-</div>
-
-</section>
-
-<section class="section fade-up">
-<h2 class="section-title">Анкета</h2>
-<p class="text">Пожалуйста заполните форму</p>
-
-<form action="https://formspree.io/f/yourcode" method="POST">
-<input type="text" name="name" placeholder="Имя и фамилия" required>
-
-<label>Подтвердите присутствие</label>
-<label><input type="radio" name="attendance" value="Да"> Смогу прийти</label>
-<label><input type="radio" name="attendance" value="Нет"> Не смогу прийти</label>
-<label><input type="radio" name="attendance" value="Позже"> Сообщу позже</label>
-
-<label>Предпочтения по напиткам</label>
-<label><input type="checkbox" name="drinks[]" value="Шампанское"> Шампанское</label>
-<label><input type="checkbox" name="drinks[]" value="Красное вино"> Красное вино</label>
-<label><input type="checkbox" name="drinks[]" value="Белое вино"> Белое вино</label>
-<label><input type="checkbox" name="drinks[]" value="Коньяк"> Коньяк</label>
-<label><input type="checkbox" name="drinks[]" value="Безалкогольные напитки"> Безалкогольные напитки</label>
-
-<textarea name="comment" placeholder="Комментарий"></textarea>
-
-<button class="submit">Отправить</button>
-</form>
-</section>
-
-</main>
-
-<div class="footer-note">С любовью, Яна и Дмитрий</div>
-
-</div>
-
-<audio id="weddingAudio" loop>
-<source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-
-const weddingDate = new Date('2026-07-30T15:00:00+05:00').getTime();
-const countdownEl = document.getElementById('countdown');
-
-function updateCountdown(){
-const now = new Date().getTime();
-const distance = weddingDate - now;
-
-const days = Math.floor(distance/(1000*60*60*24));
-const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
-
-countdownEl.innerHTML = `До встречи осталось: ${days} д. ${hours} ч. ${minutes} мин.`;
-}
-
-setInterval(updateCountdown,1000);
-
-const pageRoot = document.getElementById('pageRoot');
-const inviteIntroFixed = document.getElementById('inviteIntroFixed');
-const openInviteBtnFixed = document.getElementById('openInviteBtnFixed');
-const guestNameFixed = document.getElementById('guestNameFixed');
-const envelopeFlapFixed = document.getElementById('envelopeFlapFixed');
-const letterCardFixed = document.getElementById('letterCardFixed');
-
-const params = new URLSearchParams(window.location.search);
-const guest = params.get('name');
-if (guest && guest.trim()) {
-  guestNameFixed.textContent = guest;
-}
-
-if (openInviteBtnFixed) {
-  openInviteBtnFixed.onclick = () => {
-    envelopeFlapFixed.style.transform = 'rotateX(180deg)';
-    letterCardFixed.style.transform = 'translateY(-30px)';
-    setTimeout(() => {
-      inviteIntroFixed.style.opacity = '0';
-      inviteIntroFixed.style.visibility = 'hidden';
-      inviteIntroFixed.style.pointerEvents = 'none';
-      inviteIntroFixed.style.display = 'none';
-      pageRoot.style.opacity = '1';
-      pageRoot.style.transform = 'scale(1)';
-      pageRoot.style.visibility = 'visible';
-      document.body.style.overflow = 'auto';
-    }, 950);
-  };
-}
-
-document.body.style.overflow = 'hidden';
-
-const audio = document.getElementById('weddingAudio');
-const musicBtn = document.getElementById('musicBtn');
-let playing=false;
-
-musicBtn.onclick=()=>{
-if(!playing){audio.play();musicBtn.innerText='♫ Стоп';playing=true}
-else{audio.pause();musicBtn.innerText='♫ Музыка';playing=false}
-}
-
-/* разноцветные буквы в заголовках */
-const colors=["#b54b6a","#c07a59","#d3a55c","#7a9b6a","#9b6a7a","#8a5d4a","#c27b8e","#6b8fa3"];
-
-document.querySelectorAll('.section-title').forEach(el=>{
-const text=el.innerText;
-el.innerHTML='';
-[...text].forEach((l,i)=>{
-const span=document.createElement('span');
-span.style.color=colors[i%colors.length];
-span.innerText=l;
-el.appendChild(span);
-});
-});
-
-/* плавные появления блоков */
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('show');
-    }
-  });
-},{threshold:0.12});
-
-document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
-
-const dateReveal = document.getElementById('dateReveal');
-if(dateReveal){
-  const revealObserver = new IntersectionObserver((entries)=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        dateReveal.classList.add('open');
-      }
+  <script>
+    const colors=["#b54b6a","#c07a59","#d3a55c","#7a9b6a","#9b6a7a","#8a5d4a","#c27b8e","#6b8fa3"];
+    document.querySelectorAll('.section-title').forEach(el=>{
+      const text=el.innerText;
+      el.innerHTML='';
+      [...text].forEach((l,i)=>{
+        const span=document.createElement('span');
+        span.style.color=colors[i%colors.length];
+        span.innerText=l;
+        el.appendChild(span);
+      });
     });
-  },{threshold:0.55});
-  revealObserver.observe(dateReveal);
-}
 
-/* падающие лепестки */
+    const pageRoot = document.getElementById('pageRoot');
+    const introOverlay = document.getElementById('introOverlay');
+    const openInviteBtn = document.getElementById('openInviteBtn');
+    const envelopeFlap = document.getElementById('envelopeFlap');
+    const letterCard = document.getElementById('letterCard');
+    const guestName = document.getElementById('guestName');
+    const params = new URLSearchParams(window.location.search);
+    const guest = params.get('name');
+    if(guest && guest.trim()) guestName.textContent = guest;
 
-</script>
+    openInviteBtn.onclick = () => {
+      envelopeFlap.style.transform = 'rotateX(180deg)';
+      letterCard.style.transform = 'translateY(-30px)';
+      setTimeout(() => {
+        introOverlay.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        pageRoot.classList.add('ready');
+      }, 950);
+    };
 
+    const weddingDate = new Date('2026-07-30T15:00:00+05:00').getTime();
+    const countdownEl = document.getElementById('countdown');
+    function updateCountdown(){
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+      if(distance <= 0){
+        countdownEl.textContent = 'Этот день настал ✨';
+        return;
+      }
+      const days = Math.floor(distance/(1000*60*60*24));
+      const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+      const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+      countdownEl.textContent = `До встречи осталось: ${days} д. ${hours} ч. ${minutes} мин.`;
+    }
+    updateCountdown();
+    setInterval(updateCountdown,1000);
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting) entry.target.classList.add('show');
+      });
+    },{threshold:0.12});
+    document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+
+    const dateReveal = document.getElementById('dateReveal');
+    const revealObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting) dateReveal.classList.add('open');
+      });
+    },{threshold:0.55});
+    revealObserver.observe(dateReveal);
+
+    const audio = document.getElementById('weddingAudio');
+    const musicBtn = document.getElementById('musicBtn');
+    let playing=false;
+    musicBtn.onclick=()=>{
+      if(!playing){audio.play();musicBtn.innerText='♫ Стоп';playing=true}
+      else{audio.pause();musicBtn.innerText='♫ Музыка';playing=false}
+    };
+  </script>
 </body>
 </html>
