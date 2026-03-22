@@ -10,12 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    .section-textured > *{
-  max-width:360px;
-  margin-left:auto;
-  margin-right:auto;
-}
-    .section-textured{
+   .section-textured{
   background:
     linear-gradient(rgba(255,255,255,.12), rgba(255,255,255,.06)),
     repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px),
@@ -25,8 +20,52 @@
   border-radius:24px;
   padding:22px 16px;
   margin-top:8px;
-  width:100%;       
-  max-width:none;    
+  width:100%;
+}
+
+.place{
+  text-align:center;
+  position:relative;
+  padding:10px 10px 14px;
+  max-width:none;
+  width:100%;
+  margin:0 auto;
+  min-height:auto;
+}
+
+.place-label{
+  text-align:center;
+  font-family:'Bad Script',cursive;
+  font-size:34px;
+  line-height:1.15;
+  margin:0 0 12px;
+  white-space:normal;
+}
+
+.place-logo{
+  display:flex;
+  justify-content:center;
+  margin:0 auto 12px;
+  width:100%;
+}
+
+.place-logo img{
+  width:220px;
+  max-width:100%;
+  height:auto;
+  display:block;
+  margin:0 auto;
+}
+
+.place .text{
+  max-width:260px;
+  margin:0 auto;
+}
+
+.cloud-btn{
+  position:static;
+  display:flex;
+  margin:14px auto 0;
 }
 
 .music-wrap{
@@ -75,7 +114,7 @@
 .main-call span,
 .section-title span,
 .place-label span{
-  display:inline-block;
+  display:inline;
 }
     form{
   max-width:360px;
