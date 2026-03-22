@@ -943,17 +943,28 @@
   </audio>
 
   <script>
-    const colors=["#b54b6a","#c07a59","#d3a55c","#7a9b6a","#9b6a7a","#8a5d4a","#c27b8e","#6b8fa3"];
-    document.querySelectorAll('.section-title').forEach(el=>{
-      const text=el.innerText;
-      el.innerHTML='';
-      [...text].forEach((l,i)=>{
-        const span=document.createElement('span');
-        span.style.color=colors[i%colors.length];
-        span.innerText=l;
-        el.appendChild(span);
-      });
-    });
+    const colors = [
+  "#a64d79", // розово-винный
+  "#c97b63", // пыльная терракота
+  "#d6a85f", // тёплое золото
+  "#7f9c7a", // шалфейный
+  "#8c6aa8", // мягкий лавандовый
+  "#b86f8a", // пудрово-розовый
+  "#6f8fa8", // приглушённый голубой
+  "#9a6a57"  // кофейный
+];
+   document.querySelectorAll('.section-title').forEach(el => {
+  const text = el.innerText;
+  el.innerHTML = '';
+  [...text].forEach((l, i) => {
+    const span = document.createElement('span');
+    span.innerText = l;
+    if (l.trim() !== '') {
+      span.style.color = colors[i % colors.length];
+    }
+    el.appendChild(span);
+  });
+});
 
     const pageRoot = document.getElementById('pageRoot');
     const introOverlay = document.getElementById('introOverlay');
