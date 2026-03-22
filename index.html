@@ -326,7 +326,10 @@
       max-width:340px;
     }
 
-    .date-top{text-align:center;color:var(--muted)}
+    .date-top{
+  text-align:center;
+  color:var(--muted);
+}
 
     .reveal-shell{
       position:relative;
@@ -642,6 +645,131 @@
       font-size:14px;
       letter-spacing:.02em;
     }
+    .date-reveal{
+  margin:18px auto 0;
+  max-width:340px;
+}
+
+.date-top{
+  text-align:center;
+  color:#7d6d64;
+}
+
+.paper-wrap{
+  position:relative;
+  margin-top:20px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  overflow:hidden;
+  min-height:140px;
+}
+
+.paper-closed,
+.paper-side,
+.date-center,
+.side-heart{
+  transition: all 1.6s cubic-bezier(.22,.61,.36,1);
+}
+
+.paper-closed{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#e7ddd2;
+  color:#7d6d64;
+  font-size:15px;
+  z-index:4;
+}
+
+.paper-side{
+  width:92px;
+  height:140px;
+  background:#e7ddd2;
+  opacity:0;
+}
+
+.paper-side.left{
+  transform:translateX(40px);
+  clip-path:polygon(0 0,100% 0,95% 10%,100% 25%,95% 40%,100% 60%,95% 75%,100% 100%,0 100%);
+}
+
+.paper-side.right{
+  transform:translateX(-40px);
+  clip-path:polygon(0 0,100% 0,100% 100%,0 100%,5% 75%,0 60%,5% 40%,0 25%,5% 10%);
+}
+
+.date-center{
+  text-align:center;
+  opacity:0;
+  transform:scale(.9);
+}
+
+.date-row{
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  font-size:24px;
+}
+
+.date-main{
+  width:70px;
+  height:70px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#9d4255;
+  position:relative;
+}
+
+.date-main::before{
+  content:'♡';
+  position:absolute;
+  font-size:70px;
+}
+
+.month{
+  font-family:'Bad Script',cursive;
+  color:#9d4255;
+  font-size:28px;
+}
+
+.year{
+  color:#7d6d64;
+}
+
+.side-heart{
+  position:absolute;
+  top:50%;
+  font-size:24px;
+  color:#9d4255;
+  opacity:0;
+}
+
+.side-heart.left{ left:6px }
+.side-heart.right{ right:6px }
+
+/* АНИМАЦИЯ */
+.date-reveal.open .paper-closed{
+  opacity:0;
+}
+
+.date-reveal.open .paper-side{
+  opacity:1;
+  transform:translateX(0);
+}
+
+.date-reveal.open .date-center{
+  opacity:1;
+  transform:scale(1);
+}
+
+.date-reveal.open .side-heart{
+  opacity:1;
+}
   </style>
 </head>
 <body>
@@ -696,22 +824,30 @@
         <p class="text" id="personalGuestText">Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу</p>
 
         <div class="date-reveal" id="dateReveal">
-          <div class="date-top">наш день</div>
-          <div class="reveal-shell">
-            <div class="paper-closed">июля 2026</div>
-            <div class="paper-left"></div>
-            <div class="paper-right"></div>
-            <div class="tear-row">
-              <div class="tear-side left"></div>
-              <div class="date-center">
-                <div class="date-row"><span>29</span><div class="date-main"><span>30</span></div><span>31</span></div>
-                <div class="month">июля</div>
-                <div class="year">2026</div>
-              </div>
-              <div class="tear-side right"></div>
-            </div>
-          </div>
-        </div>
+  <div class="date-top">наш день</div>
+
+  <div class="paper-wrap">
+    <div class="paper-closed">30 июля 2026</div>
+
+    <div class="paper-side left"></div>
+
+    <div class="date-center">
+      <div class="date-row">
+        <span>29</span>
+        <div class="date-main">30</div>
+        <span>31</span>
+      </div>
+
+      <div class="month">июля</div>
+      <div class="year">2026</div>
+    </div>
+
+    <div class="paper-side right"></div>
+
+    <div class="side-heart left">❤</div>
+    <div class="side-heart right">❤</div>
+  </div>
+</div>
 
         <div class="countdown" id="countdown">До встречи осталось...</div>
       </section>
@@ -867,13 +1003,19 @@
     },{threshold:0.12});
     document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
 
-    const dateReveal = document.getElementById('dateReveal');
-    const revealObserver = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting) dateReveal.classList.add('open');
-      });
-    },{threshold:0.55});
-    revealObserver.observe(dateReveal);
+  const dateReveal = document.getElementById('dateReveal');
+
+if (dateReveal) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        dateReveal.classList.add('open');
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(dateReveal);
+}
 
     const audio = document.getElementById('weddingAudio');
     const musicBtn = document.getElementById('musicBtn');
