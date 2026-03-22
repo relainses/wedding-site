@@ -10,6 +10,66 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    .section-textured{
+  background:
+    linear-gradient(rgba(255,255,255,.12), rgba(255,255,255,.06)),
+    repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px),
+    var(--paper);
+  border:1px solid rgba(141,116,97,.08);
+  box-shadow:0 10px 24px rgba(63,42,31,.06);
+  border-radius:24px;
+  padding:22px 16px;
+  margin-top:8px;
+}
+
+.music-wrap{
+  display:flex;
+  justify-content:center;
+  margin:26px auto 0;
+  position:static;
+}
+
+.place{
+  text-align:center;
+  position:relative;
+  padding:10px 10px 6px;
+  max-width:360px;
+  margin:0 auto;
+  min-height:auto;
+}
+
+.place-label{
+  text-align:center;
+  font-family:'Bad Script',cursive;
+  font-size:38px;
+  line-height:1.1;
+  margin:0 0 12px;
+}
+
+.place-logo{
+  display:flex;
+  justify-content:center;
+  margin-bottom:10px;
+}
+
+.place-logo img{
+  width:220px;
+  max-width:100%;
+  height:auto;
+  display:block;
+  margin:0 auto;
+}
+
+.cloud-btn{
+  position:static;
+  margin:14px auto 0;
+}
+
+.main-call span,
+.section-title span,
+.place-label span{
+  display:inline-block;
+}
     form{
   max-width:360px;
   margin:16px auto 0;
@@ -800,9 +860,7 @@
   </div>
 
   <div class="page" id="pageRoot">
-    <div class="music-wrap">
-      <button class="music-btn" id="musicBtn"><span>♫ Музыка</span><span class="eq" aria-hidden="true"><span></span><span></span><span></span></span></button>
-    </div>
+    
 
     <main class="sheet fade-up">
       <div class="decor-heart" style="top:26px;left:18px;">♥</div>
@@ -866,42 +924,50 @@
       </section>
 
       <section class="section fade-up">
-        <h2 class="section-title">Локация</h2>
+  <div class="section-textured">
+    <div class="place">
       <div class="place-label">Место встречи</div>
-          <div class="place-logo">
-  <img src="tenett.png" alt="TENET HOTEL">
-</div>
 
+      <div class="place-logo">
+        <img src="tenet.png" alt="TENET HOTEL">
+      </div>
 
-          <a class="cloud-btn" target="_blank" href="https://yandex.ru/maps/?text=Екатеринбург%20Хохрякова%201А"><span>открыть</span><span>карты</span></a>
-        </div>
-      </section>
+      <p class="text">г. Екатеринбург, ул. Хохрякова, 1А</p>
+
+      <a class="cloud-btn" target="_blank" href="https://yandex.ru/maps/?text=Екатеринбург%20Хохрякова%201А">
+        <span>открыть</span><span>карты</span>
+      </a>
+    </div>
+  </div>
+</section>
 
       <section class="section fade-up">
-        <h2 class="section-title">Программа дня</h2>
-        <div class="timeline">
-          <svg viewBox="0 0 320 330" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
-            <path d="M150 20 C240 35,240 78,175 98 C90 123,90 155,155 180 C236 205,238 242,172 266 C110 287,108 307,150 318" fill="none" stroke="#b6939d" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 10" />
-          </svg>
+  <div class="section-textured">
+    <h2 class="section-title">Программа дня</h2>
+    <div class="timeline">
+      <svg viewBox="0 0 320 330" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+        <path d="M150 20 C240 35,240 78,175 98 C90 123,90 155,155 180 C236 205,238 242,172 266 C110 287,108 307,150 318" fill="none" stroke="#b6939d" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 10" />
+      </svg>
 
-          <div style="position:absolute;top:6px;left:12px;text-align:left;">
-            <div class="event-time">15:00</div>
-            <div class="event-text">Сбор гостей</div>
-          </div>
-          <div style="position:absolute;top:84px;right:10px;text-align:right;">
-            <div class="event-time">16:00</div>
-            <div class="event-text">Выездная регистрация</div>
-          </div>
-          <div style="position:absolute;top:168px;left:8px;text-align:left;">
-            <div class="event-time">17:00</div>
-            <div class="event-text">Начало банкета</div>
-          </div>
-          <div style="position:absolute;top:250px;right:6px;text-align:right;">
-            <div class="event-time">22:00</div>
-            <div class="event-text">Disko-Party</div>
-          </div>
-        </div>
-      </section>
+      <div style="position:absolute;top:6px;left:12px;text-align:left;">
+        <div class="event-time">15:00</div>
+        <div class="event-text">Сбор гостей</div>
+      </div>
+      <div style="position:absolute;top:84px;right:10px;text-align:right;">
+        <div class="event-time">16:00</div>
+        <div class="event-text">Выездная регистрация</div>
+      </div>
+      <div style="position:absolute;top:168px;left:8px;text-align:left;">
+        <div class="event-time">17:00</div>
+        <div class="event-text">Начало банкета</div>
+      </div>
+      <div style="position:absolute;top:250px;right:6px;text-align:right;">
+        <div class="event-time">22:00</div>
+        <div class="event-text">Disko-Party</div>
+      </div>
+    </div>
+  </div>
+</section>
 
       <section class="section fade-up">
         <h2 class="section-title">Дресс-Код</h2>
@@ -950,8 +1016,14 @@
         </div>
       </section>
     </main>
+<div class="music-wrap">
+  <button class="music-btn" id="musicBtn">
+    <span>♫ Музыка</span>
+    <span class="eq" aria-hidden="true"><span></span><span></span><span></span></span>
+  </button>
+</div>
 
-    <div class="footer-note">С любовью, Яна и Дмитрий</div>
+<div class="footer-note">С любовью, Яна и Дмитрий</div>
   </div>
 
   <audio id="weddingAudio" loop>
@@ -959,16 +1031,25 @@
   </audio>
 
   <script>
-    const colors = [
-  "#a64d79", // розово-винный
-  "#c97b63", // пыльная терракота
-  "#d6a85f", // тёплое золото
-  "#7f9c7a", // шалфейный
-  "#8c6aa8", // мягкий лавандовый
-  "#b86f8a", // пудрово-розовый
-  "#6f8fa8", // приглушённый голубой
-  "#9a6a57"  // кофейный
-];
+ const colors = ["#b54b6a","#c07a59","#d3a55c","#7a9b6a","#9b6a7a","#8a5d4a","#c27b8e","#6b8fa3"];
+
+document.querySelectorAll('.section-title, .main-call, .place-label').forEach(el => {
+  const text = el.innerText;
+  el.innerHTML = '';
+  let colorIndex = 0;
+
+  [...text].forEach(letter => {
+    const span = document.createElement('span');
+    span.innerText = letter;
+
+    if (letter.trim() !== '') {
+      span.style.color = colors[colorIndex % colors.length];
+      colorIndex++;
+    }
+
+    el.appendChild(span);
+  });
+});
    document.querySelectorAll('.section-title').forEach(el => {
   const text = el.innerText;
   el.innerHTML = '';
