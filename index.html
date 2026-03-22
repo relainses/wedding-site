@@ -889,9 +889,6 @@
           </div>
         </div>
       </section>
-<section class="section fade-up">
-  <div class="section-textured">
-    <h2 class="section-title">Локация</h2>
 
     <div class="place">
       <div class="place-label">Место встречи</div>
@@ -899,9 +896,6 @@
       <div class="place-logo">
         <img src="tenet.png" alt="TENET HOTEL">
       </div>
-
-      <p class="text">г. Екатеринбург, ул. Хохрякова, 1А</p>
-
       <a class="cloud-btn" target="_blank" href="https://yandex.ru/maps/?text=Екатеринбург%20Хохрякова%201А">
         <span>открыть</span><span>карты</span>
       </a>
@@ -1062,7 +1056,7 @@ function makeRainbowText(selector) {
 
     [...text].forEach(letter => {
       const span = document.createElement("span");
-      span.textContent = letter;
+      span.innerHTML = letter === ' ' ? '&nbsp;' : letter;
 
       if (letter.trim() !== "") {
         span.style.color = colors[colorIndex % colors.length];
