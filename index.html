@@ -1051,7 +1051,7 @@
   <script>
  const colors = ["#b54b6a","#c07a59","#d3a55c","#7a9b6a","#9b6a7a","#8a5d4a","#c27b8e","#6b8fa3"];
 
-function makeRainbowText(selector){
+function makeRainbowText(selector) {
   document.querySelectorAll(selector).forEach(el => {
     if (el.dataset.colored === "true") return;
 
@@ -1079,42 +1079,6 @@ function makeRainbowText(selector){
 makeRainbowText(".section-title");
 makeRainbowText(".main-call");
 makeRainbowText(".place-label");
-
-document.querySelectorAll('.section-title, .main-call, .place-label{
-  text-align:center;}.section-title span,
-.main-call span,
-.place-label span{
-  display:inline;
-}').forEach(el => {
-  const text = el.innerText;
-  el.innerHTML = '';
-  let colorIndex = 0;
-
-  [...text].forEach(letter => {
-    const span = document.createElement('span');
-    span.innerText = letter;
-
-    if (letter.trim() !== '') {
-      span.style.color = colors[colorIndex % colors.length];
-      colorIndex++;
-    }
-
-    el.appendChild(span);
-  });
-});
-   document.querySelectorAll('.section-title').forEach(el => {
-  const text = el.innerText;
-  el.innerHTML = '';
-  [...text].forEach((l, i) => {
-    const span = document.createElement('span');
-    span.innerText = l;
-    if (l.trim() !== '') {
-      span.style.color = colors[i % colors.length];
-    }
-    el.appendChild(span);
-  });
-});
-
     const pageRoot = document.getElementById('pageRoot');
     const introOverlay = document.getElementById('introOverlay');
     const openInviteBtn = document.getElementById('openInviteBtn');
