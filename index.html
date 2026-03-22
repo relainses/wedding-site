@@ -889,7 +889,25 @@
           </div>
         </div>
       </section>
+<section class="section fade-up">
+  <div class="section-textured">
+    <h2 class="section-title">Локация</h2>
 
+    <div class="place">
+      <div class="place-label">Место встречи</div>
+
+      <div class="place-logo">
+        <img src="tenet.png" alt="TENET HOTEL">
+      </div>
+
+      <p class="text">г. Екатеринбург, ул. Хохрякова, 1А</p>
+
+      <a class="cloud-btn" target="_blank" href="https://yandex.ru/maps/?text=Екатеринбург%20Хохрякова%201А">
+        <span>открыть</span><span>карты</span>
+      </a>
+    </div>
+  </div>
+</section>
       <section class="section fade-up">
         <h2 class="section-title">Дорогие наши гости</h2>
         <p class="text" id="personalGuestText">Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу</p>
@@ -1033,7 +1051,41 @@
   <script>
  const colors = ["#b54b6a","#c07a59","#d3a55c","#7a9b6a","#9b6a7a","#8a5d4a","#c27b8e","#6b8fa3"];
 
-document.querySelectorAll('.section-title, .main-call, .place-label').forEach(el => {
+function makeRainbowText(selector){
+  document.querySelectorAll(selector).forEach(el => {
+    if (el.dataset.colored === "true") return;
+
+    const text = el.textContent;
+    el.textContent = "";
+
+    let colorIndex = 0;
+
+    [...text].forEach(letter => {
+      const span = document.createElement("span");
+      span.textContent = letter;
+
+      if (letter.trim() !== "") {
+        span.style.color = colors[colorIndex % colors.length];
+        colorIndex++;
+      }
+
+      el.appendChild(span);
+    });
+
+    el.dataset.colored = "true";
+  });
+}
+
+makeRainbowText(".section-title");
+makeRainbowText(".main-call");
+makeRainbowText(".place-label");
+
+document.querySelectorAll('.section-title, .main-call, .place-label{
+  text-align:center;}.section-title span,
+.main-call span,
+.place-label span{
+  display:inline;
+}').forEach(el => {
   const text = el.innerText;
   el.innerHTML = '';
   let colorIndex = 0;
