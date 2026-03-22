@@ -4,153 +4,55 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Свадьба Яны и Дмитрия</title>
+
   <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23f3eee7"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="26" font-family="Georgia" fill="%239d4255">Я♥Д</text></svg>'>
   <meta name="robots" content="noindex" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
-   .section-textured{
-  background:
-    linear-gradient(rgba(255,255,255,.12), rgba(255,255,255,.06)),
-    repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px),
-    var(--paper);
-  border:1px solid rgba(141,116,97,.08);
-  box-shadow:0 10px 24px rgba(63,42,31,.06);
-  border-radius:24px;
-  padding:22px 16px;
-  margin-top:8px;
-  width:100%;
-}
-
-.place{
-  text-align:center;
-  position:relative;
-  padding:10px 10px 14px;
-  max-width:none;
-  width:100%;
-  margin:0 auto;
-  min-height:auto;
-}
-
-.place-label{
-  text-align:center;
-  font-family:'Bad Script',cursive;
-  font-size:34px;
-  line-height:1.15;
-  margin:0 0 12px;
-  white-space:normal;
-}
-
-.place-logo{
-  display:flex;
-  justify-content:center;
-  margin:0 auto 12px;
-  width:100%;
-}
-
-.place-logo img{
-  width:220px;
-  max-width:100%;
-  height:auto;
-  display:block;
-  margin:0 auto;
-}
-
-.place .text{
-  max-width:260px;
-  margin:0 auto;
-}
-
-.cloud-btn{
-  position:static;
-  display:flex;
-  margin:14px auto 0;
-}
-
-.music-wrap{
-  display:flex;
-  justify-content:center;
-  margin:26px auto 0;
-  position:static;
-}
-
-.place{
-  text-align:center;
-  position:relative;
-  padding:10px 10px 6px;
-  max-width:360px;
-  margin:0 auto;
-  min-height:auto;
-}
-
-.place-label{
-  text-align:center;
-  font-family:'Bad Script',cursive;
-  font-size:38px;
-  line-height:1.1;
-  margin:0 0 12px;
-}
-
-.place-logo{
-  display:flex;
-  justify-content:center;
-  margin-bottom:10px;
-}
-
-.place-logo img{
-  width:220px;
-  max-width:100%;
-  height:auto;
-  display:block;
-  margin:0 auto;
-}
-
-.cloud-btn{
-  position:static;
-  margin:14px auto 0;
-}
-
-.main-call span,
-.section-title span,
-.place-label span{
-  display:inline;
-}
-    form{
-  max-width:360px;
-  margin:16px auto 0;
-  width:100%;
-  background:rgba(255,255,255,.4);
-  padding:18px;
-  border-radius:20px;
-  box-shadow:0 10px 20px rgba(0,0,0,.05);
-}
-    .place-logo img{
-  width:220px;
-  max-width:100%;
-  height:auto;
-  display:block;
-  margin:0 auto 12px;
-  filter: drop-shadow(0 6px 10px rgba(0,0,0,.08));
-}
     :root{
       --paper:#f3eee7;
       --paper2:#efe6dc;
+      --bg:#e8dfd5;
       --text:#463a33;
       --accent:#9d4255;
       --brown:#4c3529;
       --muted:#7d6d64;
       --line:#cdbfb2;
+      --white:rgba(255,255,255,.68);
+      --shadow:0 18px 40px rgba(63,42,31,.10);
+      --radius:28px;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
       font-family:'Montserrat',sans-serif;
       background:#efe7dd;
       color:var(--text);
       overflow:hidden;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(rgba(255,255,255,.12), rgba(255,255,255,.06)),
+        repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px);
+      z-index:0;
+    }
+
+    *::-webkit-scrollbar{width:8px}
+    *::-webkit-scrollbar-thumb{
+      background:rgba(76,53,41,.22);
+      border-radius:999px;
     }
 
     .intro-overlay{
@@ -164,9 +66,7 @@
       padding:20px;
     }
 
-    .intro-overlay.hidden{
-      display:none;
-    }
+    .intro-overlay.hidden{display:none}
 
     .envelope-wrap{
       width:min(90vw,370px);
@@ -181,6 +81,7 @@
       border:1px solid rgba(141,116,97,.10);
       box-shadow:0 24px 60px rgba(63,42,31,.14);
       overflow:hidden;
+      border-radius:6px;
     }
 
     .envelope-base::after{
@@ -220,6 +121,7 @@
       transform:translateY(18px);
       transition:transform 1.1s cubic-bezier(.22,.61,.36,1);
       z-index:3;
+      border-radius:4px;
     }
 
     .intro-small{
@@ -245,8 +147,12 @@
       cursor:pointer;
       font-size:15px;
       box-shadow:0 8px 18px rgba(76,53,41,.18);
-      position:relative;
-      z-index:5;
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+
+    .intro-open:hover{
+      transform:translateY(-1px);
+      box-shadow:0 12px 22px rgba(76,53,41,.16);
     }
 
     .page{
@@ -257,63 +163,14 @@
       visibility:hidden;
       transform:scale(.985);
       transition:opacity .8s ease, transform .8s ease;
+      position:relative;
+      z-index:1;
     }
 
     .page.ready{
       opacity:1;
       visibility:visible;
       transform:scale(1);
-    }
-
-    .music-wrap{
-      position:fixed;
-      right:10px;
-      bottom:34px;
-      display:flex;
-      justify-content:flex-end;
-      z-index:20;
-    }
-
-    .music-btn{
-      border:none;
-      background:#4c3529;
-      color:white;
-      padding:12px 16px;
-      border-radius:999px;
-      cursor:pointer;
-      font-size:14px;
-      display:flex;
-      align-items:center;
-      gap:10px;
-    }
-
-    .eq{
-      display:inline-flex;
-      align-items:flex-end;
-      gap:3px;
-      height:14px;
-    }
-
-    .eq span{
-      width:3px;
-      height:5px;
-      border-radius:3px;
-      background:#fff;
-      opacity:.45;
-      transform-origin:bottom;
-    }
-
-    .music-btn.playing .eq span{
-      opacity:1;
-      animation:eqBounce 1s infinite ease-in-out;
-    }
-
-    .music-btn.playing .eq span:nth-child(2){animation-delay:.15s}
-    .music-btn.playing .eq span:nth-child(3){animation-delay:.3s}
-
-    @keyframes eqBounce{
-      0%,100%{transform:scaleY(.5)}
-      50%{transform:scaleY(1.7)}
     }
 
     .sheet{
@@ -326,6 +183,7 @@
       border:1px solid rgba(141,116,97,.08);
       position:relative;
       overflow:hidden;
+      border-radius:34px;
     }
 
     .section{
@@ -367,8 +225,8 @@
       text-align:center;
       font-family:'Bad Script',cursive;
       font-size:56px;
-      color:var(--accent);
       margin:4px 0 10px;
+      line-height:1;
     }
 
     .text{
@@ -388,6 +246,14 @@
       font-size:18px;
       color:#c27b8e;
       filter:drop-shadow(0 2px 3px rgba(0,0,0,.06));
+      animation:floatHeart 6s ease-in-out infinite;
+    }
+
+    .decor-heart:nth-child(odd){animation-duration:7.5s}
+
+    @keyframes floatHeart{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-6px)}
     }
 
     .child-grid{
@@ -402,9 +268,7 @@
       transform:rotate(-3deg);
     }
 
-    .photo-card:nth-child(2){
-      transform:rotate(3deg);
-    }
+    .photo-card:nth-child(2){transform:rotate(3deg)}
 
     .photo-card::before{
       content:'';
@@ -450,131 +314,71 @@
     }
 
     .date-top{
-  text-align:center;
-  color:var(--muted);
-}
+      text-align:center;
+      color:var(--muted);
+    }
 
-    .reveal-shell{
+    .paper-wrap{
       position:relative;
-      margin-top:10px;
-      min-height:118px;
+      margin-top:20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:18px;
       overflow:hidden;
+      min-height:140px;
     }
 
     .paper-closed,
-    .tear-row,
-    .paper-left,
-    .paper-right{
-      transition:opacity 1.8s ease, transform 1.8s cubic-bezier(.22,.61,.36,1);
+    .paper-side,
+    .date-center,
+    .side-heart{
+      transition:all 1.6s cubic-bezier(.22,.61,.36,1);
     }
 
     .paper-closed{
       position:absolute;
       inset:0;
-      background:linear-gradient(rgba(230,221,210,.98), rgba(230,221,210,.98));
-      box-shadow:inset 0 0 0 1px rgba(133,102,83,.05);
       display:flex;
       align-items:center;
       justify-content:center;
-      text-align:center;
-      color:var(--muted);
+      background:#e7ddd2;
+      color:#7d6d64;
       font-size:15px;
-      letter-spacing:.08em;
-      text-transform:lowercase;
-      z-index:3;
+      z-index:4;
+      border-radius:18px;
     }
 
-    .paper-left,
-    .paper-right{
-      position:absolute;
-      top:0;
-      width:50%;
-      height:100%;
-      background:linear-gradient(rgba(230,221,210,.98), rgba(230,221,210,.98));
-      box-shadow:inset 0 0 0 1px rgba(133,102,83,.05);
+    .paper-side{
+      width:92px;
+      height:140px;
+      background:#e7ddd2;
       opacity:0;
-      z-index:2;
     }
 
-    .paper-left{
-      left:0;
-      clip-path:polygon(0 0,100% 0,92% 10%,100% 20%,88% 33%,100% 45%,90% 58%,100% 70%,92% 83%,100% 100%,0 100%);
+    .paper-side.left{
+      transform:translateX(40px);
+      clip-path:polygon(0 0,100% 0,95% 10%,100% 25%,95% 40%,100% 60%,95% 75%,100% 100%,0 100%);
     }
 
-    .paper-right{
-      right:0;
-      clip-path:polygon(0 0,100% 0,100% 100%,0 100%,8% 83%,0 70%,10% 58%,0 45%,12% 33%,0 20%,8% 10%);
-    }
-
-    .tear-row{
-      display:grid;
-      grid-template-columns:78px 1fr 78px;
-      align-items:center;
-      gap:8px;
-      opacity:0;
-      transform:translateY(16px) scale(.985);
-      position:relative;
-      z-index:1;
-    }
-
-    .date-reveal.open .paper-closed{
-      opacity:0;
-      transform:scale(.96);
-    }
-
-    .date-reveal.open .paper-left{
-      opacity:1;
-      transform:translateX(-34px) rotate(-2deg);
-    }
-
-    .date-reveal.open .paper-right{
-      opacity:1;
-      transform:translateX(34px) rotate(2deg);
-    }
-
-    .date-reveal.open .tear-row{
-      opacity:1;
-      transform:translateY(0) scale(1);
-    }
-
-    .tear-side{
-      width:78px;
-      height:118px;
-      background:
-        radial-gradient(circle at 0 10px, transparent 10px, rgba(230,221,210,.95) 11px) left top/100% 24px repeat-y,
-        linear-gradient(rgba(230,221,210,.95), rgba(230,221,210,.95));
-      box-shadow:inset 0 0 0 1px rgba(133,102,83,.04);
-      opacity:.95;
-    }
-
-    .tear-side.left{
-      clip-path:polygon(0 0,100% 0,88% 10%,100% 20%,86% 32%,100% 42%,84% 54%,100% 66%,88% 78%,100% 88%,90% 100%,0 100%);
-    }
-
-    .tear-side.right{
-      clip-path:polygon(100% 0,0 0,12% 10%,0 20%,14% 32%,0 42%,16% 54%,0 66%,12% 78%,0 88%,10% 100%,100% 100%);
+    .paper-side.right{
+      transform:translateX(-40px);
+      clip-path:polygon(0 0,100% 0,100% 100%,0 100%,5% 75%,0 60%,5% 40%,0 25%,5% 10%);
     }
 
     .date-center{
       text-align:center;
-      background:rgba(255,255,255,.14);
-      padding:6px 0 2px;
+      opacity:0;
+      transform:scale(.9);
     }
 
     .date-row{
       display:flex;
+      gap:14px;
       justify-content:center;
       align-items:center;
-      gap:14px;
-      margin-top:12px;
-      color:var(--muted);
-      white-space:nowrap;
-    }
-
-    .date-row > span{
-      min-width:28px;
-      text-align:center;
       font-size:24px;
+      color:var(--muted);
     }
 
     .date-main{
@@ -583,22 +387,20 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      color:var(--accent);
+      color:#9d4255;
+      position:relative;
       font-size:30px;
       font-weight:600;
-      background:transparent;
-      border:none;
-      position:relative;
       line-height:1;
-      flex:0 0 78px;
     }
 
-   .date-main::before{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:url('lover.png') center/contain no-repeat;
-}
+    .date-main::before{
+      content:'';
+      position:absolute;
+      inset:-2px;
+      background:url('heart.png') center/contain no-repeat;
+      pointer-events:none;
+    }
 
     .date-main span{
       position:relative;
@@ -607,45 +409,80 @@
     }
 
     .month{
-      text-align:center;
       font-family:'Bad Script',cursive;
-      font-size:30px;
-      color:var(--accent);
-      margin-top:10px;
+      color:#9d4255;
+      font-size:28px;
+      margin-top:8px;
     }
 
     .year{
-      margin-top:2px;
-      text-align:center;
-      color:var(--muted);
+      color:#7d6d64;
       font-size:14px;
+      margin-top:2px;
       letter-spacing:.08em;
     }
 
+    .side-heart{
+      position:absolute;
+      top:50%;
+      font-size:24px;
+      color:#9d4255;
+      opacity:0;
+      transform:translateY(-50%);
+    }
+
+    .side-heart.left{left:6px}
+    .side-heart.right{right:6px}
+
+    .date-reveal.open .paper-closed{opacity:0}
+    .date-reveal.open .paper-side{opacity:1;transform:translateX(0)}
+    .date-reveal.open .date-center{opacity:1;transform:scale(1)}
+    .date-reveal.open .side-heart{opacity:1}
+
     .countdown{
       text-align:center;
-      margin-top:18px;
+      margin:18px auto 0;
       background:var(--paper2);
       padding:13px 14px;
       border-radius:18px;
       box-shadow:inset 0 1px 0 rgba(255,255,255,.45);
+      max-width:300px;
+      font-size:16px;
     }
 
     .place{
       text-align:center;
       position:relative;
-      padding-right:86px;
-      padding-bottom:18px;
-      min-height:84px;
+      padding:0 0 12px;
+      max-width:340px;
+      margin:0 auto;
     }
 
-    .place strong{
+    .place-label{
+      text-align:center;
+      font-family:'Bad Script',cursive;
+      font-size:38px;
+      line-height:1.1;
+      margin:0 0 12px;
+    }
+
+    .place-logo{
+      display:flex;
+      justify-content:center;
+      margin:0 auto 12px;
+    }
+
+    .place-logo img{
+      width:220px;
+      max-width:100%;
+      height:auto;
       display:block;
-      font-size:30px;
-      color:var(--brown);
-      margin-bottom:6px;
-      font-family:'Cormorant Garamond',serif;
-      font-weight:600;
+      margin:0 auto;
+    }
+
+    .place .text{
+      max-width:260px;
+      margin:0 auto;
     }
 
     .cloud-btn{
@@ -665,10 +502,9 @@
       font-size:10px;
       line-height:1.02;
       text-align:center;
-      position:absolute;
-      right:-14px;
-      bottom:0;
       clip-path:path('M 14 27 C 14 17, 22 11, 31 12 C 34 6, 42 4, 49 8 C 56 3, 68 5, 72 13 C 81 11, 90 17, 91 26 C 99 28, 104 35, 102 43 C 100 50, 93 55, 84 55 C 79 61, 69 63, 61 59 C 53 64, 40 64, 33 59 C 23 62, 14 58, 11 50 C 4 47, 1 38, 5 31 C 6 28, 9 26, 14 27 Z');
+      margin:14px auto 0;
+      box-shadow:0 6px 12px rgba(0,0,0,.06);
     }
 
     .cloud-btn span{
@@ -680,8 +516,7 @@
       width:88px;
       height:60px;
       font-size:9.5px;
-      right:-16px;
-      bottom:-2px;
+      margin-top:12px;
     }
 
     .timeline{
@@ -705,39 +540,92 @@
       display:block;
       margin:auto;
       box-shadow:0 10px 20px rgba(0,0,0,.1);
+      border-radius:14px;
     }
 
-    .details-box{
-  background:rgba(255,255,255,.4);
-  padding:16px;
-  border-radius:20px;
-  margin:10px auto 0;
-  max-width:360px;
-}
+    .details-box,
+    .form-card{
+      background:rgba(255,255,255,.4);
+      padding:16px;
+      border-radius:20px;
+      margin:10px auto 0;
+      max-width:360px;
+      box-shadow:0 10px 20px rgba(0,0,0,.04);
+    }
 
     .organizer{
-  text-align:center;
-  margin:20px auto 0;
-  position:relative;
-  padding-right:86px;
-  min-height:76px;
-  max-width:360px;
-}
-
-    form{display:flex;flex-direction:column;gap:14px;margin-top:16px}
-    input,textarea{
-      border:none;
-      border-bottom:1px solid var(--line);
-      padding:10px;
-      font:inherit;
-      background:transparent;
+      text-align:center;
+      margin:20px auto 0;
+      position:relative;
+      min-height:76px;
+      max-width:360px;
+      background:rgba(255,255,255,.25);
+      border-radius:20px;
+      padding:16px;
     }
+
+    form{
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      margin-top:4px;
+      max-width:360px;
+      margin-left:auto;
+      margin-right:auto;
+      width:100%;
+    }
+
+    input[type="text"],
     textarea{
-      border:1px solid var(--line);
-      border-radius:12px;
+      border:1px solid rgba(141,116,97,.16);
+      padding:12px 14px;
+      font:inherit;
+      background:rgba(255,255,255,.72);
+      border-radius:14px;
+      width:100%;
+      outline:none;
+    }
+
+    textarea{
       min-height:88px;
       resize:vertical;
     }
+
+    input[type="text"]:focus,
+    textarea:focus{
+      border-color:rgba(157,66,85,.35);
+      box-shadow:0 0 0 3px rgba(157,66,85,.08);
+    }
+
+    .radio-group,
+    .check-group{
+      display:grid;
+      gap:10px;
+    }
+
+    .field-title{
+      text-align:left;
+      color:var(--muted);
+      font-size:14px;
+      margin-bottom:2px;
+    }
+
+    .option-card{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      background:rgba(255,255,255,.62);
+      border:1px solid rgba(141,116,97,.12);
+      border-radius:16px;
+      cursor:pointer;
+    }
+
+    .option-card input{
+      margin:0;
+      accent-color:var(--accent);
+    }
+
     .submit{
       border:none;
       background:var(--brown);
@@ -745,6 +633,57 @@
       padding:14px;
       border-radius:999px;
       cursor:pointer;
+      font-size:15px;
+    }
+
+    .music-wrap{
+      display:flex;
+      justify-content:center;
+      margin:28px auto 0;
+      position:static;
+    }
+
+    .music-btn{
+      border:none;
+      background:#4c3529;
+      color:white;
+      padding:12px 16px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:14px;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      box-shadow:0 10px 18px rgba(76,53,41,.12);
+    }
+
+    .eq{
+      display:inline-flex;
+      align-items:flex-end;
+      gap:3px;
+      height:14px;
+    }
+
+    .eq span{
+      width:3px;
+      height:5px;
+      border-radius:3px;
+      background:#fff;
+      opacity:.45;
+      transform-origin:bottom;
+    }
+
+    .music-btn.playing .eq span{
+      opacity:1;
+      animation:eqBounce 1s infinite ease-in-out;
+    }
+
+    .music-btn.playing .eq span:nth-child(2){animation-delay:.15s}
+    .music-btn.playing .eq span:nth-child(3){animation-delay:.3s}
+
+    @keyframes eqBounce{
+      0%,100%{transform:scaleY(.5)}
+      50%{transform:scaleY(1.7)}
     }
 
     .fade-up{
@@ -752,6 +691,7 @@
       transform:translateY(24px);
       transition:opacity .8s ease, transform .8s ease;
     }
+
     .fade-up.show{
       opacity:1;
       transform:translateY(0);
@@ -764,131 +704,22 @@
       font-size:14px;
       letter-spacing:.02em;
     }
-    .date-reveal{
-  margin:18px auto 0;
-  max-width:340px;
-}
 
-.date-top{
-  text-align:center;
-  color:#7d6d64;
-}
+    .section-title span,
+    .main-call span,
+    .place-label span{
+      display:inline;
+      white-space:pre;
+    }
 
-.paper-wrap{
-  position:relative;
-  margin-top:20px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:18px;
-  overflow:hidden;
-  min-height:140px;
-}
-
-.paper-closed,
-.paper-side,
-.date-center,
-.side-heart{
-  transition: all 1.6s cubic-bezier(.22,.61,.36,1);
-}
-
-.paper-closed{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#e7ddd2;
-  color:#7d6d64;
-  font-size:15px;
-  z-index:4;
-}
-
-.paper-side{
-  width:92px;
-  height:140px;
-  background:#e7ddd2;
-  opacity:0;
-}
-
-.paper-side.left{
-  transform:translateX(40px);
-  clip-path:polygon(0 0,100% 0,95% 10%,100% 25%,95% 40%,100% 60%,95% 75%,100% 100%,0 100%);
-}
-
-.paper-side.right{
-  transform:translateX(-40px);
-  clip-path:polygon(0 0,100% 0,100% 100%,0 100%,5% 75%,0 60%,5% 40%,0 25%,5% 10%);
-}
-
-.date-center{
-  text-align:center;
-  opacity:0;
-  transform:scale(.9);
-}
-
-.date-row{
-  display:flex;
-  gap:14px;
-  justify-content:center;
-  font-size:24px;
-}
-
-.date-main{
-  width:70px;
-  height:70px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#9d4255;
-  position:relative;
-}
-
-.date-main::before{
-  content:'';
-  position:absolute;
-  font-size:70px;
-}
-
-.month{
-  font-family:'Bad Script',cursive;
-  color:#9d4255;
-  font-size:28px;
-}
-
-.year{
-  color:#7d6d64;
-}
-
-.side-heart{
-  position:absolute;
-  top:50%;
-  font-size:24px;
-  color:#9d4255;
-  opacity:0;
-}
-
-.side-heart.left{ left:6px }
-.side-heart.right{ right:6px }
-
-/* АНИМАЦИЯ */
-.date-reveal.open .paper-closed{
-  opacity:0;
-}
-
-.date-reveal.open .paper-side{
-  opacity:1;
-  transform:translateX(0);
-}
-
-.date-reveal.open .date-center{
-  opacity:1;
-  transform:scale(1);
-}
-
-.date-reveal.open .side-heart{
-  opacity:1;
-}
+    @media (max-width:430px){
+      .page{padding:16px 10px 50px}
+      .sheet{padding:26px 14px 30px}
+      .section-title{font-size:42px}
+      .main-call{font-size:48px}
+      .place-label{font-size:32px}
+      .text{font-size:16px}
+    }
   </style>
 </head>
 <body>
@@ -906,8 +737,6 @@
   </div>
 
   <div class="page" id="pageRoot">
-    
-
     <main class="sheet fade-up">
       <div class="decor-heart" style="top:26px;left:18px;">♥</div>
       <div class="decor-heart" style="top:34px;right:22px;">♥</div>
@@ -936,90 +765,84 @@
         </div>
       </section>
 
-    <div class="place">
-  
-</section>
       <section class="section fade-up">
         <h2 class="section-title">Дорогие наши гости</h2>
         <p class="text" id="personalGuestText">Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу</p>
 
         <div class="date-reveal" id="dateReveal">
-  <div class="date-top">Наш день</div>
+          <div class="date-top">наш день</div>
 
-  <div class="paper-wrap">
-    <div class="paper-closed">30 июля 2026</div>
+          <div class="paper-wrap">
+            <div class="paper-closed">30 июля 2026</div>
+            <div class="paper-side left"></div>
 
-    <div class="paper-side left"></div>
+            <div class="date-center">
+              <div class="date-row">
+                <span>29</span>
+                <div class="date-main"><span>30</span></div>
+                <span>31</span>
+              </div>
 
-    <div class="date-center">
-      <div class="date-row">
-        <span>29</span>
-        <div class="date-main">30</div>
-        <span>31</span>
-      </div>
+              <div class="month">июля</div>
+              <div class="year">2026</div>
+            </div>
 
-      <div class="month">июля</div>
-      <div class="year">2026</div>
-    </div>
-
-    <div class="paper-side right"></div>
-
-    <div class="side-heart left">❤</div>
-    <div class="side-heart right">❤</div>
-  </div>
-</div>
+            <div class="paper-side right"></div>
+            <div class="side-heart left">❤</div>
+            <div class="side-heart right">❤</div>
+          </div>
+        </div>
 
         <div class="countdown" id="countdown">До встречи осталось...</div>
       </section>
 
       <section class="section fade-up">
-  <div class="section-textured">
-    <div class="place">
-      <div class="place-label">Место встречи</div>
+        <h2 class="section-title">Локация</h2>
 
-      <div class="place-logo">
-        <img src="tenet.png" alt="TENET HOTEL">
-      </div>
+        <div class="place">
+          <div class="place-label">Место встречи</div>
 
-      <p class="text">г. Екатеринбург, ул. Хохрякова, 1А</p>
+          <div class="place-logo">
+            <img src="tenet.png" alt="TENET HOTEL">
+          </div>
 
-      <a class="cloud-btn" target="_blank" href="https://yandex.ru/maps/?text=Екатеринбург%20Хохрякова%201А">
-        <span>открыть</span><span>карты</span>
-      </a>
-    </div>
-  </div>
-</section>
+          <p class="text">г. Екатеринбург, ул. Хохрякова, 1А</p>
 
-      <section class="section fade-up">
-  <div class="section-textured">
-    <h2 class="section-title">Программа дня</h2>
-    <div class="timeline">
-      <svg viewBox="0 0 320 330" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
-        <path d="M150 20 C240 35,240 78,175 98 C90 123,90 155,155 180 C236 205,238 242,172 266 C110 287,108 307,150 318" fill="none" stroke="#b6939d" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 10" />
-      </svg>
-
-      <div style="position:absolute;top:6px;left:12px;text-align:left;">
-        <div class="event-time">15:00</div>
-        <div class="event-text">Сбор гостей</div>
-      </div>
-      <div style="position:absolute;top:84px;right:10px;text-align:right;">
-        <div class="event-time">16:00</div>
-        <div class="event-text">Выездная регистрация</div>
-      </div>
-      <div style="position:absolute;top:168px;left:8px;text-align:left;">
-        <div class="event-time">17:00</div>
-        <div class="event-text">Начало банкета</div>
-      </div>
-      <div style="position:absolute;top:250px;right:6px;text-align:right;">
-        <div class="event-time">22:00</div>
-        <div class="event-text">Disko-Party</div>
-      </div>
-    </div>
-  </div>
-</section>
+          <a class="cloud-btn" target="_blank" href="https://yandex.ru/maps/?text=Екатеринбург%20Хохрякова%201А">
+            <span>открыть</span><span>карты</span>
+          </a>
+        </div>
+      </section>
 
       <section class="section fade-up">
-        <h2 class="section-title">Дресс-Код</h2>
+        <h2 class="section-title">Программа дня</h2>
+
+        <div class="timeline">
+          <svg viewBox="0 0 320 330" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;">
+            <path d="M150 20 C240 35,240 78,175 98 C90 123,90 155,155 180 C236 205,238 242,172 266 C110 287,108 307,150 318" fill="none" stroke="#b6939d" stroke-width="3" stroke-linecap="round" stroke-dasharray="10 10" />
+          </svg>
+
+          <div style="position:absolute;top:6px;left:12px;text-align:left;">
+            <div class="event-time">15:00</div>
+            <div class="event-text">Сбор гостей</div>
+          </div>
+          <div style="position:absolute;top:84px;right:10px;text-align:right;">
+            <div class="event-time">16:00</div>
+            <div class="event-text">Выездная регистрация</div>
+          </div>
+          <div style="position:absolute;top:168px;left:8px;text-align:left;">
+            <div class="event-time">17:00</div>
+            <div class="event-text">Начало банкета</div>
+          </div>
+          <div style="position:absolute;top:250px;right:6px;text-align:right;">
+            <div class="event-time">22:00</div>
+            <div class="event-text">Disko-Party</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section fade-up">
+        <h2 class="section-title">Дресс-код</h2>
         <p class="text">Поддержите нас красивыми нарядами</p>
         <div class="look-grid">
           <img src="dresscode.jpg" alt="Дресс-код">
@@ -1031,6 +854,7 @@
         <div class="details-box">
           <p class="text">Ваши улыбки и смех подарят нам незабываемое счастье в этот день, а пожелания в конвертах помогут осуществить наши мечты!</p>
         </div>
+
         <div class="organizer">
           <p class="text">По всем вопросам можно связаться с организатором</p>
           <a class="cloud-btn small" href="tel:+79126988268"><span>связаться</span></a>
@@ -1040,39 +864,48 @@
       <section class="section fade-up">
         <h2 class="section-title">Анкета</h2>
         <p class="text">Пожалуйста заполните форму</p>
-        <form id="rsvpForm" action="https://formspree.io/f/yourcode" method="POST">
-          <input type="text" name="name" placeholder="Имя и фамилия" required>
 
-          <label><input type="radio" name="attendance" value="Да"> Смогу прийти</label>
-          <label><input type="radio" name="attendance" value="Нет"> Не смогу прийти</label>
-          <label><input type="radio" name="attendance" value="Позже"> Сообщу позже</label>
+        <div class="form-card">
+          <form id="rsvpForm" action="https://formspree.io/f/yourcode" method="POST">
+            <input type="text" name="name" placeholder="Имя и фамилия" required>
 
-          <label>Предпочтения по напиткам</label>
-          <label><input type="checkbox" name="drinks[]" value="Шампанское"> Шампанское</label>
-          <label><input type="checkbox" name="drinks[]" value="Красное вино"> Красное вино</label>
-          <label><input type="checkbox" name="drinks[]" value="Белое вино"> Белое вино</label>
-          <label><input type="checkbox" name="drinks[]" value="Коньяк"> Коньяк</label>
-          <label><input type="checkbox" name="drinks[]" value="Безалкогольные напитки"> Безалкогольные напитки</label>
+            <div class="field-title">Вы сможете прийти?</div>
+            <div class="radio-group">
+              <label class="option-card"><input type="radio" name="attendance" value="Да" required> <span>Смогу прийти</span></label>
+              <label class="option-card"><input type="radio" name="attendance" value="Нет"> <span>Не смогу прийти</span></label>
+              <label class="option-card"><input type="radio" name="attendance" value="Позже"> <span>Сообщу позже</span></label>
+            </div>
 
-          <textarea name="comment" placeholder="Комментарий"></textarea>
-          <button class="submit" type="submit">Отправить</button>
-        </form>
+            <div class="field-title">Предпочтения по напиткам</div>
+            <div class="check-group">
+              <label class="option-card"><input type="checkbox" name="drinks[]" value="Шампанское"> <span>Шампанское</span></label>
+              <label class="option-card"><input type="checkbox" name="drinks[]" value="Красное вино"> <span>Красное вино</span></label>
+              <label class="option-card"><input type="checkbox" name="drinks[]" value="Белое вино"> <span>Белое вино</span></label>
+              <label class="option-card"><input type="checkbox" name="drinks[]" value="Коньяк"> <span>Коньяк</span></label>
+              <label class="option-card"><input type="checkbox" name="drinks[]" value="Безалкогольные напитки"> <span>Безалкогольные напитки</span></label>
+            </div>
 
-        <div id="thankYouBox" style="display:none;margin-top:16px;background:rgba(255,255,255,.55);padding:18px 16px;border-radius:18px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.45);">
-          <div style="font-family:'Bad Script',cursive;font-size:34px;color:#9d4255;line-height:1.1;">Спасибо!</div>
-          <div style="margin-top:8px;line-height:1.6;">Мы получили ваш ответ и очень рады, что вы открыли наше приглашение.</div>
-          <div style="margin-top:8px;color:#7d6d64;">С любовью, Яна и Дмитрий</div>
+            <textarea name="comment" placeholder="Комментарий"></textarea>
+            <button class="submit" type="submit">Отправить</button>
+          </form>
+
+          <div id="thankYouBox" style="display:none;margin-top:16px;background:rgba(255,255,255,.55);padding:18px 16px;border-radius:18px;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.45);">
+            <div style="font-family:'Bad Script',cursive;font-size:34px;color:#9d4255;line-height:1.1;">Спасибо!</div>
+            <div style="margin-top:8px;line-height:1.6;">Мы получили ваш ответ и очень рады, что вы открыли наше приглашение.</div>
+            <div style="margin-top:8px;color:#7d6d64;">С любовью, Яна и Дмитрий</div>
+          </div>
         </div>
       </section>
     </main>
-<div class="music-wrap">
-  <button class="music-btn" id="musicBtn">
-    <span>♫ Музыка</span>
-    <span class="eq" aria-hidden="true"><span></span><span></span><span></span></span>
-  </button>
-</div>
 
-<div class="footer-note">С любовью, Яна и Дмитрий</div>
+    <div class="music-wrap">
+      <button class="music-btn" id="musicBtn">
+        <span>♫ Музыка</span>
+        <span class="eq" aria-hidden="true"><span></span><span></span><span></span></span>
+      </button>
+    </div>
+
+    <div class="footer-note">С любовью, Яна и Дмитрий</div>
   </div>
 
   <audio id="weddingAudio" loop>
@@ -1080,48 +913,53 @@
   </audio>
 
   <script>
- const colors = ["#b54b6a","#c07a59","#d3a55c","#7a9b6a","#9b6a7a","#8a5d4a","#c27b8e","#6b8fa3"];
+    const colors = ["#b54b6a","#c07a59","#d3a55c","#7a9b6a","#9b6a7a","#8a5d4a","#c27b8e","#6b8fa3"];
 
-function makeRainbowText(selector) {
-  document.querySelectorAll(selector).forEach(el => {
-    if (el.dataset.colored === "true") return;
+    function makeRainbowText(selector) {
+      document.querySelectorAll(selector).forEach(el => {
+        if (el.dataset.colored === "true") return;
 
-    const text = el.textContent;
-    el.textContent = "";
+        const text = el.textContent;
+        el.textContent = "";
 
-    let colorIndex = 0;
+        let colorIndex = 0;
 
-    [...text].forEach(letter => {
-      const span = document.createElement("span");
-      span.innerHTML = letter === ' ' ? '&nbsp;' : letter;
+        [...text].forEach(letter => {
+          const span = document.createElement("span");
+          span.innerHTML = letter === " " ? "&nbsp;" : letter;
 
-      if (letter.trim() !== "") {
-        span.style.color = colors[colorIndex % colors.length];
-        colorIndex++;
-      }
+          if (letter.trim() !== "") {
+            span.style.color = colors[colorIndex % colors.length];
+            colorIndex++;
+          }
 
-      el.appendChild(span);
-    });
+          el.appendChild(span);
+        });
 
-    el.dataset.colored = "true";
-  });
-}
+        el.dataset.colored = "true";
+      });
+    }
 
-makeRainbowText(".section-title");
-makeRainbowText(".main-call");
-makeRainbowText(".place-label");
+    makeRainbowText(".section-title");
+    makeRainbowText(".main-call");
+    makeRainbowText(".place-label");
+
     const pageRoot = document.getElementById('pageRoot');
     const introOverlay = document.getElementById('introOverlay');
     const openInviteBtn = document.getElementById('openInviteBtn');
     const envelopeFlap = document.getElementById('envelopeFlap');
     const letterCard = document.getElementById('letterCard');
     const guestName = document.getElementById('guestName');
+
     const params = new URLSearchParams(window.location.search);
     const guest = params.get('name');
-    if(guest && guest.trim()){
+
+    if (guest && guest.trim()) {
       guestName.textContent = guest;
       const guestTextTarget = document.getElementById('personalGuestText');
-      if(guestTextTarget) guestTextTarget.textContent = `${guest}, мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу`;
+      if (guestTextTarget) {
+        guestTextTarget.textContent = `${guest}, мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу`;
+      }
     }
 
     openInviteBtn.onclick = () => {
@@ -1136,79 +974,93 @@ makeRainbowText(".place-label");
 
     const weddingDate = new Date('2026-07-30T15:00:00+05:00').getTime();
     const countdownEl = document.getElementById('countdown');
-    function updateCountdown(){
+
+    function updateCountdown() {
       const now = new Date().getTime();
       const distance = weddingDate - now;
-      if(distance <= 0){
+
+      if (distance <= 0) {
         countdownEl.textContent = 'Этот день настал ✨';
         return;
       }
-      const days = Math.floor(distance/(1000*60*60*24));
-      const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-      const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
       countdownEl.textContent = `До встречи осталось: ${days} д. ${hours} ч. ${minutes} мин.`;
     }
+
     updateCountdown();
-    setInterval(updateCountdown,1000);
+    setInterval(updateCountdown, 1000);
 
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting) entry.target.classList.add('show');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
       });
-    },{threshold:0.12});
-    document.querySelectorAll('.fade-up').forEach(el=>observer.observe(el));
+    }, { threshold: 0.12 });
 
-  const dateReveal = document.getElementById('dateReveal');
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-if (dateReveal) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        dateReveal.classList.add('open');
-      }
-    });
-  }, { threshold: 0.5 });
+    const dateReveal = document.getElementById('dateReveal');
+    if (dateReveal) {
+      const dateObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) dateReveal.classList.add('open');
+        });
+      }, { threshold: 0.5 });
 
-  observer.observe(dateReveal);
-}
+      dateObserver.observe(dateReveal);
+    }
 
     const audio = document.getElementById('weddingAudio');
     const musicBtn = document.getElementById('musicBtn');
-    let playing=false;
-    musicBtn.onclick=()=>{
-      const label = musicBtn.querySelector('span');
-      if(!playing){
-        audio.play();
-        if(label) label.textContent='♫ Стоп';
-        musicBtn.classList.add('playing');
-        playing=true;
-      } else {
-        audio.pause();
-        if(label) label.textContent='♫ Музыка';
-        musicBtn.classList.remove('playing');
-        playing=false;
-      }
-    };
+    let playing = false;
+
+    if (musicBtn && audio) {
+      musicBtn.onclick = async () => {
+        const label = musicBtn.querySelector('span');
+
+        if (!playing) {
+          try {
+            await audio.play();
+            if (label) label.textContent = '♫ Стоп';
+            musicBtn.classList.add('playing');
+            playing = true;
+          } catch (err) {
+            alert('Музыку не удалось запустить автоматически. Попробуйте ещё раз.');
+          }
+        } else {
+          audio.pause();
+          if (label) label.textContent = '♫ Музыка';
+          musicBtn.classList.remove('playing');
+          playing = false;
+        }
+      };
+    }
 
     const rsvpForm = document.getElementById('rsvpForm');
     const thankYouBox = document.getElementById('thankYouBox');
-    if(rsvpForm){
-      rsvpForm.addEventListener('submit', async (e)=>{
+
+    if (rsvpForm) {
+      rsvpForm.addEventListener('submit', async (e) => {
         e.preventDefault();
         const formData = new FormData(rsvpForm);
-        try{
+
+        try {
           const response = await fetch(rsvpForm.action, {
-            method:'POST',
-            body:formData,
-            headers:{'Accept':'application/json'}
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
           });
-          if(response.ok){
-            rsvpForm.style.display='none';
-            thankYouBox.style.display='block';
+
+          if (response.ok) {
+            rsvpForm.style.display = 'none';
+            thankYouBox.style.display = 'block';
           } else {
             alert('Не удалось отправить анкету. Попробуйте ещё раз.');
           }
-        } catch(err){
+        } catch (err) {
           alert('Не удалось отправить анкету. Проверьте интернет и попробуйте снова.');
         }
       });
