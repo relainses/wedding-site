@@ -738,6 +738,16 @@
   transform:translateY(-2px);
   box-shadow:0 14px 26px rgba(157,66,85,.22);
 }
+    .fade-map{
+  opacity:0;
+  transform:translateY(30px) scale(.96);
+  transition:all 1s cubic-bezier(.22,.61,.36,1);
+}
+
+.fade-map.show{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
   </style>
 </head>
 <body>
@@ -828,7 +838,7 @@
   📍 Проложить маршрут
 </a>
 
-    <div class="map-box">
+    <div class="map-box fade-map">
   <iframe
     src="https://yandex.ru/map-widget/v1/-/CPt67zs"
     width="100%"
@@ -1046,7 +1056,7 @@
   }, { threshold: 0.12 });
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
+document.querySelectorAll('.fade-map').forEach(el => observer.observe(el));
   const dateReveal = document.getElementById('dateReveal');
   if (dateReveal) {
     const dateObserver = new IntersectionObserver((entries) => {
