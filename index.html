@@ -1013,9 +1013,10 @@ const guestName = document.getElementById('guestName');
 
 const params = new URLSearchParams(window.location.search);
 const guest = params.get('name');
+const introGuest = params.get('intro');
 
 if (guest && guest.trim()) {
-  guestName.textContent = guest;
+  guestName.textContent = (introGuest && introGuest.trim()) ? introGuest : guest;
 
   const guestTextTarget = document.getElementById('personalGuestText');
 
