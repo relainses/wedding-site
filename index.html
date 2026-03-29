@@ -1004,14 +1004,17 @@
   makeRainbowText(".main-call");
   makeRainbowText(".place-label");
 
-  const pageRoot = document.getElementById('pageRoot');
-  const introOverlay = document.getElementById('introOverlay');
-  const openInviteBtn = document.getElementById('openInviteBtn');
-  const envelopeFlap = document.getElementById('envelopeFlap');
-  const letterCard = document.getElementById('letterCard');
-  const guestName = document.getElementById('guestName');
+ const pageRoot = document.getElementById('pageRoot');
+const introOverlay = document.getElementById('introOverlay');
+const openInviteBtn = document.getElementById('openInviteBtn');
+const envelopeFlap = document.getElementById('envelopeFlap');
+const letterCard = document.getElementById('letterCard');
+const guestName = document.getElementById('guestName');
 
-  if (guest && guest.trim()) {
+const params = new URLSearchParams(window.location.search);
+const guest = params.get('name');
+
+if (guest && guest.trim()) {
   guestName.textContent = guest;
 
   const guestTextTarget = document.getElementById('personalGuestText');
@@ -1022,7 +1025,7 @@
   }
 }
 
-  openInviteBtn.onclick = () => {
+openInviteBtn.onclick = () => {
     envelopeFlap.style.transform = 'rotateX(180deg)';
     letterCard.style.transform = 'translateY(-30px)';
     setTimeout(() => {
