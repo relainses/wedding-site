@@ -913,185 +913,174 @@
   </audio>
 
   <script>
-    const colors = ["#b54b6a","#c07a59","#d3a55c","#7a9b6a","#9b6a7a","#8a5d4a","#c27b8e","#6b8fa3"];
+  const colors = ["#b54b6a","#c07a59","#d3a55c","#7a9b6a","#9b6a7a","#8a5d4a","#c27b8e","#6b8fa3"];
 
-    function makeRainbowText(selector) {
-      document.querySelectorAll(selector).forEach(el => {
-        if (el.dataset.colored === "true") return;
+  function makeRainbowText(selector) {
+    document.querySelectorAll(selector).forEach(el => {
+      if (el.dataset.colored === "true") return;
 
-        const text = el.textContent;
-        el.textContent = "";
+      const text = el.textContent;
+      el.textContent = "";
 
-        let colorIndex = 0;
+      let colorIndex = 0;
 
-        [...text].forEach(letter => {
-          const span = document.createElement("span");
-          span.innerHTML = letter === " " ? "&nbsp;" : letter;
+      [...text].forEach(letter => {
+        const span = document.createElement("span");
+        span.innerHTML = letter === " " ? "&nbsp;" : letter;
 
-          if (letter.trim() !== "") {
-            span.style.color = colors[colorIndex % colors.length];
-            colorIndex++;
-          }
+        if (letter.trim() !== "") {
+          span.style.color = colors[colorIndex % colors.length];
+          colorIndex++;
+        }
 
-          el.appendChild(span);
-        });
-
-        el.dataset.colored = "true";
+        el.appendChild(span);
       });
-    }
 
-    makeRainbowText(".section-title");
-    makeRainbowText(".main-call");
-    makeRainbowText(".place-label");
-
-    const pageRoot = document.getElementById('pageRoot');
-    const introOverlay = document.getElementById('introOverlay');
-    const openInviteBtn = document.getElementById('openInviteBtn');
-    const envelopeFlap = document.getElementById('envelopeFlap');
-    const letterCard = document.getElementById('letterCard');
-    const guestName = document.getElementById('guestName');
-
-    const params = new URLSearchParams(window.location.search);
-    const guest = params.get('name');
-
-    if (guest && guest.trim()) {
-      guestName.textContent = guest;
-      const guestTextTarget = document.getElementById('personalGuestText');
-      if (guestTextTarget) {
-        guestTextTarget.textContent = `${guest}, мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу`;
-      }
-    }
-
-    openInviteBtn.onclick = () => {
-      envelopeFlap.style.transform = 'rotateX(180deg)';
-      letterCard.style.transform = 'translateY(-30px)';
-      setTimeout(() => {
-        introOverlay.classList.add('hidden');
-        document.body.style.overflow = 'auto';
-        pageRoot.classList.add('ready');
-      }, 950);
-    };
-
-    function plural(number, one, few, many) {
-  const n = Math.abs(number) % 100;
-  const n1 = n % 10;
-
-  if (n > 10 && n < 20) return many;
-  if (n1 > 1 && n1 < 5) return few;
-  if (n1 === 1) return one;
-  return many;
-}
-
-const weddingDate = new Date('2026-07-30T15:00:00+05:00').getTime();
-const countdownEl = document.getElementById('countdown');
-let countdownInterval = null;
-
-function updateCountdown() {
-  const now = Date.now();
-  const distance = weddingDate - now;
-
-  if (distance <= 0) {
-    countdownEl.textContent = 'Этот день настал ✨';
-    countdownEl.classList.add('celebration');
-    if (countdownInterval) clearInterval(countdownInterval);
-    return;
+      el.dataset.colored = "true";
+    });
   }
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+  makeRainbowText(".section-title");
+  makeRainbowText(".main-call");
+  makeRainbowText(".place-label");
 
-  countdownEl.textContent =
-    `До встречи осталось: ${days} ${plural(days, 'день', 'дня', 'дней')} ` +
-    `${hours} ${plural(hours, 'час', 'часа', 'часов')} ` +
-    `${minutes} ${plural(minutes, 'минута', 'минуты', 'минут')}`;
-}
+  const pageRoot = document.getElementById('pageRoot');
+  const introOverlay = document.getElementById('introOverlay');
+  const openInviteBtn = document.getElementById('openInviteBtn');
+  const envelopeFlap = document.getElementById('envelopeFlap');
+  const letterCard = document.getElementById('letterCard');
+  const guestName = document.getElementById('guestName');
 
-updateCountdown();
-countdownInterval = setInterval(updateCountdown, 1000);
-</script>
+  const params = new URLSearchParams(window.location.search);
+  const guest = params.get('name');
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  if (guest && guest.trim()) {
+    guestName.textContent = guest;
+    const guestTextTarget = document.getElementById('personalGuestText');
+    if (guestTextTarget) {
+      guestTextTarget.textContent = `${guest}, мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу`;
+    }
+  }
 
-      countdownEl.textContent = `До встречи осталось: ${days} д. ${hours} ч. ${minutes} мин.`;
+  openInviteBtn.onclick = () => {
+    envelopeFlap.style.transform = 'rotateX(180deg)';
+    letterCard.style.transform = 'translateY(-30px)';
+    setTimeout(() => {
+      introOverlay.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+      pageRoot.classList.add('ready');
+    }, 950);
+  };
+
+  function plural(number, one, few, many) {
+    const n = Math.abs(number) % 100;
+    const n1 = n % 10;
+
+    if (n > 10 && n < 20) return many;
+    if (n1 > 1 && n1 < 5) return few;
+    if (n1 === 1) return one;
+    return many;
+  }
+
+  const weddingDate = new Date('2026-07-30T15:00:00+05:00').getTime();
+  const countdownEl = document.getElementById('countdown');
+  let countdownInterval = null;
+
+  function updateCountdown() {
+    const now = Date.now();
+    const distance = weddingDate - now;
+
+    if (distance <= 0) {
+      countdownEl.textContent = 'Этот день настал ✨';
+      countdownEl.classList.add('celebration');
+      if (countdownInterval) clearInterval(countdownInterval);
+      return;
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((distance / (1000 * 60)) % 60);
 
-    const observer = new IntersectionObserver((entries) => {
+    countdownEl.textContent =
+      `До встречи осталось: ${days} ${plural(days, 'день', 'дня', 'дней')} ` +
+      `${hours} ${plural(hours, 'час', 'часа', 'часов')} ` +
+      `${minutes} ${plural(minutes, 'минута', 'минуты', 'минут')}`;
+  }
+
+  updateCountdown();
+  countdownInterval = setInterval(updateCountdown, 1000);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('show');
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  const dateReveal = document.getElementById('dateReveal');
+  if (dateReveal) {
+    const dateObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('show');
+        if (entry.isIntersecting) dateReveal.classList.add('open');
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.5 });
 
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    dateObserver.observe(dateReveal);
+  }
 
-    const dateReveal = document.getElementById('dateReveal');
-    if (dateReveal) {
-      const dateObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) dateReveal.classList.add('open');
-        });
-      }, { threshold: 0.5 });
+  const audio = document.getElementById('weddingAudio');
+  const musicBtn = document.getElementById('musicBtn');
+  let playing = false;
 
-      dateObserver.observe(dateReveal);
-    }
+  if (musicBtn && audio) {
+    musicBtn.onclick = async () => {
+      const label = musicBtn.querySelector('span');
 
-    const audio = document.getElementById('weddingAudio');
-    const musicBtn = document.getElementById('musicBtn');
-    let playing = false;
-
-    if (musicBtn && audio) {
-      musicBtn.onclick = async () => {
-        const label = musicBtn.querySelector('span');
-
-        if (!playing) {
-          try {
-            await audio.play();
-            if (label) label.textContent = '♫ Стоп';
-            musicBtn.classList.add('playing');
-            playing = true;
-          } catch (err) {
-            alert('Музыку не удалось запустить автоматически. Попробуйте ещё раз.');
-          }
-        } else {
-          audio.pause();
-          if (label) label.textContent = '♫ Музыка';
-          musicBtn.classList.remove('playing');
-          playing = false;
-        }
-      };
-    }
-
-    const rsvpForm = document.getElementById('rsvpForm');
-    const thankYouBox = document.getElementById('thankYouBox');
-
-    if (rsvpForm) {
-      rsvpForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const formData = new FormData(rsvpForm);
-
+      if (!playing) {
         try {
-          const response = await fetch(rsvpForm.action, {
-            method: 'POST',
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-          });
-
-          if (response.ok) {
-            rsvpForm.style.display = 'none';
-            thankYouBox.style.display = 'block';
-          } else {
-            alert('Не удалось отправить анкету. Попробуйте ещё раз.');
-          }
+          await audio.play();
+          if (label) label.textContent = '♫ Стоп';
+          musicBtn.classList.add('playing');
+          playing = true;
         } catch (err) {
-          alert('Не удалось отправить анкету. Проверьте интернет и попробуйте снова.');
+          alert('Музыку не удалось запустить автоматически. Попробуйте ещё раз.');
         }
-      });
-    }
-  </script>
+      } else {
+        audio.pause();
+        if (label) label.textContent = '♫ Музыка';
+        musicBtn.classList.remove('playing');
+        playing = false;
+      }
+    };
+  }
+
+  const rsvpForm = document.getElementById('rsvpForm');
+  const thankYouBox = document.getElementById('thankYouBox');
+
+  if (rsvpForm) {
+    rsvpForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(rsvpForm);
+
+      try {
+        const response = await fetch(rsvpForm.action, {
+          method: 'POST',
+          body: formData,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          rsvpForm.style.display = 'none';
+          thankYouBox.style.display = 'block';
+        } else {
+          alert('Не удалось отправить анкету. Попробуйте ещё раз.');
+        }
+      } catch (err) {
+        alert('Не удалось отправить анкету. Проверьте интернет и попробуйте снова.');
+      }
+    });
+  }
+</script>
 </body>
 </html>
