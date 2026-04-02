@@ -865,17 +865,7 @@
 
   <div class="page" id="pageRoot">
     <main class="sheet fade-up">
-      <div class="decor-heart" style="top:26px;left:18px;">♥</div>
-      <div class="decor-heart" style="top:34px;right:22px;">♥</div>
-      <div class="decor-heart" style="top:180px;left:26px;">♥</div>
-      <div class="decor-heart" style="top:420px;right:26px;">♥</div>
-      <div class="decor-heart" style="top:620px;left:16px;">♥</div>
-      <div class="decor-heart" style="top:760px;right:20px;">♥</div>
-      <div class="decor-heart" style="top:980px;left:28px;">♥</div>
-      <div class="decor-heart" style="top:1160px;left:28px;">♥</div>
-      <div class="decor-heart" style="top:1480px;right:20px;">♥</div>
-      <div class="decor-heart" style="top:1740px;left:22px;">♥</div>
-
+   
       <section class="section fade-up">
         <p class="hero-line">Вы дождались...</p>
         <h1 class="main-call">Мы женимся!</h1>
@@ -999,7 +989,7 @@
           <img src="dresscode3.jpg" alt="Дресс-код 3">
         </div>
         <div class="dress-slide">
-          <img src="dresscode4.jpg" alt="Дресс-код 4">
+          <img src="dresscode44.jpg" alt="Дресс-код 4">
         </div>
       </div>
     </div>
@@ -1346,6 +1336,36 @@ if (dressSlider && dressTrack && dressDots.length) {
 
   goToSlide(0);
 }
+    function generateHearts() {
+  const container = document.querySelector('.sheet');
+  if (!container) return;
+
+  const height = container.scrollHeight;
+
+  const heartsCount = Math.floor(height / 120); // плотность
+
+  for (let i = 0; i < heartsCount; i++) {
+    const heart = document.createElement('div');
+    heart.className = 'decor-heart';
+    heart.innerHTML = '♥';
+
+    heart.style.top = Math.random() * height + 'px';
+
+    if (Math.random() > 0.5) {
+      heart.style.left = Math.random() * 40 + 'px';
+    } else {
+      heart.style.right = Math.random() * 40 + 'px';
+    }
+
+    heart.style.fontSize = (14 + Math.random() * 10) + 'px';
+    heart.style.opacity = 0.5 + Math.random() * 0.4;
+    heart.style.animationDuration = (5 + Math.random() * 4) + 's';
+
+    container.appendChild(heart);
+  }
+}
+
+generateHearts();
 </script>
 </body>
 </html>
