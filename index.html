@@ -769,6 +769,68 @@
   width:100%;
   min-height:240px;
 }
+    .dresscode-slider{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  margin-top:18px;
+}
+
+.dresscode-frame{
+  width:100%;
+  max-width:340px;
+  overflow:hidden;
+  border-radius:18px;
+  box-shadow:0 10px 20px rgba(0,0,0,.1);
+}
+
+.dresscode-track{
+  display:flex;
+  transition:transform .45s ease;
+}
+
+.dresscode-track img{
+  width:100%;
+  flex:0 0 100%;
+  display:block;
+  border-radius:18px;
+}
+
+.slider-btn{
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:999px;
+  background:rgba(255,255,255,.85);
+  color:var(--brown);
+  font-size:22px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-shadow:0 6px 14px rgba(0,0,0,.08);
+}
+
+.slider-dots{
+  display:flex;
+  justify-content:center;
+  gap:8px;
+  margin-top:14px;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+  border:none;
+  border-radius:50%;
+  background:rgba(76,53,41,.25);
+  cursor:pointer;
+}
+
+.dot.active{
+  background:var(--accent);
+}
   </style>
 </head>
 <body>
@@ -905,12 +967,31 @@
       </section>
 
       <section class="section fade-up">
-        <h2 class="section-title">Дресс-код</h2>
-        <p class="text">Поддержите нас красивыми нарядами</p>
-        <div class="look-grid">
-          <img src="dresscode.jpg" alt="Дресс-код">
-        </div>
-      </section>
+  <h2 class="section-title">Дресс-код</h2>
+  <p class="text">Поддержите нас красивыми нарядами</p>
+
+  <div class="dresscode-slider">
+    <button class="slider-btn prev" id="dressPrev" type="button">❮</button>
+
+    <div class="dresscode-frame">
+      <div class="dresscode-track" id="dressTrack">
+        <img src="dresscode1.png" alt="Дресс-код 1">
+        <img src="dresscode2.png" alt="Дресс-код 2">
+        <img src="dresscode3.png" alt="Дресс-код 3">
+        <img src="dresscode4.png" alt="Дресс-код 4">
+      </div>
+    </div>
+
+    <button class="slider-btn next" id="dressNext" type="button">❯</button>
+  </div>
+
+  <div class="slider-dots" id="dressDots">
+    <button class="dot active" type="button" data-slide="0"></button>
+    <button class="dot" type="button" data-slide="1"></button>
+    <button class="dot" type="button" data-slide="2"></button>
+    <button class="dot" type="button" data-slide="3"></button>
+  </div>
+</section>
 
       <section class="section fade-up">
         <h2 class="section-title">Детали</h2>
@@ -1153,6 +1234,42 @@ document.querySelectorAll('.fade-map').forEach(el => observer.observe(el));
       }
     });
   }
+    const dressTrack = document.getElementById('dressTrack');
+const dressPrev = document.getElementById('dressPrev');
+const dressNext = document.getElementById('dressNext');
+const dressDots = document.querySelectorAll('#dressDots .dot');
+
+if (dressTrack && dressPrev && dressNext && dressDots.length) {
+  let currentSlide = 0;
+  const totalSlides = dressDots.length;
+
+  function updateDressSlider() {
+    dressTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+    dressDots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
+    });
+  }
+
+  dressPrev.onclick = () => {
+    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+    updateDressSlider();
+  };
+
+  dressNext.onclick = () => {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateDressSlider();
+  };
+
+  dressDots.forEach(dot => {
+    dot.onclick = () => {
+      currentSlide = Number(dot.dataset.slide);
+      updateDressSlider();
+    };
+  });
+
+  updateDressSlider();
+}
 </script>
 </body>
 </html>
