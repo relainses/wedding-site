@@ -177,17 +177,18 @@
     }
 
     .sheet{
-      background:
-        linear-gradient(rgba(255,255,255,.12), rgba(255,255,255,.06)),
-        repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px),
-        var(--paper);
-      padding:34px 22px 38px;
-      box-shadow:0 20px 50px rgba(63,42,31,.10), inset 0 1px 0 rgba(255,255,255,.45);
-      border:1px solid rgba(141,116,97,.08);
-      position:relative;
-      overflow:hidden;
-      border-radius:34px;
-    }
+  background:
+    linear-gradient(rgba(243,238,231,.78), rgba(243,238,231,.84)),
+    repeating-linear-gradient(0deg, rgba(120,95,78,.018) 0px, rgba(120,95,78,.018) 1px, transparent 1px, transparent 6px);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  padding:34px 22px 38px;
+  box-shadow:0 20px 50px rgba(63,42,31,.10), inset 0 1px 0 rgba(255,255,255,.45);
+  border:1px solid rgba(141,116,97,.08);
+  position:relative;
+  overflow:hidden;
+  border-radius:34px;
+}
 
     .section{
       padding:28px 0;
