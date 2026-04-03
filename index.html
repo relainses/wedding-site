@@ -31,12 +31,16 @@
     html{scroll-behavior:smooth}
 
     body{
-      margin:0;
-      font-family:'Montserrat',sans-serif;
-      background:#efe7dd;
-      color:var(--text);
-      overflow:hidden;
-    }
+  margin:0;
+  font-family:'Montserrat',sans-serif;
+  color:var(--text);
+  overflow-x:hidden;
+
+  background:
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,.6), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,.4), transparent 50%),
+    linear-gradient(180deg, #efe7dd, #e6d9cc);
+}
 
     body::before{
       content:'';
