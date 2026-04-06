@@ -35,7 +35,7 @@
   font-family:'Montserrat',sans-serif;
   color:var(--text);
   overflow-x:hidden;
- background:#efe7dd;
+  background:#efe7dd;
 }
  
 
@@ -176,8 +176,16 @@
 
     .sheet{
   background:
-    linear-gradient(rgba(243,238,231,.6), rgba(243,238,231,.7)),
-    url('background.jpg') center/cover no-repeat;
+    linear-gradient(rgba(255,255,255,.12), rgba(255,255,255,.06)),
+    repeating-linear-gradient(
+      0deg,
+      rgba(120,95,78,.018) 0px,
+      rgba(120,95,78,.018) 1px,
+      transparent 1px,
+      transparent 6px
+    ),
+    var(--paper);
+
   padding:34px 22px 38px;
   box-shadow:0 20px 50px rgba(63,42,31,.10), inset 0 1px 0 rgba(255,255,255,.45);
   border:1px solid rgba(141,116,97,.08);
@@ -196,7 +204,6 @@
       display:block;
       width:54px;
       height:1px;
-      background:linear-gradient(90deg, transparent, rgba(157,66,85,.22), transparent);
       margin:22px auto 0;
     }
 
