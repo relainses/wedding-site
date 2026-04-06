@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Свадьба Яны и Дмитрия</title>
+  <title>Свадьба Дмитрия и Яны</title>
 
   <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="%23f3eee7"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="26" font-family="Georgia" fill="%239d4255">Я♥Д</text></svg>'>
   <meta name="robots" content="noindex" />
@@ -648,20 +648,21 @@
     }
 
     .music-wrap{
-      display:flex;
-      justify-content:center;
-      margin:28px auto 0;
-      position:static;
-    }
+  position:fixed;
+  top:14px;
+  right:14px;
+  z-index:9999;
+}
 
     .music-btn{
       border:none;
-      background:#4c3529;
+      background:rgba(76,53,41,.85);
+      backdrop-filter: blur(6px);
       color:white;
-      padding:12px 16px;
+      padding:10px 14px;
       border-radius:999px;
       cursor:pointer;
-      font-size:14px;
+      font-size:13px;
       display:flex;
       align-items:center;
       gap:10px;
@@ -952,12 +953,7 @@
      <section class="section fade-up">
   <h2 class="section-title">Дресс-код</h2>
   <p class="text">Мы стараемся сделать праздник красивым и будем рады,если вы поддержите цветовую палитру нашей свадьбы</p>
-
-  
-<section class="section fade-up">
-  <h2 class="section-title">Дресс-код</h2>
-  <p class="text">Поддержите нас красивыми нарядами</p>
-
+ 
   <div class="dresscode-premium">
     <div class="dresscode-scroll">
       <div class="dress-slide">
@@ -1256,7 +1252,9 @@
     }
   }
 
+  window.addEventListener('load', () => {
   generateHearts();
+});
 </script>
 </body>
 </html>
