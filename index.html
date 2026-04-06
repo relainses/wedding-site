@@ -777,28 +777,30 @@
   width:100%;
   max-width:340px;
   margin:0 auto;
-  overflow:hidden;
+  overflow-x:auto;
+  overflow-y:hidden;
   border-radius:24px;
   position:relative;
   background:rgba(255,255,255,.35);
-  box-shadow:
-    0 14px 30px rgba(63,42,31,.10),
-    inset 0 1px 0 rgba(255,255,255,.45);
+  box-shadow:0 14px 30px rgba(63,42,31,.10), inset 0 1px 0 rgba(255,255,255,.45);
   border:1px solid rgba(141,116,97,.10);
-  touch-action:pan-y;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+
+.dresscode-viewport::-webkit-scrollbar{
+  display:none;
 }
 
 .dresscode-track{
   display:flex;
-  transition:transform .55s cubic-bezier(.22,.61,.36,1);
-  will-change:transform;
 }
 
 .dress-slide{
   flex:0 0 100%;
   min-width:100%;
-  padding:0;
-  position:relative;
+  scroll-snap-align:start;
 }
 
 .dress-slide img{
@@ -807,9 +809,9 @@
   height:auto;
   object-fit:contain;
   border-radius:24px;
+  background:#f3eee7;
   user-select:none;
   -webkit-user-drag:none;
-  pointer-events:none;
 }
 
 .premium-dots{
@@ -979,30 +981,38 @@
   <div class="dresscode-premium" id="dresscodeSlider">
     <div class="dresscode-viewport">
       <div class="dresscode-track" id="dressTrack">
-  <div class="dress-slide">
-    <img src="dresscode.png" alt="Дресс-код 1">
-  </div>
-  <div class="dress-slide">
-    <img src="dresscode1.png" alt="Дресс-код 2">
-  </div>
-  <div class="dress-slide">
-    <img src="dresscode2.png" alt="Дресс-код 3">
-  </div>
-  <div class="dress-slide">
-    <img src="dresscode3.png" alt="Дресс-код 4">
-  </div>
-  <div class="dress-slide">
-    <img src="dresscode44.png" alt="Дресс-код 5">
-  </div>
-</div>
+  <section class="section fade-up">
+  <h2 class="section-title">Дресс-код</h2>
+  <p class="text">Поддержите нас красивыми нарядами</p>
+
+  <div class="dresscode-premium">
+    <div class="dresscode-viewport" id="dressViewport">
+      <div class="dresscode-track" id="dressTrack">
+        <div class="dress-slide">
+          <img src="dresscode.png" alt="Дресс-код 1">
+        </div>
+        <div class="dress-slide">
+          <img src="dresscode1.png" alt="Дресс-код 2">
+        </div>
+        <div class="dress-slide">
+          <img src="dresscode2.png" alt="Дресс-код 3">
+        </div>
+        <div class="dress-slide">
+          <img src="dresscode3.png" alt="Дресс-код 4">
+        </div>
+        <div class="dress-slide">
+          <img src="dresscode44.png" alt="Дресс-код 5">
+        </div>
+      </div>
+    </div>
 
     <div class="premium-dots" id="dressDots">
-  <button class="premium-dot active" type="button" data-slide="0" aria-label="Слайд 1"></button>
-  <button class="premium-dot" type="button" data-slide="1" aria-label="Слайд 2"></button>
-  <button class="premium-dot" type="button" data-slide="2" aria-label="Слайд 3"></button>
-  <button class="premium-dot" type="button" data-slide="3" aria-label="Слайд 4"></button>
-  <button class="premium-dot" type="button" data-slide="4" aria-label="Слайд 5"></button>
-</div>
+      <button class="premium-dot active" type="button" data-slide="0" aria-label="Слайд 1"></button>
+      <button class="premium-dot" type="button" data-slide="1" aria-label="Слайд 2"></button>
+      <button class="premium-dot" type="button" data-slide="2" aria-label="Слайд 3"></button>
+      <button class="premium-dot" type="button" data-slide="3" aria-label="Слайд 4"></button>
+      <button class="premium-dot" type="button" data-slide="4" aria-label="Слайд 5"></button>
+    </div>
   </div>
 </section>
 
@@ -1245,100 +1255,11 @@ document.querySelectorAll('.fade-map').forEach(el => observer.observe(el));
       } catch (err) {
         alert('Не удалось отправить анкету. Проверьте интернет и попробуйте снова.');
       }
-    });
-  }
-  const dressSlider = document.getElementById('dresscodeSlider');
-const dressTrack = document.getElementById('dressTrack');
-const dressDots = document.querySelectorAll('#dressDots .premium-dot');
+    
+  
+  
+  
 
-if (dressSlider && dressTrack && dressDots.length) {
-  let currentSlide = 0;
-  const totalSlides = dressDots.length;
-
-  let startX = 0;
-  let currentTranslate = 0;
-  let prevTranslate = 0;
-  let isDragging = false;
-  let animationFrame = null;
-
-  function setActiveDot() {
-    dressDots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentSlide);
-    });
-  }
-
-  function goToSlide(index, withAnimation = true) {
-    currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
-    const offset = -currentSlide * 100;
-
-    dressTrack.style.transition = withAnimation
-      ? 'transform .55s cubic-bezier(.22,.61,.36,1)'
-      : 'none';
-
-    dressTrack.style.transform = `translateX(${offset}%)`;
-    setActiveDot();
-  }
-
-  dressDots.forEach(dot => {
-    dot.addEventListener('click', () => {
-      goToSlide(Number(dot.dataset.slide));
-    });
-  });
-
-  function getPositionX(event) {
-    return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
-  }
-
-  function animation() {
-    dressTrack.style.transform = `translateX(calc(${-currentSlide * 100}% + ${currentTranslate}px))`;
-    if (isDragging) animationFrame = requestAnimationFrame(animation);
-  }
-
-  function touchStart(event) {
-    isDragging = true;
-    startX = getPositionX(event);
-    currentTranslate = 0;
-    prevTranslate = 0;
-    dressTrack.style.transition = 'none';
-    animationFrame = requestAnimationFrame(animation);
-  }
-
-  function touchMove(event) {
-    if (!isDragging) return;
-    const currentX = getPositionX(event);
-    currentTranslate = currentX - startX;
-  }
-
-  function touchEnd() {
-    cancelAnimationFrame(animationFrame);
-    isDragging = false;
-
-    const movedBy = currentTranslate;
-
-    if (movedBy < -50 && currentSlide < totalSlides - 1) {
-      currentSlide += 1;
-    }
-
-    if (movedBy > 50 && currentSlide > 0) {
-      currentSlide -= 1;
-    }
-
-    goToSlide(currentSlide);
-  }
-
-  dressTrack.addEventListener('touchstart', touchStart, { passive: true });
-  dressTrack.addEventListener('touchmove', touchMove, { passive: true });
-  dressTrack.addEventListener('touchend', touchEnd);
-
-  dressTrack.addEventListener('mousedown', touchStart);
-  dressTrack.addEventListener('mousemove', touchMove);
-  dressTrack.addEventListener('mouseup', touchEnd);
-  dressTrack.addEventListener('mouseleave', () => {
-    if (isDragging) touchEnd();
-  });
-
-  goToSlide(0);
-}
     function generateHearts() {
   const container = document.querySelector('.sheet');
   if (!container) return;
@@ -1367,7 +1288,32 @@ if (dressSlider && dressTrack && dressDots.length) {
     container.appendChild(heart);
   }
 }
+const dressViewport = document.getElementById('dressViewport');
+const dressDots = document.querySelectorAll('#dressDots .premium-dot');
 
+if (dressViewport && dressDots.length) {
+  const updateActiveDot = () => {
+    const slideIndex = Math.round(dressViewport.scrollLeft / dressViewport.clientWidth);
+
+    dressDots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === slideIndex);
+    });
+  };
+
+  dressDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      dressViewport.scrollTo({
+        left: dressViewport.clientWidth * index,
+        behavior: 'smooth'
+      });
+    });
+  });
+
+  dressViewport.addEventListener('scroll', updateActiveDot);
+  window.addEventListener('resize', updateActiveDot);
+
+  updateActiveDot();
+}
 generateHearts();
 </script>
 </body>
