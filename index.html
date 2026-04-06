@@ -773,34 +773,32 @@
   margin-top:18px;
 }
 
-.dresscode-viewport{
-  width:100%;
-  max-width:340px;
-  margin:0 auto;
+.dresscode-scroll{
+  display:flex;
+  gap:12px;
   overflow-x:auto;
   overflow-y:hidden;
-  border-radius:24px;
-  position:relative;
-  background:rgba(255,255,255,.35);
-  box-shadow:0 14px 30px rgba(63,42,31,.10), inset 0 1px 0 rgba(255,255,255,.45);
-  border:1px solid rgba(141,116,97,.10);
+  padding:4px 4px 12px;
   scroll-snap-type:x mandatory;
   -webkit-overflow-scrolling:touch;
   scrollbar-width:none;
+  overscroll-behavior-x:contain;
 }
 
-.dresscode-viewport::-webkit-scrollbar{
+.dresscode-scroll::-webkit-scrollbar{
   display:none;
 }
 
-.dresscode-track{
-  display:flex;
-}
-
 .dress-slide{
-  flex:0 0 100%;
-  min-width:100%;
-  scroll-snap-align:start;
+  flex:0 0 88%;
+  scroll-snap-align:center;
+  border-radius:24px;
+  overflow:hidden;
+  background:rgba(255,255,255,.35);
+  box-shadow:
+    0 14px 30px rgba(63,42,31,.10),
+    inset 0 1px 0 rgba(255,255,255,.45);
+  border:1px solid rgba(141,116,97,.10);
 }
 
 .dress-slide img{
@@ -808,44 +806,14 @@
   width:100%;
   height:auto;
   object-fit:contain;
-  border-radius:24px;
   background:#f3eee7;
   user-select:none;
   -webkit-user-drag:none;
 }
 
-.premium-dots{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:10px;
-  margin-top:14px;
-}
-
-.premium-dot{
-  width:9px;
-  height:9px;
-  border:none;
-  border-radius:999px;
-  background:rgba(76,53,41,.20);
-  cursor:pointer;
-  padding:0;
-  transition:all .3s ease;
-}
-
-.premium-dot.active{
-  width:26px;
-  background:var(--accent);
-  box-shadow:0 4px 10px rgba(157,66,85,.20);
-}
-
 @media (max-width:430px){
-  .dresscode-viewport{
-    max-width:100%;
-    border-radius:20px;
-  }
-
-  .dress-slide img{
+  .dress-slide{
+    flex:0 0 92%;
     border-radius:20px;
   }
 }
@@ -981,30 +949,30 @@
   <div class="dresscode-premium" id="dresscodeSlider">
     <div class="dresscode-viewport">
       <div class="dresscode-track" id="dressTrack">
-  <section class="section fade-up">
+<section class="section fade-up">
   <h2 class="section-title">Дресс-код</h2>
   <p class="text">Поддержите нас красивыми нарядами</p>
 
   <div class="dresscode-premium">
-    <div class="dresscode-viewport" id="dressViewport">
-      <div class="dresscode-track" id="dressTrack">
-        <div class="dress-slide">
-          <img src="dresscode.png" alt="Дресс-код 1">
-        </div>
-        <div class="dress-slide">
-          <img src="dresscode1.png" alt="Дресс-код 2">
-        </div>
-        <div class="dress-slide">
-          <img src="dresscode2.png" alt="Дресс-код 3">
-        </div>
-        <div class="dress-slide">
-          <img src="dresscode3.png" alt="Дресс-код 4">
-        </div>
-        <div class="dress-slide">
-          <img src="dresscode44.png" alt="Дресс-код 5">
-        </div>
+    <div class="dresscode-scroll">
+      <div class="dress-slide">
+        <img src="dresscode.png" alt="Дресс-код 1">
+      </div>
+      <div class="dress-slide">
+        <img src="dresscode1.png alt="Дресс-код 2">
+      </div>
+      <div class="dress-slide">
+        <img src="dresscode2.png" alt="Дресс-код 3">
+      </div>
+      <div class="dress-slide">
+        <img src="dresscode3.png" alt="Дресс-код 4">
+      </div>
+      <div class="dress-slide">
+        <img src="dresscode44.png" alt="Дресс-код 5">
       </div>
     </div>
+  </div>
+</section>
 
     <div class="premium-dots" id="dressDots">
       <button class="premium-dot active" type="button" data-slide="0" aria-label="Слайд 1"></button>
@@ -1255,11 +1223,6 @@ document.querySelectorAll('.fade-map').forEach(el => observer.observe(el));
       } catch (err) {
         alert('Не удалось отправить анкету. Проверьте интернет и попробуйте снова.');
       }
-    
-  
-  
-  
-
     function generateHearts() {
   const container = document.querySelector('.sheet');
   if (!container) return;
@@ -1288,32 +1251,7 @@ document.querySelectorAll('.fade-map').forEach(el => observer.observe(el));
     container.appendChild(heart);
   }
 }
-const dressViewport = document.getElementById('dressViewport');
-const dressDots = document.querySelectorAll('#dressDots .premium-dot');
 
-if (dressViewport && dressDots.length) {
-  const updateActiveDot = () => {
-    const slideIndex = Math.round(dressViewport.scrollLeft / dressViewport.clientWidth);
-
-    dressDots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === slideIndex);
-    });
-  };
-
-  dressDots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      dressViewport.scrollTo({
-        left: dressViewport.clientWidth * index,
-        behavior: 'smooth'
-      });
-    });
-  });
-
-  dressViewport.addEventListener('scroll', updateActiveDot);
-  window.addEventListener('resize', updateActiveDot);
-
-  updateActiveDot();
-}
 generateHearts();
 </script>
 </body>
