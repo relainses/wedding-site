@@ -1047,7 +1047,7 @@
     <source src="music.mp3" type="audio/mpeg">
   </audio>
 
-  <script>
+ <script>
   const colors = ["#b54b6a","#c07a59","#d3a55c","#7a9b6a","#9b6a7a","#8a5d4a","#c27b8e","#6b8fa3"];
 
   function makeRainbowText(selector) {
@@ -1079,32 +1079,34 @@
   makeRainbowText(".main-call");
   makeRainbowText(".place-label");
 
- const pageRoot = document.getElementById('pageRoot');
-const introOverlay = document.getElementById('introOverlay');
-const openInviteBtn = document.getElementById('openInviteBtn');
-const envelopeFlap = document.getElementById('envelopeFlap');
-const letterCard = document.getElementById('letterCard');
-const guestName = document.getElementById('guestName');
+  const pageRoot = document.getElementById('pageRoot');
+  const introOverlay = document.getElementById('introOverlay');
+  const openInviteBtn = document.getElementById('openInviteBtn');
+  const envelopeFlap = document.getElementById('envelopeFlap');
+  const letterCard = document.getElementById('letterCard');
+  const guestName = document.getElementById('guestName');
 
-const params = new URLSearchParams(window.location.search);
-const guest = params.get('name');
-const introGuest = params.get('intro');
-const nameInput = document.querySelector('input[name="name"]');
-if (guest && nameInput) {
-  nameInput.value = guest;
-}
-if (guest && guest.trim()) {
-  guestName.textContent = (introGuest && introGuest.trim()) ? introGuest : guest;
+  const params = new URLSearchParams(window.location.search);
+  const guest = params.get('name');
+  const introGuest = params.get('intro');
+  const nameInput = document.querySelector('input[name="name"]');
 
-  const guestTextTarget = document.getElementById('personalGuestText');
-
-  if (guestTextTarget) {
-    guestTextTarget.textContent =
-      `Дорогие ${guest}! Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу`;
+  if (guest && nameInput) {
+    nameInput.value = guest;
   }
-}
 
-openInviteBtn.onclick = () => {
+  if (guest && guest.trim()) {
+    guestName.textContent = (introGuest && introGuest.trim()) ? introGuest : guest;
+
+    const guestTextTarget = document.getElementById('personalGuestText');
+
+    if (guestTextTarget) {
+      guestTextTarget.textContent =
+        `Дорогие ${guest}! Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу`;
+    }
+  }
+
+  openInviteBtn.onclick = () => {
     envelopeFlap.style.transform = 'rotateX(180deg)';
     letterCard.style.transform = 'translateY(-30px)';
     setTimeout(() => {
@@ -1159,7 +1161,8 @@ openInviteBtn.onclick = () => {
   }, { threshold: 0.12 });
 
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-document.querySelectorAll('.fade-map').forEach(el => observer.observe(el));
+  document.querySelectorAll('.fade-map').forEach(el => observer.observe(el));
+
   const dateReveal = document.getElementById('dateReveal');
   if (dateReveal) {
     const dateObserver = new IntersectionObserver((entries) => {
@@ -1221,36 +1224,38 @@ document.querySelectorAll('.fade-map').forEach(el => observer.observe(el));
       } catch (err) {
         alert('Не удалось отправить анкету. Проверьте интернет и попробуйте снова.');
       }
-    function generateHearts() {
-  const container = document.querySelector('.sheet');
-  if (!container) return;
-
-  const height = container.scrollHeight;
-
-  const heartsCount = Math.floor(height / 120); // плотность
-
-  for (let i = 0; i < heartsCount; i++) {
-    const heart = document.createElement('div');
-    heart.className = 'decor-heart';
-    heart.innerHTML = '♥';
-
-    heart.style.top = Math.random() * height + 'px';
-
-    if (Math.random() > 0.5) {
-      heart.style.left = Math.random() * 40 + 'px';
-    } else {
-      heart.style.right = Math.random() * 40 + 'px';
-    }
-
-    heart.style.fontSize = (14 + Math.random() * 10) + 'px';
-    heart.style.opacity = 0.5 + Math.random() * 0.4;
-    heart.style.animationDuration = (5 + Math.random() * 4) + 's';
-
-    container.appendChild(heart);
+    });
   }
-}
 
-generateHearts();
+  function generateHearts() {
+    const container = document.querySelector('.sheet');
+    if (!container) return;
+
+    const height = container.scrollHeight;
+    const heartsCount = Math.floor(height / 120);
+
+    for (let i = 0; i < heartsCount; i++) {
+      const heart = document.createElement('div');
+      heart.className = 'decor-heart';
+      heart.innerHTML = '♥';
+
+      heart.style.top = Math.random() * height + 'px';
+
+      if (Math.random() > 0.5) {
+        heart.style.left = Math.random() * 40 + 'px';
+      } else {
+        heart.style.right = Math.random() * 40 + 'px';
+      }
+
+      heart.style.fontSize = (14 + Math.random() * 10) + 'px';
+      heart.style.opacity = 0.5 + Math.random() * 0.4;
+      heart.style.animationDuration = (5 + Math.random() * 4) + 's';
+
+      container.appendChild(heart);
+    }
+  }
+
+  generateHearts();
 </script>
 </body>
 </html>
