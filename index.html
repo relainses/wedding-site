@@ -991,14 +991,32 @@
 
         <div class="form-card">
           <form id="rsvpForm" action="https://formspree.io/f/xkoqglrp" method="POST">
-            <input type="text" name="name" placeholder="Имя и фамилия" required>
-<textarea name="food_restrictions" placeholder="></textarea>
-            <div class="field-title">Вы сможете прийти?</div>
-            <div class="radio-group">
-              <label class="option-card"><input type="radio" name="attendance" value="Да" required> <span>Смогу прийти</span></label>
-              <label class="option-card"><input type="radio" name="attendance" value="Нет"> <span>Не смогу прийти</span></label>
-              <label class="option-card"><input type="radio" name="attendance" value="Позже"> <span>Сообщу позже</span></label>
-            </div>
+           <input type="text" name="name" placeholder="Имя и фамилия" required>
+
+<div class="field-title">
+  Если вы будете с парой, укажите имя и фамилию партнёра
+</div>
+
+<input type="text" name="partner" placeholder="Имя и фамилия партнёра">
+
+<div class="field-title">Вы сможете прийти?</div>
+
+<div class="radio-group">
+  <label class="option-card">
+    <input type="radio" name="attendance" value="Да" required>
+    <span>Смогу прийти</span>
+  </label>
+
+  <label class="option-card">
+    <input type="radio" name="attendance" value="Нет">
+    <span>Не смогу прийти</span>
+  </label>
+
+  <label class="option-card">
+    <input type="radio" name="attendance" value="Позже">
+    <span>Сообщу позже</span>
+  </label>
+</div>
 <div class="field-title">Есть ли у вас аллергии или ограничения в питании?</div>
 <textarea name="food_restrictions" placeholder="Например: не ем рыбу, аллергия на орехи"></textarea>
             <div class="field-title">Ваши предпочтения по напиткам</div>
