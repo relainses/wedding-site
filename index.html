@@ -1120,7 +1120,7 @@ const params = new URLSearchParams(window.location.search);
 const guest = params.get('name');
 const introGuest = params.get('intro');
 const greet = params.get('greet');
-
+const introcase = params.get('introcase');
 const nameInput = document.querySelector('input[name="name"]');
 if (guest && nameInput) {
   nameInput.value = guest;
@@ -1148,7 +1148,10 @@ if (guest && guest.trim()) {
 
 const displayName = (introGuest && introGuest.trim()) ? introGuest : guest;
 
-guestName.textContent = toGenitive(displayName);
+guestName.textContent =
+  (introcase && introcase.trim())
+    ? introcase
+    : ((introGuest && introGuest.trim()) ? introGuest : guest);
 
   const guestTextTarget = document.getElementById('personalGuestText');
 
