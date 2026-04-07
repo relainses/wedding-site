@@ -1121,10 +1121,7 @@ const guest = decodeURIComponent(params.get('name') || "");
 const introGuest = decodeURIComponent(params.get('intro') || "");
 const greet = params.get('greet');
 const introcase = decodeURIComponent(params.get('introcase') || "");
-const nameInput = document.querySelector('input[name="name"]');
-if (guest && nameInput) {
-  nameInput.value = guest;
-}
+
 
 if (guest && guest.trim()) {
   guestName.textContent =
