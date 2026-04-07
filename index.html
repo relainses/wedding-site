@@ -1127,40 +1127,17 @@ if (guest && nameInput) {
 }
 
 if (guest && guest.trim()) {
- function toGenitive(name) {
-  name = name.trim();
-
-  if (name.endsWith("а")) {
-    return name.slice(0, -1) + "ы";
-  }
-  if (name.endsWith("я")) {
-    return name.slice(0, -1) + "и";
-  }
-  if (name.endsWith("й")) {
-    return name.slice(0, -1) + "я";
-  }
-  if (name.endsWith("ь")) {
-    return name.slice(0, -1) + "я";
-  }
-
-  return name + "а";
+  guestName.textContent =
+    (introcase && introcase.trim())
+      ? introcase
+      : ((introGuest && introGuest.trim()) ? introGuest : guest);
 }
 
-const displayName = (introGuest && introGuest.trim()) ? introGuest : guest;
+const guestTextTarget = document.getElementById('personalGuestText');
 
-guestName.textContent =
-  (introcase && introcase.trim())
-    ? introcase
-    : ((introGuest && introGuest.trim()) ? introGuest : guest);
-
-  const guestTextTarget = document.getElementById('personalGuestText');
-
-  if (guestTextTarget) {
-    const greeting = greet ? greet : "Дорогие";
-
-    guestTextTarget.textContent =
-      `${greeting} ${guest}! Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу`;
-  }
+if (guestTextTarget) {
+  guestTextTarget.textContent =
+    `Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу`;
 }
 
 openInviteBtn.onclick = () => {
