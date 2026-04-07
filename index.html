@@ -812,8 +812,11 @@
 .dress-slide img{
   display:block;
   width:100%;
-  height:auto;
-  background:#f3eee7;
+  aspect-ratio:4/5;   
+  object-fit:cover;   
+  border-radius:24px;
+  user-select:none;
+  -webkit-user-drag:none;
 }
 
 @media (max-width:430px){
@@ -865,7 +868,7 @@
 <p class="text" id="personalGuestText">Совсем скоро состоится наша свадьба!  </p>
         <p class="text" id="personalGuestText">Мы рады пригласить вас стать свидетелями этого торжества и разделить с нами самые яркие моменты!  </p>
         <div class="date-reveal" id="dateReveal">
-          <div class="date-top">наш день</div>
+          <div class="date-top">Торжество состоится</div>
 
           <div class="paper-wrap">
             <div class="paper-closed">30 июля 2026</div>
@@ -991,8 +994,8 @@
 
       <section class="section fade-up">
         <h2 class="section-title">Анкета</h2>
-        <p class="text">Ваши ответы на вопросы помогут нам при организации торжества.Будем ждать ответ до 02.05.2026</p>
-
+        <p class="text">Ваши ответы на вопросы помогут нам при организации торжества</p>
+<p class="text">Будем ждать ответ до 02.05.2026</p>
         <div class="form-card">
           <form id="rsvpForm" action="https://formspree.io/f/xkoqglrp" method="POST">
            <input type="text" name="name" placeholder="Имя и фамилия" required>
@@ -1045,7 +1048,7 @@
 
     <div class="music-wrap">
       <button class="music-btn" id="musicBtn">
-        <span>♫ Музыка</span>
+        <span>♫ Включить музыку</span>
         <span class="eq" aria-hidden="true"><span></span><span></span><span></span></span>
       </button>
     </div>
