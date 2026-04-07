@@ -214,14 +214,15 @@
     }
 
     .section-title{
-      font-family:'Bad Script',cursive;
-      font-size:37px;
-      text-align:center;
-      margin:0 0 19px;
-      letter-spacing:.01em;
-      line-height:1.17;
-      text-shadow:0 1px 0 rgba(255,255,255,.35);
-    }
+  font-family:'Bad Script',cursive;
+  font-size:clamp(24px, 8vw, 50px);
+  text-align:center;
+  margin:0 0 18px;
+  letter-spacing:.01em;
+  line-height:1.1;
+  text-shadow:0 1px 0 rgba(255,255,255,.35);
+  white-space:nowrap;
+}
 
     .hero-line{
       text-align:center;
@@ -718,11 +719,11 @@
     }
 
     .section-title span,
-    .main-call span,
-    .place-label span{
-      display:inline;
-      white-space:pre;
-    }
+.main-call span,
+.place-label span{
+  display:inline;
+  white-space:nowrap;
+}
 
     @media (max-width:430px){
       .page{padding:16px 10px 50px}
@@ -940,8 +941,8 @@
             <div class="event-text">Начало банкета</div>
           </div>
           <div style="position:absolute;top:250px;right:6px;text-align:right;">
-            <div class="event-time">22:00</div>
-            <div class="event-text">Disko-Party</div>
+            <div class="event-time">23:00</div>
+            <div class="event-text">Окончание вечера</div>
           </div>
         </div>
       </section>
