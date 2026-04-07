@@ -1109,37 +1109,45 @@
   makeRainbowText(".main-call");
   makeRainbowText(".place-label");
 
-  const pageRoot = document.getElementById('pageRoot');
-  const introOverlay = document.getElementById('introOverlay');
-  const openInviteBtn = document.getElementById('openInviteBtn');
-  const envelopeFlap = document.getElementById('envelopeFlap');
-  const letterCard = document.getElementById('letterCard');
-  const guestName = document.getElementById('guestName');
+ const pageRoot = document.getElementById('pageRoot');
+const introOverlay = document.getElementById('introOverlay');
+const openInviteBtn = document.getElementById('openInviteBtn');
+const envelopeFlap = document.getElementById('envelopeFlap');
+const letterCard = document.getElementById('letterCard');
+const guestName = document.getElementById('guestName');
 
-  const params = new URLSearchParams(window.location.search);
-  const guest = params.get('name');
-  const introGuest = params.get('intro');
-  const nameInput = document.querySelector('input[name="name"]');
+const params = new URLSearchParams(window.location.search);
+const guest = params.get('name');
+const introGuest = params.get('intro');
 const greet = params.get('greet');
-  if (guest && nameInput) {
-    nameInput.value = guest;
+
+const nameInput = document.querySelector('input[name="name"]');
+if (guest && nameInput) {
+  nameInput.value = guest;
+}
+
+if (guest && guest.trim()) {
+  guestName.textContent = (introGuest && introGuest.trim()) ? introGuest : guest;
+
+  const guestTextTarget = document.getElementById('personalGuestText');
+
+  if (guestTextTarget) {
+    const greeting = greet ? greet : "Дорогие";
+
+    guestTextTarget.textContent =
+      `${greeting} ${guest}! Мы приглашаем вас разделить с нами одно из самых важных событий — нашу свадьбу`;
   }
+}
 
-  if (guest && guest.trim()) {
-    guestName.textContent = (introGuest && introGuest.trim()) ? introGuest : guest;
-
-    const guestTextTarget = document.getElementById('personalGuestText');
-
-    
-  openInviteBtn.onclick = () => {
-    envelopeFlap.style.transform = 'rotateX(180deg)';
-    letterCard.style.transform = 'translateY(-30px)';
-    setTimeout(() => {
-      introOverlay.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-      pageRoot.classList.add('ready');
-    }, 950);
-  };
+openInviteBtn.onclick = () => {
+  envelopeFlap.style.transform = 'rotateX(180deg)';
+  letterCard.style.transform = 'translateY(-30px)';
+  setTimeout(() => {
+    introOverlay.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    pageRoot.classList.add('ready');
+  }, 950);
+};
 
   function plural(number, one, few, many) {
     const n = Math.abs(number) % 100;
