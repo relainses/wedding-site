@@ -1127,7 +1127,28 @@ if (guest && nameInput) {
 }
 
 if (guest && guest.trim()) {
-  guestName.textContent = (introGuest && introGuest.trim()) ? introGuest : guest;
+ function toGenitive(name) {
+  name = name.trim();
+
+  if (name.endsWith("а")) {
+    return name.slice(0, -1) + "ы";
+  }
+  if (name.endsWith("я")) {
+    return name.slice(0, -1) + "и";
+  }
+  if (name.endsWith("й")) {
+    return name.slice(0, -1) + "я";
+  }
+  if (name.endsWith("ь")) {
+    return name.slice(0, -1) + "я";
+  }
+
+  return name + "а";
+}
+
+const displayName = (introGuest && introGuest.trim()) ? introGuest : guest;
+
+guestName.textContent = toGenitive(displayName);
 
   const guestTextTarget = document.getElementById('personalGuestText');
 
